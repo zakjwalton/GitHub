@@ -3,74 +3,43 @@ EGR 326 - Final Project.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000032  00800100  00000c64  00000cf8  2**0
+  0 .data         0000003e  00800100  00000e7a  00000f2e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000c64  00000000  00000000  00000094  2**1
+  1 .text         00000e7a  00000000  00000000  000000b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000002  00800132  00800132  00000d2a  2**0
+  2 .bss          0000001e  0080013e  0080013e  00000f6c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000d2a  2**0
+  3 .eeprom       00000003  00810000  00810000  00000f6c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .comment      00000060  00000000  00000000  00000f6f  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000218  00000000  00000000  00000d5a  2**0
+  5 .debug_aranges 00000210  00000000  00000000  00000fcf  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001e36  00000000  00000000  00000f72  2**0
+  6 .debug_info   00002172  00000000  00000000  000011df  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000811  00000000  00000000  00002da8  2**0
+  7 .debug_abbrev 000007ef  00000000  00000000  00003351  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000a5d  00000000  00000000  000035b9  2**0
+  8 .debug_line   00000aa3  00000000  00000000  00003b40  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000005f0  00000000  00000000  00004018  2**2
+  9 .debug_frame  000005dc  00000000  00000000  000045e4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000750  00000000  00000000  00004608  2**0
+ 10 .debug_str    000007b9  00000000  00000000  00004bc0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00001787  00000000  00000000  00004d58  2**0
+ 11 .debug_loc    00001641  00000000  00000000  00005379  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000001a8  00000000  00000000  000064df  2**0
+ 12 .debug_ranges 000001b0  00000000  00000000  000069ba  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
- */ 
-#include "FSM.h"
-#include "Buttons.h"
-
-state_t determine_state(state_t state, int button_pressed)
-{
    0:	0c 94 33 01 	jmp	0x266	; 0x266 <__ctors_end>
    4:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-	uint8_t temp_state;
-	
-	if(button_pressed == BACK_BUTTON)
    8:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-		}
-		else if(button_pressed == SETTING_BUTTON)
-			{
-			// do nothing for now
-			}
-			else if(button_pressed == FORWARD_BUTTON)
    c:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-  10:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <__vector_4>
-	
-	if(button_pressed == BACK_BUTTON)
-		{
-			temp_state = state.current;
-			state.current = state.previous;
-			state.previous = temp_state;
+  10:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   14:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-	uint8_t temp_state;
-	
-	if(button_pressed == BACK_BUTTON)
-		{
-			temp_state = state.current;
-			state.current = state.previous;
   18:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-			}
-			else if(button_pressed == FORWARD_BUTTON)
-				{
-			     temp_state = state.current;
-				 state.current = state.next;
-				 state.next = temp_state;
   1c:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   20:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   24:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
@@ -78,7 +47,7 @@ state_t determine_state(state_t state, int button_pressed)
   2c:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   30:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   34:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
-  38:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
+  38:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <__vector_14>
   3c:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   40:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
   44:	0c 94 50 01 	jmp	0x2a0	; 0x2a0 <__bad_interrupt>
@@ -161,18 +130,18 @@ state_t determine_state(state_t state, int button_pressed)
  272:	11 e0       	ldi	r17, 0x01	; 1
  274:	a0 e0       	ldi	r26, 0x00	; 0
  276:	b1 e0       	ldi	r27, 0x01	; 1
- 278:	e4 e6       	ldi	r30, 0x64	; 100
- 27a:	fc e0       	ldi	r31, 0x0C	; 12
+ 278:	ea e7       	ldi	r30, 0x7A	; 122
+ 27a:	fe e0       	ldi	r31, 0x0E	; 14
  27c:	02 c0       	rjmp	.+4      	; 0x282 <__do_copy_data+0x10>
  27e:	05 90       	lpm	r0, Z+
  280:	0d 92       	st	X+, r0
- 282:	a2 33       	cpi	r26, 0x32	; 50
+ 282:	ae 33       	cpi	r26, 0x3E	; 62
  284:	b1 07       	cpc	r27, r17
  286:	d9 f7       	brne	.-10     	; 0x27e <__do_copy_data+0xc>
 
 00000288 <__do_clear_bss>:
  288:	21 e0       	ldi	r18, 0x01	; 1
- 28a:	a2 e3       	ldi	r26, 0x32	; 50
+ 28a:	ae e3       	ldi	r26, 0x3E	; 62
  28c:	b1 e0       	ldi	r27, 0x01	; 1
  28e:	01 c0       	rjmp	.+2      	; 0x292 <.do_clear_bss_start>
 
@@ -180,11 +149,11 @@ state_t determine_state(state_t state, int button_pressed)
  290:	1d 92       	st	X+, r1
 
 00000292 <.do_clear_bss_start>:
- 292:	a4 33       	cpi	r26, 0x34	; 52
+ 292:	ac 35       	cpi	r26, 0x5C	; 92
  294:	b2 07       	cpc	r27, r18
  296:	e1 f7       	brne	.-8      	; 0x290 <.do_clear_bss_loop>
- 298:	0e 94 a8 01 	call	0x350	; 0x350 <main>
- 29c:	0c 94 30 06 	jmp	0xc60	; 0xc60 <_exit>
+ 298:	0e 94 2f 02 	call	0x45e	; 0x45e <main>
+ 29c:	0c 94 3b 07 	jmp	0xe76	; 0xe76 <_exit>
 
 000002a0 <__bad_interrupt>:
  2a0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -201,30 +170,34 @@ BUTTON_2_PORT |= _BV(BUTTON_2_PIN);
  2a6:	31 9a       	sbi	0x06, 1	; 6
 BUTTON_3_PORT |= _BV(BUTTON_3_PIN);
  2a8:	32 9a       	sbi	0x06, 2	; 6
+ 2aa:	08 95       	ret
 
-// Enabling Pin change interrupts on pins PC0-PC7
-PCICR |= _BV(PCIE1);
- 2aa:	e8 e6       	ldi	r30, 0x68	; 104
- 2ac:	f0 e0       	ldi	r31, 0x00	; 0
- 2ae:	80 81       	ld	r24, Z
- 2b0:	82 60       	ori	r24, 0x02	; 2
- 2b2:	80 83       	st	Z, r24
+000002ac <Update_timeout>:
+uint8_t EEMEM alarm_AM_PM;
 
-// Enabling the three buttons used for the alarm clock
-PCMSK1 |= _BV(PCINT10) | _BV(PCINT9) | _BV(PCINT8);
- 2b4:	ec e6       	ldi	r30, 0x6C	; 108
- 2b6:	f0 e0       	ldi	r31, 0x00	; 0
- 2b8:	80 81       	ld	r24, Z
- 2ba:	87 60       	ori	r24, 0x07	; 7
- 2bc:	80 83       	st	Z, r24
+int Update_timeout(void)
+{
+	int timeout;
+	timeout = times.second + 15;
+ 2ac:	20 91 4a 01 	lds	r18, 0x014A
+ 2b0:	30 e0       	ldi	r19, 0x00	; 0
+ 2b2:	c9 01       	movw	r24, r18
+ 2b4:	0f 96       	adiw	r24, 0x0f	; 15
+	if(timeout > 60)
+ 2b6:	8d 33       	cpi	r24, 0x3D	; 61
+ 2b8:	91 05       	cpc	r25, r1
+ 2ba:	0c f0       	brlt	.+2      	; 0x2be <Update_timeout+0x12>
+	{
+		timeout = timeout - 60;
+ 2bc:	cc 97       	sbiw	r24, 0x3c	; 60
+	}
+	return(timeout);
+}
  2be:	08 95       	ret
 
-000002c0 <__vector_4>:
-int g_button_pressed=0;
+000002c0 <__vector_14>:
 
-
-
-ISR(PCINT1_vect)
+ISR(TIMER0_COMPA_vect)
 {
  2c0:	1f 92       	push	r1
  2c2:	0f 92       	push	r0
@@ -235,1777 +208,1691 @@ ISR(PCINT1_vect)
  2cc:	3f 93       	push	r19
  2ce:	4f 93       	push	r20
  2d0:	5f 93       	push	r21
- 2d2:	6f 93       	push	r22
- 2d4:	7f 93       	push	r23
- 2d6:	8f 93       	push	r24
- 2d8:	9f 93       	push	r25
- 2da:	af 93       	push	r26
- 2dc:	bf 93       	push	r27
- 2de:	ef 93       	push	r30
- 2e0:	ff 93       	push	r31
-	if(!(PINC & _BV(BUTTON_1))){
- 2e2:	30 99       	sbic	0x06, 0	; 6
- 2e4:	0b c0       	rjmp	.+22     	; 0x2fc <__vector_4+0x3c>
-		g_button_pressed = B1;
- 2e6:	81 e0       	ldi	r24, 0x01	; 1
- 2e8:	90 e0       	ldi	r25, 0x00	; 0
- 2ea:	90 93 33 01 	sts	0x0133, r25
- 2ee:	80 93 32 01 	sts	0x0132, r24
-		hw_delay(200);
- 2f2:	88 ec       	ldi	r24, 0xC8	; 200
- 2f4:	90 e0       	ldi	r25, 0x00	; 0
- 2f6:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
- 2fa:	19 c0       	rjmp	.+50     	; 0x32e <__vector_4+0x6e>
+ 2d2:	8f 93       	push	r24
+ 2d4:	9f 93       	push	r25
+	static int count;
+	static int bpressed = 0;
+	bool button1Raw = (PINC & _BV(BUTTON_1)) == 0;
+ 2d6:	96 b1       	in	r25, 0x06	; 6
+ 2d8:	81 e0       	ldi	r24, 0x01	; 1
+ 2da:	98 27       	eor	r25, r24
+	bool button2Raw = (PINC & _BV(BUTTON_2)) == 0;
+ 2dc:	26 b1       	in	r18, 0x06	; 6
+ 2de:	26 95       	lsr	r18
+ 2e0:	21 70       	andi	r18, 0x01	; 1
+ 2e2:	28 27       	eor	r18, r24
+	bool button3Raw = (PINC & _BV(BUTTON_3)) == 0;
+ 2e4:	36 b1       	in	r19, 0x06	; 6
+ 2e6:	32 fb       	bst	r19, 2
+ 2e8:	33 27       	eor	r19, r19
+ 2ea:	30 f9       	bld	r19, 0
+ 2ec:	38 27       	eor	r19, r24
+	
+	if(button1Raw){
+ 2ee:	49 2f       	mov	r20, r25
+ 2f0:	41 70       	andi	r20, 0x01	; 1
+ 2f2:	90 ff       	sbrs	r25, 0
+ 2f4:	1c c0       	rjmp	.+56     	; 0x32e <__vector_14+0x6e>
+		count++;
+ 2f6:	80 91 40 01 	lds	r24, 0x0140
+ 2fa:	90 91 41 01 	lds	r25, 0x0141
+ 2fe:	01 96       	adiw	r24, 0x01	; 1
+ 300:	90 93 41 01 	sts	0x0141, r25
+ 304:	80 93 40 01 	sts	0x0140, r24
+		if(count == 50){
+ 308:	82 33       	cpi	r24, 0x32	; 50
+ 30a:	91 05       	cpc	r25, r1
+ 30c:	39 f4       	brne	.+14     	; 0x31c <__vector_14+0x5c>
+			bpressed = B1;
+ 30e:	81 e0       	ldi	r24, 0x01	; 1
+ 310:	90 e0       	ldi	r25, 0x00	; 0
+ 312:	90 93 3f 01 	sts	0x013F, r25
+ 316:	80 93 3e 01 	sts	0x013E, r24
+ 31a:	09 c0       	rjmp	.+18     	; 0x32e <__vector_14+0x6e>
+		}
+		if(count == 700){
+ 31c:	8c 3b       	cpi	r24, 0xBC	; 188
+ 31e:	92 40       	sbci	r25, 0x02	; 2
+ 320:	31 f4       	brne	.+12     	; 0x32e <__vector_14+0x6e>
+			bpressed = B1H;
+ 322:	84 e0       	ldi	r24, 0x04	; 4
+ 324:	90 e0       	ldi	r25, 0x00	; 0
+ 326:	90 93 3f 01 	sts	0x013F, r25
+ 32a:	80 93 3e 01 	sts	0x013E, r24
+		}
 	}
-	else if(!(PINC & _BV(BUTTON_2))){
- 2fc:	31 99       	sbic	0x06, 1	; 6
- 2fe:	0b c0       	rjmp	.+22     	; 0x316 <__vector_4+0x56>
-		g_button_pressed = B2;
- 300:	82 e0       	ldi	r24, 0x02	; 2
- 302:	90 e0       	ldi	r25, 0x00	; 0
- 304:	90 93 33 01 	sts	0x0133, r25
- 308:	80 93 32 01 	sts	0x0132, r24
-		hw_delay(200);
- 30c:	88 ec       	ldi	r24, 0xC8	; 200
- 30e:	90 e0       	ldi	r25, 0x00	; 0
- 310:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
- 314:	0c c0       	rjmp	.+24     	; 0x32e <__vector_4+0x6e>
+	
+	if(button2Raw){
+ 32e:	22 23       	and	r18, r18
+ 330:	e1 f0       	breq	.+56     	; 0x36a <__vector_14+0xaa>
+		count++;
+ 332:	80 91 40 01 	lds	r24, 0x0140
+ 336:	90 91 41 01 	lds	r25, 0x0141
+ 33a:	01 96       	adiw	r24, 0x01	; 1
+ 33c:	90 93 41 01 	sts	0x0141, r25
+ 340:	80 93 40 01 	sts	0x0140, r24
+		if(count == 50){
+ 344:	82 33       	cpi	r24, 0x32	; 50
+ 346:	91 05       	cpc	r25, r1
+ 348:	39 f4       	brne	.+14     	; 0x358 <__vector_14+0x98>
+			bpressed = B2;
+ 34a:	82 e0       	ldi	r24, 0x02	; 2
+ 34c:	90 e0       	ldi	r25, 0x00	; 0
+ 34e:	90 93 3f 01 	sts	0x013F, r25
+ 352:	80 93 3e 01 	sts	0x013E, r24
+ 356:	09 c0       	rjmp	.+18     	; 0x36a <__vector_14+0xaa>
+		}
+		if(count == 700){
+ 358:	8c 3b       	cpi	r24, 0xBC	; 188
+ 35a:	92 40       	sbci	r25, 0x02	; 2
+ 35c:	31 f4       	brne	.+12     	; 0x36a <__vector_14+0xaa>
+			bpressed = B2H;
+ 35e:	85 e0       	ldi	r24, 0x05	; 5
+ 360:	90 e0       	ldi	r25, 0x00	; 0
+ 362:	90 93 3f 01 	sts	0x013F, r25
+ 366:	80 93 3e 01 	sts	0x013E, r24
+		}
 	}
-	else if (!(PINC & _BV(BUTTON_3))){
- 316:	32 99       	sbic	0x06, 2	; 6
- 318:	0a c0       	rjmp	.+20     	; 0x32e <__vector_4+0x6e>
-		g_button_pressed = B3;
- 31a:	83 e0       	ldi	r24, 0x03	; 3
- 31c:	90 e0       	ldi	r25, 0x00	; 0
- 31e:	90 93 33 01 	sts	0x0133, r25
- 322:	80 93 32 01 	sts	0x0132, r24
-		hw_delay(200);
- 326:	88 ec       	ldi	r24, 0xC8	; 200
- 328:	90 e0       	ldi	r25, 0x00	; 0
- 32a:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
+	
+	if(button3Raw){
+ 36a:	33 23       	and	r19, r19
+ 36c:	e9 f0       	breq	.+58     	; 0x3a8 <__vector_14+0xe8>
+		count++;
+ 36e:	80 91 40 01 	lds	r24, 0x0140
+ 372:	90 91 41 01 	lds	r25, 0x0141
+ 376:	01 96       	adiw	r24, 0x01	; 1
+ 378:	90 93 41 01 	sts	0x0141, r25
+ 37c:	80 93 40 01 	sts	0x0140, r24
+		if(count == 50){
+ 380:	82 33       	cpi	r24, 0x32	; 50
+ 382:	91 05       	cpc	r25, r1
+ 384:	39 f4       	brne	.+14     	; 0x394 <__vector_14+0xd4>
+			bpressed = B3;
+ 386:	83 e0       	ldi	r24, 0x03	; 3
+ 388:	90 e0       	ldi	r25, 0x00	; 0
+ 38a:	90 93 3f 01 	sts	0x013F, r25
+ 38e:	80 93 3e 01 	sts	0x013E, r24
+ 392:	22 c0       	rjmp	.+68     	; 0x3d8 <__vector_14+0x118>
+		}
+		if(count == 700){
+ 394:	8c 3b       	cpi	r24, 0xBC	; 188
+ 396:	92 40       	sbci	r25, 0x02	; 2
+ 398:	39 f4       	brne	.+14     	; 0x3a8 <__vector_14+0xe8>
+			bpressed = B3H;
+ 39a:	86 e0       	ldi	r24, 0x06	; 6
+ 39c:	90 e0       	ldi	r25, 0x00	; 0
+ 39e:	90 93 3f 01 	sts	0x013F, r25
+ 3a2:	80 93 3e 01 	sts	0x013E, r24
+ 3a6:	07 c0       	rjmp	.+14     	; 0x3b6 <__vector_14+0xf6>
+		}
 	}
+	if((bpressed > B3) && !button1Raw && !button2Raw && !button3Raw){
+ 3a8:	80 91 3e 01 	lds	r24, 0x013E
+ 3ac:	90 91 3f 01 	lds	r25, 0x013F
+ 3b0:	84 30       	cpi	r24, 0x04	; 4
+ 3b2:	91 05       	cpc	r25, r1
+ 3b4:	8c f0       	brlt	.+34     	; 0x3d8 <__vector_14+0x118>
+ 3b6:	41 11       	cpse	r20, r1
+ 3b8:	21 c0       	rjmp	.+66     	; 0x3fc <__vector_14+0x13c>
+ 3ba:	21 11       	cpse	r18, r1
+ 3bc:	1f c0       	rjmp	.+62     	; 0x3fc <__vector_14+0x13c>
+ 3be:	31 11       	cpse	r19, r1
+ 3c0:	1d c0       	rjmp	.+58     	; 0x3fc <__vector_14+0x13c>
+		g_button_pressed = bpressed;
+ 3c2:	80 93 43 01 	sts	0x0143, r24
+		bpressed = 0;
+ 3c6:	10 92 3f 01 	sts	0x013F, r1
+ 3ca:	10 92 3e 01 	sts	0x013E, r1
+		count = 0;
+ 3ce:	10 92 41 01 	sts	0x0141, r1
+ 3d2:	10 92 40 01 	sts	0x0140, r1
+ 3d6:	12 c0       	rjmp	.+36     	; 0x3fc <__vector_14+0x13c>
+	}
+	
+	if(bpressed && !button1Raw && !button2Raw && !button3Raw)
+ 3d8:	00 97       	sbiw	r24, 0x00	; 0
+ 3da:	81 f0       	breq	.+32     	; 0x3fc <__vector_14+0x13c>
+ 3dc:	41 11       	cpse	r20, r1
+ 3de:	0e c0       	rjmp	.+28     	; 0x3fc <__vector_14+0x13c>
+ 3e0:	21 11       	cpse	r18, r1
+ 3e2:	0c c0       	rjmp	.+24     	; 0x3fc <__vector_14+0x13c>
+ 3e4:	31 11       	cpse	r19, r1
+ 3e6:	0a c0       	rjmp	.+20     	; 0x3fc <__vector_14+0x13c>
+	{
+		g_button_pressed = bpressed;
+ 3e8:	80 93 43 01 	sts	0x0143, r24
+		bpressed = 0;
+ 3ec:	10 92 3f 01 	sts	0x013F, r1
+ 3f0:	10 92 3e 01 	sts	0x013E, r1
+		count = 0;
+ 3f4:	10 92 41 01 	sts	0x0141, r1
+ 3f8:	10 92 40 01 	sts	0x0140, r1
+	}
+	
 }
- 32e:	ff 91       	pop	r31
- 330:	ef 91       	pop	r30
- 332:	bf 91       	pop	r27
- 334:	af 91       	pop	r26
- 336:	9f 91       	pop	r25
- 338:	8f 91       	pop	r24
- 33a:	7f 91       	pop	r23
- 33c:	6f 91       	pop	r22
- 33e:	5f 91       	pop	r21
- 340:	4f 91       	pop	r20
- 342:	3f 91       	pop	r19
- 344:	2f 91       	pop	r18
- 346:	0f 90       	pop	r0
- 348:	0f be       	out	0x3f, r0	; 63
- 34a:	0f 90       	pop	r0
- 34c:	1f 90       	pop	r1
- 34e:	18 95       	reti
+ 3fc:	9f 91       	pop	r25
+ 3fe:	8f 91       	pop	r24
+ 400:	5f 91       	pop	r21
+ 402:	4f 91       	pop	r20
+ 404:	3f 91       	pop	r19
+ 406:	2f 91       	pop	r18
+ 408:	0f 90       	pop	r0
+ 40a:	0f be       	out	0x3f, r0	; 63
+ 40c:	0f 90       	pop	r0
+ 40e:	1f 90       	pop	r1
+ 410:	18 95       	reti
 
-00000350 <main>:
+00000412 <eeprom_GetAlarm>:
+
+void eeprom_GetAlarm(void){
+	// Read alarm time from EEPROM
+	alarmtime.hour = (uint8_t)eeprom_read_byte(&alarm_hour);
+ 412:	82 e0       	ldi	r24, 0x02	; 2
+ 414:	90 e0       	ldi	r25, 0x00	; 0
+ 416:	0e 94 21 07 	call	0xe42	; 0xe42 <__eerd_byte_m328p>
+ 41a:	80 93 50 01 	sts	0x0150, r24
+	alarmtime.minute = (uint8_t)eeprom_read_byte(&alarm_minute);
+ 41e:	81 e0       	ldi	r24, 0x01	; 1
+ 420:	90 e0       	ldi	r25, 0x00	; 0
+ 422:	0e 94 21 07 	call	0xe42	; 0xe42 <__eerd_byte_m328p>
+ 426:	80 93 51 01 	sts	0x0151, r24
+	alarmtime.AM_PM = (uint8_t)eeprom_read_byte(&alarm_AM_PM);
+ 42a:	80 e0       	ldi	r24, 0x00	; 0
+ 42c:	90 e0       	ldi	r25, 0x00	; 0
+ 42e:	0e 94 21 07 	call	0xe42	; 0xe42 <__eerd_byte_m328p>
+ 432:	80 93 53 01 	sts	0x0153, r24
+ 436:	08 95       	ret
+
+00000438 <eeprom_SetAlarm>:
+}
+
+void eeprom_SetAlarm(void){
+	//store alarm time
+	eeprom_update_byte(&alarm_hour, alarmtime.hour);
+ 438:	60 91 50 01 	lds	r22, 0x0150
+ 43c:	82 e0       	ldi	r24, 0x02	; 2
+ 43e:	90 e0       	ldi	r25, 0x00	; 0
+ 440:	0e 94 29 07 	call	0xe52	; 0xe52 <__eeupd_byte_m328p>
+	eeprom_update_byte(&alarm_minute, alarmtime.minute);
+ 444:	60 91 51 01 	lds	r22, 0x0151
+ 448:	81 e0       	ldi	r24, 0x01	; 1
+ 44a:	90 e0       	ldi	r25, 0x00	; 0
+ 44c:	0e 94 29 07 	call	0xe52	; 0xe52 <__eeupd_byte_m328p>
+	eeprom_update_byte(&alarm_AM_PM, alarmtime.AM_PM);
+ 450:	60 91 53 01 	lds	r22, 0x0153
+ 454:	80 e0       	ldi	r24, 0x00	; 0
+ 456:	90 e0       	ldi	r25, 0x00	; 0
+ 458:	0e 94 29 07 	call	0xe52	; 0xe52 <__eeupd_byte_m328p>
+ 45c:	08 95       	ret
+
+0000045e <main>:
+}
 
 
 int main(void)
 {
- 350:	cf 93       	push	r28
- 352:	df 93       	push	r29
- 354:	cd b7       	in	r28, 0x3d	; 61
- 356:	de b7       	in	r29, 0x3e	; 62
- 358:	a2 97       	sbiw	r28, 0x22	; 34
- 35a:	0f b6       	in	r0, 0x3f	; 63
- 35c:	f8 94       	cli
- 35e:	de bf       	out	0x3e, r29	; 62
- 360:	0f be       	out	0x3f, r0	; 63
- 362:	cd bf       	out	0x3d, r28	; 61
+ 45e:	cf 93       	push	r28
+ 460:	df 93       	push	r29
+ 462:	cd b7       	in	r28, 0x3d	; 61
+ 464:	de b7       	in	r29, 0x3e	; 62
+ 466:	63 97       	sbiw	r28, 0x13	; 19
+ 468:	0f b6       	in	r0, 0x3f	; 63
+ 46a:	f8 94       	cli
+ 46c:	de bf       	out	0x3e, r29	; 62
+ 46e:	0f be       	out	0x3f, r0	; 63
+ 470:	cd bf       	out	0x3d, r28	; 61
 	cli();
- 364:	f8 94       	cli
+ 472:	f8 94       	cli
 	//initialize I2C, timers and button
-	//Timer0_Init();
+	Timer0_Init();
+ 474:	0e 94 a3 06 	call	0xd46	; 0xd46 <Timer0_Init>
 	Timer1_Init();
- 366:	0e 94 da 05 	call	0xbb4	; 0xbb4 <Timer1_Init>
+ 478:	0e 94 b7 06 	call	0xd6e	; 0xd6e <Timer1_Init>
 	Timer2_Init();
- 36a:	0e 94 d1 05 	call	0xba2	; 0xba2 <Timer2_Init>
+ 47c:	0e 94 ae 06 	call	0xd5c	; 0xd5c <Timer2_Init>
 	I2C_Init();
- 36e:	0e 94 c1 02 	call	0x582	; 0x582 <I2C_Init>
+ 480:	0e 94 f6 03 	call	0x7ec	; 0x7ec <I2C_Init>
 	BUTTON_init();
- 372:	0e 94 52 01 	call	0x2a4	; 0x2a4 <BUTTON_init>
+ 484:	0e 94 52 01 	call	0x2a4	; 0x2a4 <BUTTON_init>
 	LCD_SPI_initialize();
- 376:	0e 94 24 03 	call	0x648	; 0x648 <LCD_SPI_initialize>
+ 488:	0e 94 43 04 	call	0x886	; 0x886 <LCD_SPI_initialize>
 	LCD_initialize();
- 37a:	0e 94 5d 03 	call	0x6ba	; 0x6ba <LCD_initialize>
+ 48c:	0e 94 7c 04 	call	0x8f8	; 0x8f8 <LCD_initialize>
 	sei();
- 37e:	78 94       	sei
+ 490:	78 94       	sei
 	
-	time_t time;
-	time_t alarmtime;
+	
 	char alarm_onoff[10];
 	char on[] = "ON ";
- 380:	8f e4       	ldi	r24, 0x4F	; 79
- 382:	9e e4       	ldi	r25, 0x4E	; 78
- 384:	a0 e2       	ldi	r26, 0x20	; 32
- 386:	b0 e0       	ldi	r27, 0x00	; 0
- 388:	8b 8f       	std	Y+27, r24	; 0x1b
- 38a:	9c 8f       	std	Y+28, r25	; 0x1c
- 38c:	ad 8f       	std	Y+29, r26	; 0x1d
- 38e:	be 8f       	std	Y+30, r27	; 0x1e
+ 492:	8f e4       	ldi	r24, 0x4F	; 79
+ 494:	9e e4       	ldi	r25, 0x4E	; 78
+ 496:	a0 e2       	ldi	r26, 0x20	; 32
+ 498:	b0 e0       	ldi	r27, 0x00	; 0
+ 49a:	8b 87       	std	Y+11, r24	; 0x0b
+ 49c:	9c 87       	std	Y+12, r25	; 0x0c
+ 49e:	ad 87       	std	Y+13, r26	; 0x0d
+ 4a0:	be 87       	std	Y+14, r27	; 0x0e
 	char off[] = "OFF";
- 390:	8f e4       	ldi	r24, 0x4F	; 79
- 392:	96 e4       	ldi	r25, 0x46	; 70
- 394:	a6 e4       	ldi	r26, 0x46	; 70
- 396:	b0 e0       	ldi	r27, 0x00	; 0
- 398:	8f 8f       	std	Y+31, r24	; 0x1f
- 39a:	98 a3       	std	Y+32, r25	; 0x20
- 39c:	a9 a3       	std	Y+33, r26	; 0x21
- 39e:	ba a3       	std	Y+34, r27	; 0x22
-	int alarmOnOff = 0;
+ 4a2:	8f e4       	ldi	r24, 0x4F	; 79
+ 4a4:	96 e4       	ldi	r25, 0x46	; 70
+ 4a6:	a6 e4       	ldi	r26, 0x46	; 70
+ 4a8:	b0 e0       	ldi	r27, 0x00	; 0
+ 4aa:	8f 87       	std	Y+15, r24	; 0x0f
+ 4ac:	98 8b       	std	Y+16, r25	; 0x10
+ 4ae:	a9 8b       	std	Y+17, r26	; 0x11
+ 4b0:	ba 8b       	std	Y+18, r27	; 0x12
+	int timeout;
+	uint8_t fresh = 0;
 	
-	strcpy(alarm_onoff,on);
- 3a0:	be 01       	movw	r22, r28
- 3a2:	65 5e       	subi	r22, 0xE5	; 229
- 3a4:	7f 4f       	sbci	r23, 0xFF	; 255
- 3a6:	ce 01       	movw	r24, r28
- 3a8:	41 96       	adiw	r24, 0x11	; 17
- 3aa:	0e 94 29 06 	call	0xc52	; 0xc52 <strcpy>
 	
-	time.minute = 23;
- 3ae:	87 e1       	ldi	r24, 0x17	; 23
- 3b0:	8e 83       	std	Y+6, r24	; 0x06
-	time.hour = 9;
- 3b2:	89 e0       	ldi	r24, 0x09	; 9
- 3b4:	8d 83       	std	Y+5, r24	; 0x05
-	time.second =11;
- 3b6:	8b e0       	ldi	r24, 0x0B	; 11
- 3b8:	8f 83       	std	Y+7, r24	; 0x07
+	strcpy(alarm_onoff,off);
+ 4b2:	be 01       	movw	r22, r28
+ 4b4:	61 5f       	subi	r22, 0xF1	; 241
+ 4b6:	7f 4f       	sbci	r23, 0xFF	; 255
+ 4b8:	ce 01       	movw	r24, r28
+ 4ba:	01 96       	adiw	r24, 0x01	; 1
+ 4bc:	0e 94 1a 07 	call	0xe34	; 0xe34 <strcpy>
+	RTC_Set(currenttime);
+	*/
 	
-	alarmtime.minute = 23;
-	alarmtime.hour = 11;
-	alarmtime.second = 10;
- 3ba:	8a e0       	ldi	r24, 0x0A	; 10
- 3bc:	8f 87       	std	Y+15, r24	; 0x0f
 	
-	RTC_Set(time);
- 3be:	29 81       	ldd	r18, Y+1	; 0x01
- 3c0:	3a 81       	ldd	r19, Y+2	; 0x02
- 3c2:	4b 81       	ldd	r20, Y+3	; 0x03
- 3c4:	5c 81       	ldd	r21, Y+4	; 0x04
- 3c6:	69 e0       	ldi	r22, 0x09	; 9
- 3c8:	77 e1       	ldi	r23, 0x17	; 23
- 3ca:	8b e0       	ldi	r24, 0x0B	; 11
- 3cc:	98 85       	ldd	r25, Y+8	; 0x08
- 3ce:	0e 94 47 05 	call	0xa8e	; 0xa8e <RTC_Set>
+	// Read alarm time from EEPROM
+	eeprom_GetAlarm();
+ 4c0:	0e 94 09 02 	call	0x412	; 0x412 <eeprom_GetAlarm>
 	
-	time.minute = 23;
-	time.hour = 9;
-	time.second =11;
-	
-	alarmtime.minute = 23;
- 3d2:	0f 2e       	mov	r0, r31
- 3d4:	f7 e1       	ldi	r31, 0x17	; 23
- 3d6:	6f 2e       	mov	r6, r31
- 3d8:	f0 2d       	mov	r31, r0
-	alarmtime.hour = 11;
- 3da:	0f 2e       	mov	r0, r31
- 3dc:	fb e0       	ldi	r31, 0x0B	; 11
- 3de:	7f 2e       	mov	r7, r31
- 3e0:	f0 2d       	mov	r31, r0
-	time_t time;
-	time_t alarmtime;
 	char alarm_onoff[10];
 	char on[] = "ON ";
 	char off[] = "OFF";
-	int alarmOnOff = 0;
- 3e2:	81 2c       	mov	r8, r1
- 3e4:	91 2c       	mov	r9, r1
+	int timeout;
+	uint8_t fresh = 0;
+ 4c4:	1b 8a       	std	Y+19, r1	; 0x13
+	{
+		
+		RTC_Read(&times);
+		LCD_print_time_display(times, 21,"SET", "ALARM", alarm_onoff);
+		
+		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM)
+ 4c6:	0f 2e       	mov	r0, r31
+ 4c8:	f0 e5       	ldi	r31, 0x50	; 80
+ 4ca:	8f 2e       	mov	r8, r31
+ 4cc:	f1 e0       	ldi	r31, 0x01	; 1
+ 4ce:	9f 2e       	mov	r9, r31
+ 4d0:	f0 2d       	mov	r31, r0
+ 4d2:	0f 2e       	mov	r0, r31
+ 4d4:	f8 e4       	ldi	r31, 0x48	; 72
+ 4d6:	6f 2e       	mov	r6, r31
+ 4d8:	f1 e0       	ldi	r31, 0x01	; 1
+ 4da:	7f 2e       	mov	r7, r31
+ 4dc:	f0 2d       	mov	r31, r0
+				while(g_button_pressed != B2)
+				{
 					hw_delay(5);
 					if(g_button_pressed == B1)
 					{
 						alarmtime.minute++;
-						if(alarmtime.minute == 60){
-							alarmtime.minute = 0;
- 3e6:	51 2c       	mov	r5, r1
-	
-	RTC_Set(time);
+ 4de:	0f 2e       	mov	r0, r31
+ 4e0:	f1 e5       	ldi	r31, 0x51	; 81
+ 4e2:	4f 2e       	mov	r4, r31
+ 4e4:	f1 e0       	ldi	r31, 0x01	; 1
+ 4e6:	5f 2e       	mov	r5, r31
+ 4e8:	f0 2d       	mov	r31, r0
+				while(g_button_pressed != B2)
+				{
+					hw_delay(5);
+					if(g_button_pressed == B1)
+					{
+						alarmtime.AM_PM++;
+ 4ea:	0f 2e       	mov	r0, r31
+ 4ec:	f3 e5       	ldi	r31, 0x53	; 83
+ 4ee:	2f 2e       	mov	r2, r31
+ 4f0:	f1 e0       	ldi	r31, 0x01	; 1
+ 4f2:	3f 2e       	mov	r3, r31
+ 4f4:	f0 2d       	mov	r31, r0
+	// Read alarm time from EEPROM
+	eeprom_GetAlarm();
 	while(1)
 	{
 		
-		RTC_Read(&time);
- 3e8:	ce 01       	movw	r24, r28
- 3ea:	01 96       	adiw	r24, 0x01	; 1
- 3ec:	0e 94 99 05 	call	0xb32	; 0xb32 <RTC_Read>
-		LCD_print_time_display(time, 21,"SET", "ALARM", alarm_onoff);
- 3f0:	ce 01       	movw	r24, r28
- 3f2:	41 96       	adiw	r24, 0x11	; 17
- 3f4:	5c 01       	movw	r10, r24
- 3f6:	0f 2e       	mov	r0, r31
- 3f8:	f0 e0       	ldi	r31, 0x00	; 0
- 3fa:	cf 2e       	mov	r12, r31
- 3fc:	f1 e0       	ldi	r31, 0x01	; 1
- 3fe:	df 2e       	mov	r13, r31
- 400:	f0 2d       	mov	r31, r0
- 402:	0f 2e       	mov	r0, r31
- 404:	f6 e0       	ldi	r31, 0x06	; 6
- 406:	ef 2e       	mov	r14, r31
- 408:	f1 e0       	ldi	r31, 0x01	; 1
- 40a:	ff 2e       	mov	r15, r31
- 40c:	f0 2d       	mov	r31, r0
- 40e:	05 e1       	ldi	r16, 0x15	; 21
- 410:	10 e0       	ldi	r17, 0x00	; 0
- 412:	29 81       	ldd	r18, Y+1	; 0x01
- 414:	3a 81       	ldd	r19, Y+2	; 0x02
- 416:	4b 81       	ldd	r20, Y+3	; 0x03
- 418:	5c 81       	ldd	r21, Y+4	; 0x04
- 41a:	6d 81       	ldd	r22, Y+5	; 0x05
- 41c:	7e 81       	ldd	r23, Y+6	; 0x06
- 41e:	8f 81       	ldd	r24, Y+7	; 0x07
- 420:	98 85       	ldd	r25, Y+8	; 0x08
- 422:	0e 94 70 04 	call	0x8e0	; 0x8e0 <LCD_print_time_display>
-	
+		RTC_Read(&times);
+ 4f6:	84 e4       	ldi	r24, 0x44	; 68
+ 4f8:	91 e0       	ldi	r25, 0x01	; 1
+ 4fa:	0e 94 63 06 	call	0xcc6	; 0xcc6 <RTC_Read>
+		LCD_print_time_display(times, 21,"SET", "ALARM", alarm_onoff);
+ 4fe:	ce 01       	movw	r24, r28
+ 500:	01 96       	adiw	r24, 0x01	; 1
+ 502:	5c 01       	movw	r10, r24
+ 504:	0f 2e       	mov	r0, r31
+ 506:	f0 e0       	ldi	r31, 0x00	; 0
+ 508:	cf 2e       	mov	r12, r31
+ 50a:	f1 e0       	ldi	r31, 0x01	; 1
+ 50c:	df 2e       	mov	r13, r31
+ 50e:	f0 2d       	mov	r31, r0
+ 510:	0f 2e       	mov	r0, r31
+ 512:	f6 e0       	ldi	r31, 0x06	; 6
+ 514:	ef 2e       	mov	r14, r31
+ 516:	f1 e0       	ldi	r31, 0x01	; 1
+ 518:	ff 2e       	mov	r15, r31
+ 51a:	f0 2d       	mov	r31, r0
+ 51c:	05 e1       	ldi	r16, 0x15	; 21
+ 51e:	10 e0       	ldi	r17, 0x00	; 0
+ 520:	20 91 44 01 	lds	r18, 0x0144
+ 524:	30 91 45 01 	lds	r19, 0x0145
+ 528:	40 91 46 01 	lds	r20, 0x0146
+ 52c:	50 91 47 01 	lds	r21, 0x0147
+ 530:	60 91 48 01 	lds	r22, 0x0148
+ 534:	70 91 49 01 	lds	r23, 0x0149
+ 538:	80 91 4a 01 	lds	r24, 0x014A
+ 53c:	90 91 4b 01 	lds	r25, 0x014B
+ 540:	0e 94 8f 05 	call	0xb1e	; 0xb1e <LCD_print_time_display>
 		
+		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM)
+ 544:	f4 01       	movw	r30, r8
+ 546:	90 81       	ld	r25, Z
+ 548:	f3 01       	movw	r30, r6
+ 54a:	80 81       	ld	r24, Z
+ 54c:	98 13       	cpse	r25, r24
+ 54e:	51 c0       	rjmp	.+162    	; 0x5f2 <main+0x194>
+ 550:	f2 01       	movw	r30, r4
+ 552:	f0 80       	ld	r15, Z
+ 554:	e9 e4       	ldi	r30, 0x49	; 73
+ 556:	f1 e0       	ldi	r31, 0x01	; 1
+ 558:	80 81       	ld	r24, Z
+ 55a:	f8 12       	cpse	r15, r24
+ 55c:	4a c0       	rjmp	.+148    	; 0x5f2 <main+0x194>
+ 55e:	f1 01       	movw	r30, r2
+ 560:	90 81       	ld	r25, Z
+ 562:	80 91 4b 01 	lds	r24, 0x014B
+ 566:	98 13       	cpse	r25, r24
+ 568:	44 c0       	rjmp	.+136    	; 0x5f2 <main+0x194>
+											 && (g_alarmOnOff) && (fresh != times.minute))
+ 56a:	80 91 42 01 	lds	r24, 0x0142
+ 56e:	88 23       	and	r24, r24
+ 570:	09 f4       	brne	.+2      	; 0x574 <main+0x116>
+ 572:	3f c0       	rjmp	.+126    	; 0x5f2 <main+0x194>
+ 574:	fb 89       	ldd	r31, Y+19	; 0x13
+ 576:	ff 15       	cp	r31, r15
+ 578:	e1 f1       	breq	.+120    	; 0x5f2 <main+0x194>
+		{
+			fresh = times.minute;
+			Timer1PWM_OnOff(PWM_ON);
+ 57a:	81 e0       	ldi	r24, 0x01	; 1
+ 57c:	0e 94 de 06 	call	0xdbc	; 0xdbc <Timer1PWM_OnOff>
+			LCD_clear_screen();
+ 580:	0e 94 69 04 	call	0x8d2	; 0x8d2 <LCD_clear_screen>
+			LCD_goto(0,0);
+ 584:	60 e0       	ldi	r22, 0x00	; 0
+ 586:	70 e0       	ldi	r23, 0x00	; 0
+ 588:	80 e0       	ldi	r24, 0x00	; 0
+ 58a:	90 e0       	ldi	r25, 0x00	; 0
+ 58c:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+			LCD_print_string("ALARM!");
+ 590:	8a e0       	ldi	r24, 0x0A	; 10
+ 592:	91 e0       	ldi	r25, 0x01	; 1
+ 594:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+			LCD_print_bottom_menu("OFF", " ", " ");
+ 598:	4e e2       	ldi	r20, 0x2E	; 46
+ 59a:	51 e0       	ldi	r21, 0x01	; 1
+ 59c:	ba 01       	movw	r22, r20
+ 59e:	81 e1       	ldi	r24, 0x11	; 17
+ 5a0:	91 e0       	ldi	r25, 0x01	; 1
+ 5a2:	0e 94 2c 05 	call	0xa58	; 0xa58 <LCD_print_bottom_menu>
+			CLEAR_BUTTONS;
+ 5a6:	10 92 43 01 	sts	0x0143, r1
+			timeout = Update_timeout();
+ 5aa:	0e 94 56 01 	call	0x2ac	; 0x2ac <Update_timeout>
+ 5ae:	8c 01       	movw	r16, r24
+			while(!g_button_pressed && (times.second != timeout)){
+ 5b0:	ea e4       	ldi	r30, 0x4A	; 74
+ 5b2:	f1 e0       	ldi	r31, 0x01	; 1
+ 5b4:	80 81       	ld	r24, Z
+ 5b6:	90 e0       	ldi	r25, 0x00	; 0
+ 5b8:	80 17       	cp	r24, r16
+ 5ba:	91 07       	cpc	r25, r17
+ 5bc:	99 f0       	breq	.+38     	; 0x5e4 <main+0x186>
+				RTC_Read(&times);
+ 5be:	84 e4       	ldi	r24, 0x44	; 68
+ 5c0:	91 e0       	ldi	r25, 0x01	; 1
+ 5c2:	0e 94 63 06 	call	0xcc6	; 0xcc6 <RTC_Read>
+				hw_delay(5);
+ 5c6:	85 e0       	ldi	r24, 0x05	; 5
+ 5c8:	90 e0       	ldi	r25, 0x00	; 0
+ 5ca:	0e 94 cb 06 	call	0xd96	; 0xd96 <hw_delay>
+			LCD_goto(0,0);
+			LCD_print_string("ALARM!");
+			LCD_print_bottom_menu("OFF", " ", " ");
+			CLEAR_BUTTONS;
+			timeout = Update_timeout();
+			while(!g_button_pressed && (times.second != timeout)){
+ 5ce:	80 91 43 01 	lds	r24, 0x0143
+ 5d2:	81 11       	cpse	r24, r1
+ 5d4:	07 c0       	rjmp	.+14     	; 0x5e4 <main+0x186>
+ 5d6:	ea e4       	ldi	r30, 0x4A	; 74
+ 5d8:	f1 e0       	ldi	r31, 0x01	; 1
+ 5da:	20 81       	ld	r18, Z
+ 5dc:	30 e0       	ldi	r19, 0x00	; 0
+ 5de:	20 17       	cp	r18, r16
+ 5e0:	31 07       	cpc	r19, r17
+ 5e2:	69 f7       	brne	.-38     	; 0x5be <main+0x160>
+				RTC_Read(&times);
+				hw_delay(5);
+			}
+			Timer1PWM_OnOff(PWM_OFF);
+ 5e4:	80 e0       	ldi	r24, 0x00	; 0
+ 5e6:	0e 94 de 06 	call	0xdbc	; 0xdbc <Timer1PWM_OnOff>
+			CLEAR_BUTTONS;
+ 5ea:	10 92 43 01 	sts	0x0143, r1
+		LCD_print_time_display(times, 21,"SET", "ALARM", alarm_onoff);
+		
+		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM)
+											 && (g_alarmOnOff) && (fresh != times.minute))
+		{
+			fresh = times.minute;
+ 5ee:	fb 8a       	std	Y+19, r15	; 0x13
+ 5f0:	82 cf       	rjmp	.-252    	; 0x4f6 <main+0x98>
+			}
+			Timer1PWM_OnOff(PWM_OFF);
+			CLEAR_BUTTONS;
+		}
+
 		switch (g_button_pressed){
- 426:	80 91 32 01 	lds	r24, 0x0132
- 42a:	90 91 33 01 	lds	r25, 0x0133
- 42e:	82 30       	cpi	r24, 0x02	; 2
- 430:	91 05       	cpc	r25, r1
- 432:	21 f0       	breq	.+8      	; 0x43c <main+0xec>
- 434:	03 97       	sbiw	r24, 0x03	; 3
- 436:	09 f4       	brne	.+2      	; 0x43a <main+0xea>
- 438:	8b c0       	rjmp	.+278    	; 0x550 <main+0x200>
- 43a:	d6 cf       	rjmp	.-84     	; 0x3e8 <main+0x98>
+ 5f2:	80 91 43 01 	lds	r24, 0x0143
+ 5f6:	82 30       	cpi	r24, 0x02	; 2
+ 5f8:	61 f0       	breq	.+24     	; 0x612 <main+0x1b4>
+ 5fa:	83 30       	cpi	r24, 0x03	; 3
+ 5fc:	09 f4       	brne	.+2      	; 0x600 <main+0x1a2>
+ 5fe:	dc c0       	rjmp	.+440    	; 0x7b8 <main+0x35a>
+ 600:	81 30       	cpi	r24, 0x01	; 1
+ 602:	09 f0       	breq	.+2      	; 0x606 <main+0x1a8>
+ 604:	78 cf       	rjmp	.-272    	; 0x4f6 <main+0x98>
 			case (B1):
+				Timer1PWM_OnOff(PWM_OFF);
+ 606:	80 e0       	ldi	r24, 0x00	; 0
+ 608:	0e 94 de 06 	call	0xdbc	; 0xdbc <Timer1PWM_OnOff>
+				CLEAR_BUTTONS;
+ 60c:	10 92 43 01 	sts	0x0143, r1
 				break;
+ 610:	72 cf       	rjmp	.-284    	; 0x4f6 <main+0x98>
 			case (B2):
 				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
- 43c:	0f 2e       	mov	r0, r31
- 43e:	f3 e2       	ldi	r31, 0x23	; 35
- 440:	cf 2e       	mov	r12, r31
- 442:	f1 e0       	ldi	r31, 0x01	; 1
- 444:	df 2e       	mov	r13, r31
- 446:	f0 2d       	mov	r31, r0
- 448:	0f 2e       	mov	r0, r31
- 44a:	fa e0       	ldi	r31, 0x0A	; 10
- 44c:	ef 2e       	mov	r14, r31
- 44e:	f1 e0       	ldi	r31, 0x01	; 1
- 450:	ff 2e       	mov	r15, r31
- 452:	f0 2d       	mov	r31, r0
- 454:	00 e1       	ldi	r16, 0x10	; 16
- 456:	11 e0       	ldi	r17, 0x01	; 1
- 458:	29 85       	ldd	r18, Y+9	; 0x09
- 45a:	3a 85       	ldd	r19, Y+10	; 0x0a
- 45c:	4b 85       	ldd	r20, Y+11	; 0x0b
- 45e:	5c 85       	ldd	r21, Y+12	; 0x0c
- 460:	67 2d       	mov	r22, r7
- 462:	76 2d       	mov	r23, r6
- 464:	8f 85       	ldd	r24, Y+15	; 0x0f
- 466:	98 89       	ldd	r25, Y+16	; 0x10
- 468:	0e 94 eb 04 	call	0x9d6	; 0x9d6 <LCD_print_alarm_display>
+ 612:	0f 2e       	mov	r0, r31
+ 614:	fe e2       	ldi	r31, 0x2E	; 46
+ 616:	cf 2e       	mov	r12, r31
+ 618:	f1 e0       	ldi	r31, 0x01	; 1
+ 61a:	df 2e       	mov	r13, r31
+ 61c:	f0 2d       	mov	r31, r0
+ 61e:	0f 2e       	mov	r0, r31
+ 620:	f5 e1       	ldi	r31, 0x15	; 21
+ 622:	ef 2e       	mov	r14, r31
+ 624:	f1 e0       	ldi	r31, 0x01	; 1
+ 626:	ff 2e       	mov	r15, r31
+ 628:	f0 2d       	mov	r31, r0
+ 62a:	0b e1       	ldi	r16, 0x1B	; 27
+ 62c:	11 e0       	ldi	r17, 0x01	; 1
+ 62e:	20 91 4c 01 	lds	r18, 0x014C
+ 632:	30 91 4d 01 	lds	r19, 0x014D
+ 636:	40 91 4e 01 	lds	r20, 0x014E
+ 63a:	50 91 4f 01 	lds	r21, 0x014F
+ 63e:	60 91 50 01 	lds	r22, 0x0150
+ 642:	70 91 51 01 	lds	r23, 0x0151
+ 646:	80 91 52 01 	lds	r24, 0x0152
+ 64a:	90 91 53 01 	lds	r25, 0x0153
+ 64e:	0e 94 0a 06 	call	0xc14	; 0xc14 <LCD_print_alarm_display>
 				CLEAR_BUTTONS;
- 46c:	10 92 33 01 	sts	0x0133, r1
- 470:	10 92 32 01 	sts	0x0132, r1
+ 652:	10 92 43 01 	sts	0x0143, r1
 				while(g_button_pressed != B2)
- 474:	2b c0       	rjmp	.+86     	; 0x4cc <main+0x17c>
+ 656:	33 c0       	rjmp	.+102    	; 0x6be <main+0x260>
 				{
 					hw_delay(5);
- 476:	85 e0       	ldi	r24, 0x05	; 5
- 478:	90 e0       	ldi	r25, 0x00	; 0
- 47a:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
+ 658:	85 e0       	ldi	r24, 0x05	; 5
+ 65a:	90 e0       	ldi	r25, 0x00	; 0
+ 65c:	0e 94 cb 06 	call	0xd96	; 0xd96 <hw_delay>
 					if(g_button_pressed == B1)
- 47e:	80 91 32 01 	lds	r24, 0x0132
- 482:	90 91 33 01 	lds	r25, 0x0133
- 486:	01 97       	sbiw	r24, 0x01	; 1
- 488:	09 f5       	brne	.+66     	; 0x4cc <main+0x17c>
+ 660:	80 91 43 01 	lds	r24, 0x0143
+ 664:	81 30       	cpi	r24, 0x01	; 1
+ 666:	59 f5       	brne	.+86     	; 0x6be <main+0x260>
 					{
 						alarmtime.hour++;
- 48a:	73 94       	inc	r7
-						if(alarmtime.hour == 24){
- 48c:	98 e1       	ldi	r25, 0x18	; 24
- 48e:	79 12       	cpse	r7, r25
- 490:	01 c0       	rjmp	.+2      	; 0x494 <main+0x144>
+ 668:	f4 01       	movw	r30, r8
+ 66a:	80 81       	ld	r24, Z
+ 66c:	8f 5f       	subi	r24, 0xFF	; 255
+						if(alarmtime.hour == 13){
+ 66e:	8d 30       	cpi	r24, 0x0D	; 13
+ 670:	11 f0       	breq	.+4      	; 0x676 <main+0x218>
+				while(g_button_pressed != B2)
+				{
+					hw_delay(5);
+					if(g_button_pressed == B1)
+					{
+						alarmtime.hour++;
+ 672:	80 83       	st	Z, r24
+ 674:	02 c0       	rjmp	.+4      	; 0x67a <main+0x21c>
+						if(alarmtime.hour == 13){
 							alarmtime.hour = 0;
- 492:	75 2c       	mov	r7, r5
+ 676:	f4 01       	movw	r30, r8
+ 678:	10 82       	st	Z, r1
 						}
 						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
- 494:	0f 2e       	mov	r0, r31
- 496:	f3 e2       	ldi	r31, 0x23	; 35
- 498:	cf 2e       	mov	r12, r31
- 49a:	f1 e0       	ldi	r31, 0x01	; 1
- 49c:	df 2e       	mov	r13, r31
- 49e:	f0 2d       	mov	r31, r0
- 4a0:	0f 2e       	mov	r0, r31
- 4a2:	fa e0       	ldi	r31, 0x0A	; 10
- 4a4:	ef 2e       	mov	r14, r31
- 4a6:	f1 e0       	ldi	r31, 0x01	; 1
- 4a8:	ff 2e       	mov	r15, r31
- 4aa:	f0 2d       	mov	r31, r0
- 4ac:	00 e1       	ldi	r16, 0x10	; 16
- 4ae:	11 e0       	ldi	r17, 0x01	; 1
- 4b0:	29 85       	ldd	r18, Y+9	; 0x09
- 4b2:	3a 85       	ldd	r19, Y+10	; 0x0a
- 4b4:	4b 85       	ldd	r20, Y+11	; 0x0b
- 4b6:	5c 85       	ldd	r21, Y+12	; 0x0c
- 4b8:	67 2d       	mov	r22, r7
- 4ba:	76 2d       	mov	r23, r6
- 4bc:	8f 85       	ldd	r24, Y+15	; 0x0f
- 4be:	98 89       	ldd	r25, Y+16	; 0x10
- 4c0:	0e 94 eb 04 	call	0x9d6	; 0x9d6 <LCD_print_alarm_display>
+ 67a:	0f 2e       	mov	r0, r31
+ 67c:	fe e2       	ldi	r31, 0x2E	; 46
+ 67e:	cf 2e       	mov	r12, r31
+ 680:	f1 e0       	ldi	r31, 0x01	; 1
+ 682:	df 2e       	mov	r13, r31
+ 684:	f0 2d       	mov	r31, r0
+ 686:	0f 2e       	mov	r0, r31
+ 688:	f5 e1       	ldi	r31, 0x15	; 21
+ 68a:	ef 2e       	mov	r14, r31
+ 68c:	f1 e0       	ldi	r31, 0x01	; 1
+ 68e:	ff 2e       	mov	r15, r31
+ 690:	f0 2d       	mov	r31, r0
+ 692:	0b e1       	ldi	r16, 0x1B	; 27
+ 694:	11 e0       	ldi	r17, 0x01	; 1
+ 696:	20 91 4c 01 	lds	r18, 0x014C
+ 69a:	30 91 4d 01 	lds	r19, 0x014D
+ 69e:	40 91 4e 01 	lds	r20, 0x014E
+ 6a2:	50 91 4f 01 	lds	r21, 0x014F
+ 6a6:	60 91 50 01 	lds	r22, 0x0150
+ 6aa:	70 91 51 01 	lds	r23, 0x0151
+ 6ae:	80 91 52 01 	lds	r24, 0x0152
+ 6b2:	90 91 53 01 	lds	r25, 0x0153
+ 6b6:	0e 94 0a 06 	call	0xc14	; 0xc14 <LCD_print_alarm_display>
 						CLEAR_BUTTONS;
- 4c4:	10 92 33 01 	sts	0x0133, r1
- 4c8:	10 92 32 01 	sts	0x0132, r1
-			case (B1):
+ 6ba:	10 92 43 01 	sts	0x0143, r1
+				CLEAR_BUTTONS;
 				break;
 			case (B2):
 				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
 				CLEAR_BUTTONS;
 				while(g_button_pressed != B2)
- 4cc:	80 91 32 01 	lds	r24, 0x0132
- 4d0:	90 91 33 01 	lds	r25, 0x0133
- 4d4:	02 97       	sbiw	r24, 0x02	; 2
- 4d6:	79 f6       	brne	.-98     	; 0x476 <main+0x126>
- 4d8:	b7 2c       	mov	r11, r7
+ 6be:	80 91 43 01 	lds	r24, 0x0143
+ 6c2:	82 30       	cpi	r24, 0x02	; 2
+ 6c4:	49 f6       	brne	.-110    	; 0x658 <main+0x1fa>
 						}
 						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
 						CLEAR_BUTTONS;
 					}
 				}
 				CLEAR_BUTTONS;
- 4da:	10 92 33 01 	sts	0x0133, r1
- 4de:	10 92 32 01 	sts	0x0132, r1
+ 6c6:	10 92 43 01 	sts	0x0143, r1
 				while(g_button_pressed != B2)
- 4e2:	2b c0       	rjmp	.+86     	; 0x53a <main+0x1ea>
+ 6ca:	33 c0       	rjmp	.+102    	; 0x732 <main+0x2d4>
 				{
 					hw_delay(5);
- 4e4:	85 e0       	ldi	r24, 0x05	; 5
- 4e6:	90 e0       	ldi	r25, 0x00	; 0
- 4e8:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
+ 6cc:	85 e0       	ldi	r24, 0x05	; 5
+ 6ce:	90 e0       	ldi	r25, 0x00	; 0
+ 6d0:	0e 94 cb 06 	call	0xd96	; 0xd96 <hw_delay>
 					if(g_button_pressed == B1)
- 4ec:	80 91 32 01 	lds	r24, 0x0132
- 4f0:	90 91 33 01 	lds	r25, 0x0133
- 4f4:	01 97       	sbiw	r24, 0x01	; 1
- 4f6:	09 f5       	brne	.+66     	; 0x53a <main+0x1ea>
+ 6d4:	80 91 43 01 	lds	r24, 0x0143
+ 6d8:	81 30       	cpi	r24, 0x01	; 1
+ 6da:	59 f5       	brne	.+86     	; 0x732 <main+0x2d4>
 					{
 						alarmtime.minute++;
- 4f8:	63 94       	inc	r6
+ 6dc:	f2 01       	movw	r30, r4
+ 6de:	80 81       	ld	r24, Z
+ 6e0:	8f 5f       	subi	r24, 0xFF	; 255
 						if(alarmtime.minute == 60){
- 4fa:	8c e3       	ldi	r24, 0x3C	; 60
- 4fc:	68 12       	cpse	r6, r24
- 4fe:	01 c0       	rjmp	.+2      	; 0x502 <main+0x1b2>
+ 6e2:	8c 33       	cpi	r24, 0x3C	; 60
+ 6e4:	11 f0       	breq	.+4      	; 0x6ea <main+0x28c>
+				while(g_button_pressed != B2)
+				{
+					hw_delay(5);
+					if(g_button_pressed == B1)
+					{
+						alarmtime.minute++;
+ 6e6:	80 83       	st	Z, r24
+ 6e8:	02 c0       	rjmp	.+4      	; 0x6ee <main+0x290>
+						if(alarmtime.minute == 60){
 							alarmtime.minute = 0;
- 500:	65 2c       	mov	r6, r5
+ 6ea:	f2 01       	movw	r30, r4
+ 6ec:	10 82       	st	Z, r1
 						}
 						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
- 502:	0f 2e       	mov	r0, r31
- 504:	f3 e2       	ldi	r31, 0x23	; 35
- 506:	cf 2e       	mov	r12, r31
- 508:	f1 e0       	ldi	r31, 0x01	; 1
- 50a:	df 2e       	mov	r13, r31
- 50c:	f0 2d       	mov	r31, r0
- 50e:	0f 2e       	mov	r0, r31
- 510:	fa e0       	ldi	r31, 0x0A	; 10
- 512:	ef 2e       	mov	r14, r31
- 514:	f1 e0       	ldi	r31, 0x01	; 1
- 516:	ff 2e       	mov	r15, r31
- 518:	f0 2d       	mov	r31, r0
- 51a:	00 e1       	ldi	r16, 0x10	; 16
- 51c:	11 e0       	ldi	r17, 0x01	; 1
- 51e:	29 85       	ldd	r18, Y+9	; 0x09
- 520:	3a 85       	ldd	r19, Y+10	; 0x0a
- 522:	4b 85       	ldd	r20, Y+11	; 0x0b
- 524:	5c 85       	ldd	r21, Y+12	; 0x0c
- 526:	6b 2d       	mov	r22, r11
- 528:	76 2d       	mov	r23, r6
- 52a:	8f 85       	ldd	r24, Y+15	; 0x0f
- 52c:	98 89       	ldd	r25, Y+16	; 0x10
- 52e:	0e 94 eb 04 	call	0x9d6	; 0x9d6 <LCD_print_alarm_display>
+ 6ee:	0f 2e       	mov	r0, r31
+ 6f0:	fe e2       	ldi	r31, 0x2E	; 46
+ 6f2:	cf 2e       	mov	r12, r31
+ 6f4:	f1 e0       	ldi	r31, 0x01	; 1
+ 6f6:	df 2e       	mov	r13, r31
+ 6f8:	f0 2d       	mov	r31, r0
+ 6fa:	0f 2e       	mov	r0, r31
+ 6fc:	f5 e1       	ldi	r31, 0x15	; 21
+ 6fe:	ef 2e       	mov	r14, r31
+ 700:	f1 e0       	ldi	r31, 0x01	; 1
+ 702:	ff 2e       	mov	r15, r31
+ 704:	f0 2d       	mov	r31, r0
+ 706:	0b e1       	ldi	r16, 0x1B	; 27
+ 708:	11 e0       	ldi	r17, 0x01	; 1
+ 70a:	20 91 4c 01 	lds	r18, 0x014C
+ 70e:	30 91 4d 01 	lds	r19, 0x014D
+ 712:	40 91 4e 01 	lds	r20, 0x014E
+ 716:	50 91 4f 01 	lds	r21, 0x014F
+ 71a:	60 91 50 01 	lds	r22, 0x0150
+ 71e:	70 91 51 01 	lds	r23, 0x0151
+ 722:	80 91 52 01 	lds	r24, 0x0152
+ 726:	90 91 53 01 	lds	r25, 0x0153
+ 72a:	0e 94 0a 06 	call	0xc14	; 0xc14 <LCD_print_alarm_display>
 						CLEAR_BUTTONS;
- 532:	10 92 33 01 	sts	0x0133, r1
- 536:	10 92 32 01 	sts	0x0132, r1
+ 72e:	10 92 43 01 	sts	0x0143, r1
 						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
 						CLEAR_BUTTONS;
 					}
 				}
 				CLEAR_BUTTONS;
 				while(g_button_pressed != B2)
- 53a:	80 91 32 01 	lds	r24, 0x0132
- 53e:	90 91 33 01 	lds	r25, 0x0133
- 542:	02 97       	sbiw	r24, 0x02	; 2
- 544:	79 f6       	brne	.-98     	; 0x4e4 <main+0x194>
-						}
+ 732:	80 91 43 01 	lds	r24, 0x0143
+ 736:	82 30       	cpi	r24, 0x02	; 2
+ 738:	49 f6       	brne	.-110    	; 0x6cc <main+0x26e>
 						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
 						CLEAR_BUTTONS;
 					}
+					// Update alarm set time in EEPROM
 				}
 				CLEAR_BUTTONS;
- 546:	10 92 33 01 	sts	0x0133, r1
- 54a:	10 92 32 01 	sts	0x0132, r1
+ 73a:	10 92 43 01 	sts	0x0143, r1
+				while(g_button_pressed != B2)
+ 73e:	33 c0       	rjmp	.+102    	; 0x7a6 <main+0x348>
+				{
+					hw_delay(5);
+ 740:	85 e0       	ldi	r24, 0x05	; 5
+ 742:	90 e0       	ldi	r25, 0x00	; 0
+ 744:	0e 94 cb 06 	call	0xd96	; 0xd96 <hw_delay>
+					if(g_button_pressed == B1)
+ 748:	80 91 43 01 	lds	r24, 0x0143
+ 74c:	81 30       	cpi	r24, 0x01	; 1
+ 74e:	59 f5       	brne	.+86     	; 0x7a6 <main+0x348>
+					{
+						alarmtime.AM_PM++;
+ 750:	f1 01       	movw	r30, r2
+ 752:	80 81       	ld	r24, Z
+ 754:	8f 5f       	subi	r24, 0xFF	; 255
+						if(alarmtime.AM_PM >= 2){
+ 756:	82 30       	cpi	r24, 0x02	; 2
+ 758:	10 f4       	brcc	.+4      	; 0x75e <main+0x300>
+				while(g_button_pressed != B2)
+				{
+					hw_delay(5);
+					if(g_button_pressed == B1)
+					{
+						alarmtime.AM_PM++;
+ 75a:	80 83       	st	Z, r24
+ 75c:	02 c0       	rjmp	.+4      	; 0x762 <main+0x304>
+						if(alarmtime.AM_PM >= 2){
+							alarmtime.AM_PM = 0;
+ 75e:	f1 01       	movw	r30, r2
+ 760:	10 82       	st	Z, r1
+						}
+						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+ 762:	0f 2e       	mov	r0, r31
+ 764:	fe e2       	ldi	r31, 0x2E	; 46
+ 766:	cf 2e       	mov	r12, r31
+ 768:	f1 e0       	ldi	r31, 0x01	; 1
+ 76a:	df 2e       	mov	r13, r31
+ 76c:	f0 2d       	mov	r31, r0
+ 76e:	0f 2e       	mov	r0, r31
+ 770:	f5 e1       	ldi	r31, 0x15	; 21
+ 772:	ef 2e       	mov	r14, r31
+ 774:	f1 e0       	ldi	r31, 0x01	; 1
+ 776:	ff 2e       	mov	r15, r31
+ 778:	f0 2d       	mov	r31, r0
+ 77a:	0b e1       	ldi	r16, 0x1B	; 27
+ 77c:	11 e0       	ldi	r17, 0x01	; 1
+ 77e:	20 91 4c 01 	lds	r18, 0x014C
+ 782:	30 91 4d 01 	lds	r19, 0x014D
+ 786:	40 91 4e 01 	lds	r20, 0x014E
+ 78a:	50 91 4f 01 	lds	r21, 0x014F
+ 78e:	60 91 50 01 	lds	r22, 0x0150
+ 792:	70 91 51 01 	lds	r23, 0x0151
+ 796:	80 91 52 01 	lds	r24, 0x0152
+ 79a:	90 91 53 01 	lds	r25, 0x0153
+ 79e:	0e 94 0a 06 	call	0xc14	; 0xc14 <LCD_print_alarm_display>
+						CLEAR_BUTTONS;
+ 7a2:	10 92 43 01 	sts	0x0143, r1
+						CLEAR_BUTTONS;
+					}
+					// Update alarm set time in EEPROM
+				}
+				CLEAR_BUTTONS;
+				while(g_button_pressed != B2)
+ 7a6:	80 91 43 01 	lds	r24, 0x0143
+ 7aa:	82 30       	cpi	r24, 0x02	; 2
+ 7ac:	49 f6       	brne	.-110    	; 0x740 <main+0x2e2>
+						CLEAR_BUTTONS;
+					}
+					// Update alarm set time in EEPROM
+				}
+				//store new alarm time in EEPROM
+				eeprom_SetAlarm();
+ 7ae:	0e 94 1c 02 	call	0x438	; 0x438 <eeprom_SetAlarm>
+				CLEAR_BUTTONS;
+ 7b2:	10 92 43 01 	sts	0x0143, r1
 				break;
- 54e:	4c cf       	rjmp	.-360    	; 0x3e8 <main+0x98>
+ 7b6:	9f ce       	rjmp	.-706    	; 0x4f6 <main+0x98>
 			case (B3):
-				alarmOnOff ^= 0x01;
- 550:	91 e0       	ldi	r25, 0x01	; 1
- 552:	89 26       	eor	r8, r25
-				if(alarmOnOff){
- 554:	81 14       	cp	r8, r1
- 556:	91 04       	cpc	r9, r1
- 558:	41 f0       	breq	.+16     	; 0x56a <main+0x21a>
+				g_alarmOnOff ^= 0x01;
+ 7b8:	90 91 42 01 	lds	r25, 0x0142
+ 7bc:	81 e0       	ldi	r24, 0x01	; 1
+ 7be:	89 27       	eor	r24, r25
+ 7c0:	80 93 42 01 	sts	0x0142, r24
+				if(g_alarmOnOff){
+ 7c4:	88 23       	and	r24, r24
+ 7c6:	41 f0       	breq	.+16     	; 0x7d8 <main+0x37a>
 					strcpy(alarm_onoff,on);
- 55a:	be 01       	movw	r22, r28
- 55c:	65 5e       	subi	r22, 0xE5	; 229
- 55e:	7f 4f       	sbci	r23, 0xFF	; 255
- 560:	ce 01       	movw	r24, r28
- 562:	41 96       	adiw	r24, 0x11	; 17
- 564:	0e 94 29 06 	call	0xc52	; 0xc52 <strcpy>
- 568:	07 c0       	rjmp	.+14     	; 0x578 <main+0x228>
+ 7c8:	be 01       	movw	r22, r28
+ 7ca:	65 5f       	subi	r22, 0xF5	; 245
+ 7cc:	7f 4f       	sbci	r23, 0xFF	; 255
+ 7ce:	ce 01       	movw	r24, r28
+ 7d0:	01 96       	adiw	r24, 0x01	; 1
+ 7d2:	0e 94 1a 07 	call	0xe34	; 0xe34 <strcpy>
+ 7d6:	07 c0       	rjmp	.+14     	; 0x7e6 <main+0x388>
 				}
 				else{
 					strcpy(alarm_onoff,off);
- 56a:	be 01       	movw	r22, r28
- 56c:	61 5e       	subi	r22, 0xE1	; 225
- 56e:	7f 4f       	sbci	r23, 0xFF	; 255
- 570:	ce 01       	movw	r24, r28
- 572:	41 96       	adiw	r24, 0x11	; 17
- 574:	0e 94 29 06 	call	0xc52	; 0xc52 <strcpy>
+ 7d8:	be 01       	movw	r22, r28
+ 7da:	61 5f       	subi	r22, 0xF1	; 241
+ 7dc:	7f 4f       	sbci	r23, 0xFF	; 255
+ 7de:	ce 01       	movw	r24, r28
+ 7e0:	01 96       	adiw	r24, 0x01	; 1
+ 7e2:	0e 94 1a 07 	call	0xe34	; 0xe34 <strcpy>
 				}
 				CLEAR_BUTTONS;
- 578:	10 92 33 01 	sts	0x0133, r1
- 57c:	10 92 32 01 	sts	0x0132, r1
+ 7e6:	10 92 43 01 	sts	0x0143, r1
 				break;
- 580:	33 cf       	rjmp	.-410    	; 0x3e8 <main+0x98>
+ 7ea:	85 ce       	rjmp	.-758    	; 0x4f6 <main+0x98>
 
-00000582 <I2C_Init>:
+000007ec <I2C_Init>:
 *************************************************/
 
 void I2C_Init(void){
 	
 	//set PC5 and PC6 as output pins
 	DDRC |= _BV(PC5) | _BV(PC6);
- 582:	87 b1       	in	r24, 0x07	; 7
- 584:	80 66       	ori	r24, 0x60	; 96
- 586:	87 b9       	out	0x07, r24	; 7
+ 7ec:	87 b1       	in	r24, 0x07	; 7
+ 7ee:	80 66       	ori	r24, 0x60	; 96
+ 7f0:	87 b9       	out	0x07, r24	; 7
 	
 	//Initialize I2C bit rate to 100kHz with pre-scalar of 0
 	TWSR = 0;
- 588:	10 92 b9 00 	sts	0x00B9, r1
+ 7f2:	10 92 b9 00 	sts	0x00B9, r1
 	TWBR = ((F_CPU/F_SCL)-16)/2;
- 58c:	88 e4       	ldi	r24, 0x48	; 72
- 58e:	80 93 b8 00 	sts	0x00B8, r24
- 592:	08 95       	ret
+ 7f6:	88 e4       	ldi	r24, 0x48	; 72
+ 7f8:	80 93 b8 00 	sts	0x00B8, r24
+ 7fc:	08 95       	ret
 
-00000594 <I2C_Start>:
+000007fe <I2C_Start>:
 Function that sends TWI Start Bit
 *************************************************/
 
 void I2C_Start(){
 	//send Start condition
 	TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
- 594:	84 ea       	ldi	r24, 0xA4	; 164
- 596:	80 93 bc 00 	sts	0x00BC, r24
+ 7fe:	84 ea       	ldi	r24, 0xA4	; 164
+ 800:	80 93 bc 00 	sts	0x00BC, r24
 	//Wait for TWINT flag
 	while(!(TWCR & _BV(TWINT)));
- 59a:	ec eb       	ldi	r30, 0xBC	; 188
- 59c:	f0 e0       	ldi	r31, 0x00	; 0
- 59e:	80 81       	ld	r24, Z
- 5a0:	88 23       	and	r24, r24
- 5a2:	ec f7       	brge	.-6      	; 0x59e <I2C_Start+0xa>
+ 804:	ec eb       	ldi	r30, 0xBC	; 188
+ 806:	f0 e0       	ldi	r31, 0x00	; 0
+ 808:	80 81       	ld	r24, Z
+ 80a:	88 23       	and	r24, r24
+ 80c:	ec f7       	brge	.-6      	; 0x808 <I2C_Start+0xa>
 }
- 5a4:	08 95       	ret
+ 80e:	08 95       	ret
 
-000005a6 <I2C_Addr>:
+00000810 <I2C_Addr>:
 Function that takes in and sends slave address and R/W bit
 *************************************************/
 
 void I2C_Addr(uint8_t address, uint8_t read_write){
 	//Put SLA+R/W byte into TWDR
 	TWDR = address << 1 | read_write;
- 5a6:	88 0f       	add	r24, r24
- 5a8:	68 2b       	or	r22, r24
- 5aa:	60 93 bb 00 	sts	0x00BB, r22
+ 810:	88 0f       	add	r24, r24
+ 812:	68 2b       	or	r22, r24
+ 814:	60 93 bb 00 	sts	0x00BB, r22
 	//Send Message
 	TWCR = _BV(TWINT) | _BV(TWEN);
- 5ae:	84 e8       	ldi	r24, 0x84	; 132
- 5b0:	80 93 bc 00 	sts	0x00BC, r24
+ 818:	84 e8       	ldi	r24, 0x84	; 132
+ 81a:	80 93 bc 00 	sts	0x00BC, r24
 	//Wait for ack
 	while(!(TWCR & _BV(TWINT)));
- 5b4:	ec eb       	ldi	r30, 0xBC	; 188
- 5b6:	f0 e0       	ldi	r31, 0x00	; 0
- 5b8:	80 81       	ld	r24, Z
- 5ba:	88 23       	and	r24, r24
- 5bc:	ec f7       	brge	.-6      	; 0x5b8 <I2C_Addr+0x12>
+ 81e:	ec eb       	ldi	r30, 0xBC	; 188
+ 820:	f0 e0       	ldi	r31, 0x00	; 0
+ 822:	80 81       	ld	r24, Z
+ 824:	88 23       	and	r24, r24
+ 826:	ec f7       	brge	.-6      	; 0x822 <I2C_Addr+0x12>
 }
- 5be:	08 95       	ret
+ 828:	08 95       	ret
 
-000005c0 <I2C_Write>:
+0000082a <I2C_Write>:
 Function that takes in and sends a data byte to the slave
 *************************************************/
 
 void I2C_Write(uint8_t data){
 	//put data to be written in TWDR
 	TWDR = data;
- 5c0:	80 93 bb 00 	sts	0x00BB, r24
+ 82a:	80 93 bb 00 	sts	0x00BB, r24
 	//Write data to slave
 	TWCR = _BV(TWINT) | _BV(TWEN);
- 5c4:	84 e8       	ldi	r24, 0x84	; 132
- 5c6:	80 93 bc 00 	sts	0x00BC, r24
+ 82e:	84 e8       	ldi	r24, 0x84	; 132
+ 830:	80 93 bc 00 	sts	0x00BC, r24
 	//wait for ack
 	while(!(TWCR &_BV(TWINT)));
- 5ca:	ec eb       	ldi	r30, 0xBC	; 188
- 5cc:	f0 e0       	ldi	r31, 0x00	; 0
- 5ce:	80 81       	ld	r24, Z
- 5d0:	88 23       	and	r24, r24
- 5d2:	ec f7       	brge	.-6      	; 0x5ce <I2C_Write+0xe>
+ 834:	ec eb       	ldi	r30, 0xBC	; 188
+ 836:	f0 e0       	ldi	r31, 0x00	; 0
+ 838:	80 81       	ld	r24, Z
+ 83a:	88 23       	and	r24, r24
+ 83c:	ec f7       	brge	.-6      	; 0x838 <I2C_Write+0xe>
 }
- 5d4:	08 95       	ret
+ 83e:	08 95       	ret
 
-000005d6 <I2C_Read>:
+00000840 <I2C_Read>:
 sent from the slave
 *************************************************/
 
 uint8_t I2C_Read(void){
 	//Enable nack
 	TWCR = _BV(TWINT) | _BV(TWEN);
- 5d6:	84 e8       	ldi	r24, 0x84	; 132
- 5d8:	80 93 bc 00 	sts	0x00BC, r24
+ 840:	84 e8       	ldi	r24, 0x84	; 132
+ 842:	80 93 bc 00 	sts	0x00BC, r24
 	//wait for TWINT to indicate BYTE received from slave
 	while(!(TWCR & _BV(TWINT)));
- 5dc:	ec eb       	ldi	r30, 0xBC	; 188
- 5de:	f0 e0       	ldi	r31, 0x00	; 0
- 5e0:	80 81       	ld	r24, Z
- 5e2:	88 23       	and	r24, r24
- 5e4:	ec f7       	brge	.-6      	; 0x5e0 <I2C_Read+0xa>
+ 846:	ec eb       	ldi	r30, 0xBC	; 188
+ 848:	f0 e0       	ldi	r31, 0x00	; 0
+ 84a:	80 81       	ld	r24, Z
+ 84c:	88 23       	and	r24, r24
+ 84e:	ec f7       	brge	.-6      	; 0x84a <I2C_Read+0xa>
 	//return byte
 	return (TWDR);
- 5e6:	80 91 bb 00 	lds	r24, 0x00BB
+ 850:	80 91 bb 00 	lds	r24, 0x00BB
 }
- 5ea:	08 95       	ret
+ 854:	08 95       	ret
 
-000005ec <I2C_SendMessage>:
-Function that takes in the slave address, the device memory address that
-you want to write to as well as the data you want to write and sends
-it over I2C to the slave
-*************************************************/
-
-void I2C_SendMessage(uint8_t slave_addr, uint8_t device_reg, uint8_t data){
- 5ec:	cf 93       	push	r28
- 5ee:	df 93       	push	r29
- 5f0:	d6 2f       	mov	r29, r22
- 5f2:	c4 2f       	mov	r28, r20
-	//start communication
-	I2C_Start();
- 5f4:	0e 94 ca 02 	call	0x594	; 0x594 <I2C_Start>
-	//address slave in write mode
-	I2C_Addr(RTC_ADDRESS, WRITE);
- 5f8:	60 e0       	ldi	r22, 0x00	; 0
- 5fa:	88 e6       	ldi	r24, 0x68	; 104
- 5fc:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <I2C_Addr>
-	//specify device register to put data in
-	I2C_Write(device_reg);
- 600:	8d 2f       	mov	r24, r29
- 602:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <I2C_Write>
-	//send data byte
-	I2C_Write(data);
- 606:	8c 2f       	mov	r24, r28
- 608:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <I2C_Write>
-Function that Stops I2C communication
-*************************************************/
-
-void I2C_Stop(void){
-	//Send stop condition
-	TWCR = _BV(TWINT) | _BV(TWSTO) | _BV(TWEN);
- 60c:	84 e9       	ldi	r24, 0x94	; 148
- 60e:	80 93 bc 00 	sts	0x00BC, r24
-	I2C_Write(device_reg);
-	//send data byte
-	I2C_Write(data);
-	//stop communication
-	I2C_Stop();
-}
- 612:	df 91       	pop	r29
- 614:	cf 91       	pop	r28
- 616:	08 95       	ret
-
-00000618 <I2C_RecieveMessage>:
+00000856 <I2C_RecieveMessage>:
 Function that takes in a device memory address that you want
 to read from and reads the data at that address and then
 returns the data byte that was read
 *************************************************/
 
 uint8_t I2C_RecieveMessage(uint8_t slave_addr, uint8_t device_reg){
- 618:	cf 93       	push	r28
- 61a:	c6 2f       	mov	r28, r22
+ 856:	cf 93       	push	r28
+ 858:	c6 2f       	mov	r28, r22
 	//variable to store received data in
 	uint8_t read_data;
 	//start communication
 	I2C_Start();
- 61c:	0e 94 ca 02 	call	0x594	; 0x594 <I2C_Start>
+ 85a:	0e 94 ff 03 	call	0x7fe	; 0x7fe <I2C_Start>
 	//address slave in write mode
 	I2C_Addr(RTC_ADDRESS, WRITE);
- 620:	60 e0       	ldi	r22, 0x00	; 0
- 622:	88 e6       	ldi	r24, 0x68	; 104
- 624:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <I2C_Addr>
+ 85e:	60 e0       	ldi	r22, 0x00	; 0
+ 860:	88 e6       	ldi	r24, 0x68	; 104
+ 862:	0e 94 08 04 	call	0x810	; 0x810 <I2C_Addr>
 	//specify device register to read from
 	I2C_Write(device_reg);
- 628:	8c 2f       	mov	r24, r28
- 62a:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <I2C_Write>
+ 866:	8c 2f       	mov	r24, r28
+ 868:	0e 94 15 04 	call	0x82a	; 0x82a <I2C_Write>
 	//start another communication
 	I2C_Start();
- 62e:	0e 94 ca 02 	call	0x594	; 0x594 <I2C_Start>
+ 86c:	0e 94 ff 03 	call	0x7fe	; 0x7fe <I2C_Start>
 	//address slave in read mode
 	I2C_Addr(RTC_ADDRESS, READ);
- 632:	61 e0       	ldi	r22, 0x01	; 1
- 634:	88 e6       	ldi	r24, 0x68	; 104
- 636:	0e 94 d3 02 	call	0x5a6	; 0x5a6 <I2C_Addr>
+ 870:	61 e0       	ldi	r22, 0x01	; 1
+ 872:	88 e6       	ldi	r24, 0x68	; 104
+ 874:	0e 94 08 04 	call	0x810	; 0x810 <I2C_Addr>
 	//read and store data from slave
 	read_data = I2C_Read();
- 63a:	0e 94 eb 02 	call	0x5d6	; 0x5d6 <I2C_Read>
+ 878:	0e 94 20 04 	call	0x840	; 0x840 <I2C_Read>
 Function that Stops I2C communication
 *************************************************/
 
 void I2C_Stop(void){
 	//Send stop condition
 	TWCR = _BV(TWINT) | _BV(TWSTO) | _BV(TWEN);
- 63e:	94 e9       	ldi	r25, 0x94	; 148
- 640:	90 93 bc 00 	sts	0x00BC, r25
+ 87c:	94 e9       	ldi	r25, 0x94	; 148
+ 87e:	90 93 bc 00 	sts	0x00BC, r25
 	read_data = I2C_Read();
 	//stop communication
 	I2C_Stop();
 	//return byte
 	return (read_data);
- 644:	cf 91       	pop	r28
- 646:	08 95       	ret
+ 882:	cf 91       	pop	r28
+ 884:	08 95       	ret
 
-00000648 <LCD_SPI_initialize>:
-Return value : None.
---------------------------------------------------------------------------------------------------*/
-void LCD_SPI_initialize()
-{
-	// Set data direction for LCD output control pins
-	LCD_DD_RESET  |= _BV(LCD_RESET_PIN);
- 648:	20 9a       	sbi	0x04, 0	; 4
-	LCD_DD_SCK    |= _BV(LCD_SCK);
- 64a:	25 9a       	sbi	0x04, 5	; 4
-	LCD_DD_MOSI   |= _BV(LCD_MOSI);     
- 64c:	23 9a       	sbi	0x04, 3	; 4
-	LCD_DD_D_OR_C |= _BV(LCD_D_OR_C);   
- 64e:	54 9a       	sbi	0x0a, 4	; 10
-	LCD_DD_SS     |= _BV(LCD_SS);    
- 650:	22 9a       	sbi	0x04, 2	; 4
-	
-	// Setting SPI clock generator to Fclk/16 and enabling SPI peripheral and setting in master mode
-	SPCR = _BV(SPE) | _BV(MSTR) | _BV(SPR0);
- 652:	81 e5       	ldi	r24, 0x51	; 81
- 654:	8c bd       	out	0x2c, r24	; 44
- 656:	08 95       	ret
+00000886 <LCD_SPI_initialize>:
+ 886:	20 9a       	sbi	0x04, 0	; 4
+ 888:	25 9a       	sbi	0x04, 5	; 4
+ 88a:	23 9a       	sbi	0x04, 3	; 4
+ 88c:	54 9a       	sbi	0x0a, 4	; 10
+ 88e:	22 9a       	sbi	0x04, 2	; 4
+ 890:	81 e5       	ldi	r24, 0x51	; 81
+ 892:	8c bd       	out	0x2c, r24	; 44
+ 894:	08 95       	ret
 
-00000658 <LCD_send_command>:
---------------------------------------------------------------------------------------------------*/
-void LCD_send_command(BYTE command_to_send)
-{
-	
-	// Enable LCD
-	LCD_ENABLE;
- 658:	2a 98       	cbi	0x05, 2	; 5
-	
-	// Set the LCD in command mode
-	LCD_COMMAND_MODE;
- 65a:	5c 98       	cbi	0x0b, 4	; 11
-	
-	// Writing to the SPI data register which auto. shifts out data
-	SPDR = command_to_send;
- 65c:	8e bd       	out	0x2e, r24	; 46
-	
-	// Wait while the SPIF flag is low
-	while(!(SPSR & _BV(SPIF)))
- 65e:	0d b4       	in	r0, 0x2d	; 45
- 660:	07 fe       	sbrs	r0, 7
- 662:	fd cf       	rjmp	.-6      	; 0x65e <LCD_send_command+0x6>
-	{
-		// Do nothing
-	}
-	SPSR &= ~_BV(SPIF);
- 664:	8d b5       	in	r24, 0x2d	; 45
- 666:	8f 77       	andi	r24, 0x7F	; 127
- 668:	8d bd       	out	0x2d, r24	; 45
-	
-		// Disable LCD
-	LCD_DISABLE;
- 66a:	2a 9a       	sbi	0x05, 2	; 5
- 66c:	08 95       	ret
+00000896 <LCD_send_command>:
+ 896:	2a 98       	cbi	0x05, 2	; 5
+ 898:	5c 98       	cbi	0x0b, 4	; 11
+ 89a:	8e bd       	out	0x2e, r24	; 46
+ 89c:	0d b4       	in	r0, 0x2d	; 45
+ 89e:	07 fe       	sbrs	r0, 7
+ 8a0:	fd cf       	rjmp	.-6      	; 0x89c <LCD_send_command+0x6>
+ 8a2:	8d b5       	in	r24, 0x2d	; 45
+ 8a4:	8f 77       	andi	r24, 0x7F	; 127
+ 8a6:	8d bd       	out	0x2d, r24	; 45
+ 8a8:	2a 9a       	sbi	0x05, 2	; 5
+ 8aa:	08 95       	ret
 
-0000066e <LCD_send_data>:
-	
-}
-void LCD_send_data(BYTE data_to_send)
-{
-	// Enable LCD
-	LCD_ENABLE;
- 66e:	2a 98       	cbi	0x05, 2	; 5
-	
-	// Set Data Mode
-	LCD_DATA_MODE;
- 670:	5c 9a       	sbi	0x0b, 4	; 11
-	
-	// Store data to send in SPI data register
-	SPDR = data_to_send;
- 672:	8e bd       	out	0x2e, r24	; 46
-	
-	// Wait while the SPIF flag is low
-	while(!(SPSR & _BV(SPIF)))
- 674:	0d b4       	in	r0, 0x2d	; 45
- 676:	07 fe       	sbrs	r0, 7
- 678:	fd cf       	rjmp	.-6      	; 0x674 <LCD_send_data+0x6>
-	{
-		// Do nothing
-	}
-	
-	// Disable LCD
-	LCD_DISABLE;
- 67a:	2a 9a       	sbi	0x05, 2	; 5
- 67c:	08 95       	ret
+000008ac <LCD_send_data>:
+ 8ac:	2a 98       	cbi	0x05, 2	; 5
+ 8ae:	5c 9a       	sbi	0x0b, 4	; 11
+ 8b0:	8e bd       	out	0x2e, r24	; 46
+ 8b2:	0d b4       	in	r0, 0x2d	; 45
+ 8b4:	07 fe       	sbrs	r0, 7
+ 8b6:	fd cf       	rjmp	.-6      	; 0x8b2 <LCD_send_data+0x6>
+ 8b8:	2a 9a       	sbi	0x05, 2	; 5
+ 8ba:	08 95       	ret
 
-0000067e <LCD_goto>:
-	LCD_goto(0,0);
-}
+000008bc <LCD_goto>:
+ 8bc:	cf 93       	push	r28
+ 8be:	c6 2f       	mov	r28, r22
+ 8c0:	80 68       	ori	r24, 0x80	; 128
+ 8c2:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 8c6:	8c 2f       	mov	r24, r28
+ 8c8:	80 64       	ori	r24, 0x40	; 64
+ 8ca:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 8ce:	cf 91       	pop	r28
+ 8d0:	08 95       	ret
 
+000008d2 <LCD_clear_screen>:
+ 8d2:	cf 93       	push	r28
+ 8d4:	df 93       	push	r29
+ 8d6:	c8 ef       	ldi	r28, 0xF8	; 248
+ 8d8:	d1 e0       	ldi	r29, 0x01	; 1
+ 8da:	80 e0       	ldi	r24, 0x00	; 0
+ 8dc:	0e 94 56 04 	call	0x8ac	; 0x8ac <LCD_send_data>
+ 8e0:	21 97       	sbiw	r28, 0x01	; 1
+ 8e2:	20 97       	sbiw	r28, 0x00	; 0
+ 8e4:	d1 f7       	brne	.-12     	; 0x8da <LCD_clear_screen+0x8>
+ 8e6:	60 e0       	ldi	r22, 0x00	; 0
+ 8e8:	70 e0       	ldi	r23, 0x00	; 0
+ 8ea:	80 e0       	ldi	r24, 0x00	; 0
+ 8ec:	90 e0       	ldi	r25, 0x00	; 0
+ 8ee:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ 8f2:	df 91       	pop	r29
+ 8f4:	cf 91       	pop	r28
+ 8f6:	08 95       	ret
 
-void LCD_goto(int column, int row)
-{
- 67e:	cf 93       	push	r28
- 680:	c6 2f       	mov	r28, r22
-	// Set the x address
-	LCD_send_command(0x80 | column);
- 682:	80 68       	ori	r24, 0x80	; 128
- 684:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set the y address
-	LCD_send_command(0x40 | row);
- 688:	8c 2f       	mov	r24, r28
- 68a:	80 64       	ori	r24, 0x40	; 64
- 68c:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-}
- 690:	cf 91       	pop	r28
- 692:	08 95       	ret
-
-00000694 <LCD_clear_screen>:
-		LCD_send_data(pgm_read_byte(&(alarm_clock_ringing[i])));
-	}
-}
-
-void LCD_clear_screen()
-{
- 694:	cf 93       	push	r28
- 696:	df 93       	push	r29
- 698:	c8 ef       	ldi	r28, 0xF8	; 248
- 69a:	d1 e0       	ldi	r29, 0x01	; 1
-	int i;
-	
-	for(i = 0; i < 504; i++)
-	{
-		LCD_send_data(0x00);
- 69c:	80 e0       	ldi	r24, 0x00	; 0
- 69e:	0e 94 37 03 	call	0x66e	; 0x66e <LCD_send_data>
- 6a2:	21 97       	sbiw	r28, 0x01	; 1
-
-void LCD_clear_screen()
-{
-	int i;
-	
-	for(i = 0; i < 504; i++)
- 6a4:	20 97       	sbiw	r28, 0x00	; 0
- 6a6:	d1 f7       	brne	.-12     	; 0x69c <LCD_clear_screen+0x8>
-	{
-		LCD_send_data(0x00);
-	}
-	
-	// Return to home position
-	LCD_goto(0,0);
- 6a8:	60 e0       	ldi	r22, 0x00	; 0
- 6aa:	70 e0       	ldi	r23, 0x00	; 0
- 6ac:	80 e0       	ldi	r24, 0x00	; 0
- 6ae:	90 e0       	ldi	r25, 0x00	; 0
- 6b0:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-}
- 6b4:	df 91       	pop	r29
- 6b6:	cf 91       	pop	r28
- 6b8:	08 95       	ret
-
-000006ba <LCD_initialize>:
-Return value : None.
---------------------------------------------------------------------------------------------------*/
-void LCD_initialize()
-{
-	// Enabling the LCD
-	LCD_ENABLE;
- 6ba:	2a 98       	cbi	0x05, 2	; 5
-	
-	// Set the reset pin (active low) (resetting) 
-	LCD_RESET;
- 6bc:	28 98       	cbi	0x05, 0	; 5
-	
-	// Wait for 1 ms
-	hw_delay(1);
- 6be:	81 e0       	ldi	r24, 0x01	; 1
- 6c0:	90 e0       	ldi	r25, 0x00	; 0
- 6c2:	0e 94 ee 05 	call	0xbdc	; 0xbdc <hw_delay>
-	
-	// Set reset pin (active low) (setting)
-	LCD_NRESET;
- 6c6:	28 9a       	sbi	0x05, 0	; 5
-	
-	// Clear the screen
-	LCD_clear_screen();
- 6c8:	0e 94 4a 03 	call	0x694	; 0x694 <LCD_clear_screen>
-	
-	// Disable the LCD 
-	LCD_DISABLE;
- 6cc:	2a 9a       	sbi	0x05, 2	; 5
-	 *				Setting operation voltage to approx. 7V with Vop = 65
-	 *				Mux 1:48
-	 */
-	
-	// Set the display to normal mode
-	LCD_send_command(0x0C);
- 6ce:	8c e0       	ldi	r24, 0x0C	; 12
- 6d0:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set the cursor to (0,0)
-	LCD_goto(0,0);
- 6d4:	60 e0       	ldi	r22, 0x00	; 0
- 6d6:	70 e0       	ldi	r23, 0x00	; 0
- 6d8:	80 e0       	ldi	r24, 0x00	; 0
- 6da:	90 e0       	ldi	r25, 0x00	; 0
- 6dc:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	
-	// Set LCD in Horizontal addressing mode / Extended instruction mode / Power down disabled mode
-	LCD_send_command(0x21);
- 6e0:	81 e2       	ldi	r24, 0x21	; 33
- 6e2:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set the temperature coefficient to 2 (17 mV/K)
-	LCD_send_command(0x06);
- 6e6:	86 e0       	ldi	r24, 0x06	; 6
- 6e8:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set operation voltage to approximately 7V
-	LCD_send_command(0xA0);
- 6ec:	80 ea       	ldi	r24, 0xA0	; 160
- 6ee:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set mux rate 1:48
-	LCD_send_command(0x16);
- 6f2:	86 e1       	ldi	r24, 0x16	; 22
- 6f4:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
-	
-	// Set back into normal instruction mode
-	LCD_send_command(0x20);
- 6f8:	80 e2       	ldi	r24, 0x20	; 32
- 6fa:	0e 94 2c 03 	call	0x658	; 0x658 <LCD_send_command>
- 6fe:	08 95       	ret
-
-00000700 <LCD_print_char>:
-	// Set the y address
-	LCD_send_command(0x40 | row);
-}
-
-void LCD_print_char(unsigned char char_to_print)
-{
- 700:	0f 93       	push	r16
- 702:	1f 93       	push	r17
- 704:	cf 93       	push	r28
- 706:	df 93       	push	r29
-	unsigned char j;
-	
-	for(j=0; j<5; j++)
-	{
-		LCD_send_data((pgm_read_byte(&(smallFont [(char_to_print-32)*5 + j])) ));
- 708:	08 2f       	mov	r16, r24
- 70a:	10 e0       	ldi	r17, 0x00	; 0
- 70c:	00 52       	subi	r16, 0x20	; 32
- 70e:	11 09       	sbc	r17, r1
- 710:	c8 01       	movw	r24, r16
- 712:	88 0f       	add	r24, r24
- 714:	99 1f       	adc	r25, r25
- 716:	88 0f       	add	r24, r24
- 718:	99 1f       	adc	r25, r25
- 71a:	08 0f       	add	r16, r24
- 71c:	19 1f       	adc	r17, r25
- 71e:	c0 e0       	ldi	r28, 0x00	; 0
- 720:	d0 e0       	ldi	r29, 0x00	; 0
- 722:	06 56       	subi	r16, 0x66	; 102
- 724:	1f 4f       	sbci	r17, 0xFF	; 255
- 726:	f8 01       	movw	r30, r16
- 728:	ec 0f       	add	r30, r28
- 72a:	fd 1f       	adc	r31, r29
- 72c:	84 91       	lpm	r24, Z
- 72e:	0e 94 37 03 	call	0x66e	; 0x66e <LCD_send_data>
- 732:	21 96       	adiw	r28, 0x01	; 1
-
-void LCD_print_char(unsigned char char_to_print)
-{
-	unsigned char j;
-	
-	for(j=0; j<5; j++)
- 734:	c5 30       	cpi	r28, 0x05	; 5
- 736:	d1 05       	cpc	r29, r1
- 738:	b1 f7       	brne	.-20     	; 0x726 <LCD_print_char+0x26>
-	{
-		LCD_send_data((pgm_read_byte(&(smallFont [(char_to_print-32)*5 + j])) ));
-	}
-}
- 73a:	df 91       	pop	r29
- 73c:	cf 91       	pop	r28
- 73e:	1f 91       	pop	r17
- 740:	0f 91       	pop	r16
- 742:	08 95       	ret
-
-00000744 <LCD_print_double_number>:
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*single_digit_to_print + j]))));
-	}
-}
-
-void LCD_print_double_number(int number_to_print)
-{
- 744:	8f 92       	push	r8
- 746:	9f 92       	push	r9
- 748:	af 92       	push	r10
- 74a:	bf 92       	push	r11
- 74c:	cf 92       	push	r12
- 74e:	df 92       	push	r13
- 750:	ef 92       	push	r14
- 752:	ff 92       	push	r15
- 754:	0f 93       	push	r16
- 756:	1f 93       	push	r17
- 758:	cf 93       	push	r28
- 75a:	df 93       	push	r29
- 75c:	4c 01       	movw	r8, r24
-	unsigned char j;
-	int temp;
-	
-	temp = number_to_print / 10;
- 75e:	6a e0       	ldi	r22, 0x0A	; 10
- 760:	70 e0       	ldi	r23, 0x00	; 0
- 762:	0e 94 01 06 	call	0xc02	; 0xc02 <__divmodhi4>
- 766:	5b 01       	movw	r10, r22
-	
-	for(j=0; j<5; j++)
-	{
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*temp + j]))));
- 768:	6b 01       	movw	r12, r22
- 76a:	cc 0c       	add	r12, r12
- 76c:	dd 1c       	adc	r13, r13
- 76e:	cc 0c       	add	r12, r12
- 770:	dd 1c       	adc	r13, r13
- 772:	c6 01       	movw	r24, r12
- 774:	86 0f       	add	r24, r22
- 776:	97 1f       	adc	r25, r23
- 778:	c0 e0       	ldi	r28, 0x00	; 0
- 77a:	d0 e0       	ldi	r29, 0x00	; 0
- 77c:	0f 2e       	mov	r0, r31
- 77e:	f8 e6       	ldi	r31, 0x68	; 104
- 780:	ef 2e       	mov	r14, r31
- 782:	f0 e0       	ldi	r31, 0x00	; 0
- 784:	ff 2e       	mov	r15, r31
- 786:	f0 2d       	mov	r31, r0
- 788:	9c 01       	movw	r18, r24
- 78a:	28 59       	subi	r18, 0x98	; 152
- 78c:	3f 4f       	sbci	r19, 0xFF	; 255
- 78e:	69 01       	movw	r12, r18
- 790:	87 01       	movw	r16, r14
- 792:	f6 01       	movw	r30, r12
- 794:	ec 0f       	add	r30, r28
- 796:	fd 1f       	adc	r31, r29
- 798:	84 91       	lpm	r24, Z
- 79a:	0e 94 37 03 	call	0x66e	; 0x66e <LCD_send_data>
- 79e:	21 96       	adiw	r28, 0x01	; 1
-	unsigned char j;
-	int temp;
-	
-	temp = number_to_print / 10;
-	
-	for(j=0; j<5; j++)
- 7a0:	c5 30       	cpi	r28, 0x05	; 5
- 7a2:	d1 05       	cpc	r29, r1
- 7a4:	a9 f7       	brne	.-22     	; 0x790 <LCD_print_double_number+0x4c>
-	{
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*temp + j]))));
-	}
-	
-	temp = number_to_print - temp*10;
- 7a6:	26 ef       	ldi	r18, 0xF6	; 246
- 7a8:	a5 01       	movw	r20, r10
- 7aa:	24 03       	mulsu	r18, r20
- 7ac:	c0 01       	movw	r24, r0
- 7ae:	25 9f       	mul	r18, r21
- 7b0:	90 0d       	add	r25, r0
- 7b2:	11 24       	eor	r1, r1
- 7b4:	88 0e       	add	r8, r24
- 7b6:	99 1e       	adc	r9, r25
-	
-	for(j=0; j<5; j++)
-	{
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*temp + j]))));
- 7b8:	c4 01       	movw	r24, r8
- 7ba:	88 0f       	add	r24, r24
- 7bc:	99 1f       	adc	r25, r25
- 7be:	88 0f       	add	r24, r24
- 7c0:	99 1f       	adc	r25, r25
- 7c2:	88 0e       	add	r8, r24
- 7c4:	99 1e       	adc	r9, r25
- 7c6:	c0 e0       	ldi	r28, 0x00	; 0
- 7c8:	d0 e0       	ldi	r29, 0x00	; 0
- 7ca:	08 0d       	add	r16, r8
- 7cc:	19 1d       	adc	r17, r9
- 7ce:	f8 01       	movw	r30, r16
- 7d0:	ec 0f       	add	r30, r28
- 7d2:	fd 1f       	adc	r31, r29
- 7d4:	84 91       	lpm	r24, Z
- 7d6:	0e 94 37 03 	call	0x66e	; 0x66e <LCD_send_data>
- 7da:	21 96       	adiw	r28, 0x01	; 1
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*temp + j]))));
-	}
-	
-	temp = number_to_print - temp*10;
-	
-	for(j=0; j<5; j++)
- 7dc:	c5 30       	cpi	r28, 0x05	; 5
- 7de:	d1 05       	cpc	r29, r1
- 7e0:	b1 f7       	brne	.-20     	; 0x7ce <LCD_print_double_number+0x8a>
-	{
-		LCD_send_data((pgm_read_byte(&(single_numbers [5*temp + j]))));
-	}
-	
-}
- 7e2:	df 91       	pop	r29
- 7e4:	cf 91       	pop	r28
- 7e6:	1f 91       	pop	r17
- 7e8:	0f 91       	pop	r16
- 7ea:	ff 90       	pop	r15
- 7ec:	ef 90       	pop	r14
- 7ee:	df 90       	pop	r13
- 7f0:	cf 90       	pop	r12
- 7f2:	bf 90       	pop	r11
- 7f4:	af 90       	pop	r10
- 7f6:	9f 90       	pop	r9
- 7f8:	8f 90       	pop	r8
- 7fa:	08 95       	ret
-
-000007fc <LCD_print_string>:
-void LCD_print_string(const char *string)
-{
- 7fc:	cf 93       	push	r28
- 7fe:	df 93       	push	r29
- 800:	ec 01       	movw	r28, r24
-	// Prints character of current index of string until string ends
-	while ( *string )
- 802:	88 81       	ld	r24, Y
- 804:	88 23       	and	r24, r24
- 806:	31 f0       	breq	.+12     	; 0x814 <LCD_print_string+0x18>
- 808:	21 96       	adiw	r28, 0x01	; 1
-	{
-		// Prints character of current index of string
-		LCD_print_char( *string++ );
- 80a:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	
-}
-void LCD_print_string(const char *string)
-{
-	// Prints character of current index of string until string ends
-	while ( *string )
- 80e:	89 91       	ld	r24, Y+
- 810:	81 11       	cpse	r24, r1
- 812:	fb cf       	rjmp	.-10     	; 0x80a <LCD_print_string+0xe>
-	{
-		// Prints character of current index of string
-		LCD_print_char( *string++ );
-	}
-}
- 814:	df 91       	pop	r29
- 816:	cf 91       	pop	r28
- 818:	08 95       	ret
-
-0000081a <LCD_print_bottom_menu>:
-	LCD_send_command(0x40 | y_to_set);
-}
-
-
-void LCD_print_bottom_menu(const char *button1, const char *button2, const char *button3)
-{
- 81a:	cf 92       	push	r12
- 81c:	df 92       	push	r13
- 81e:	ef 92       	push	r14
- 820:	ff 92       	push	r15
- 822:	0f 93       	push	r16
- 824:	1f 93       	push	r17
- 826:	cf 93       	push	r28
- 828:	df 93       	push	r29
- 82a:	ec 01       	movw	r28, r24
- 82c:	6b 01       	movw	r12, r22
- 82e:	7a 01       	movw	r14, r20
-	int tot_string_length, temp_calc, max_space, i;
-	
-	//Finding total number of characters
-	tot_string_length = strlen(button1) + strlen(button2) + strlen(button3);
- 830:	dc 01       	movw	r26, r24
- 832:	0d 90       	ld	r0, X+
- 834:	00 20       	and	r0, r0
- 836:	e9 f7       	brne	.-6      	; 0x832 <LCD_print_bottom_menu+0x18>
- 838:	11 97       	sbiw	r26, 0x01	; 1
- 83a:	cd 01       	movw	r24, r26
- 83c:	8c 1b       	sub	r24, r28
- 83e:	9d 0b       	sbc	r25, r29
- 840:	db 01       	movw	r26, r22
- 842:	0d 90       	ld	r0, X+
- 844:	00 20       	and	r0, r0
- 846:	e9 f7       	brne	.-6      	; 0x842 <LCD_print_bottom_menu+0x28>
- 848:	11 97       	sbiw	r26, 0x01	; 1
- 84a:	a6 1b       	sub	r26, r22
- 84c:	b7 0b       	sbc	r27, r23
- 84e:	fa 01       	movw	r30, r20
- 850:	01 90       	ld	r0, Z+
- 852:	00 20       	and	r0, r0
- 854:	e9 f7       	brne	.-6      	; 0x850 <LCD_print_bottom_menu+0x36>
- 856:	31 97       	sbiw	r30, 0x01	; 1
- 858:	e4 1b       	sub	r30, r20
- 85a:	f5 0b       	sbc	r31, r21
- 85c:	a8 0f       	add	r26, r24
- 85e:	b9 1f       	adc	r27, r25
- 860:	ea 0f       	add	r30, r26
- 862:	fb 1f       	adc	r31, r27
-	
-	temp_calc = 16 - (tot_string_length);
- 864:	80 e1       	ldi	r24, 0x10	; 16
- 866:	90 e0       	ldi	r25, 0x00	; 0
- 868:	8e 1b       	sub	r24, r30
- 86a:	9f 0b       	sbc	r25, r31
-	
-	max_space = temp_calc / 2;
- 86c:	8c 01       	movw	r16, r24
- 86e:	12 f4       	brpl	.+4      	; 0x874 <LCD_print_bottom_menu+0x5a>
- 870:	0f 5f       	subi	r16, 0xFF	; 255
- 872:	1f 4f       	sbci	r17, 0xFF	; 255
- 874:	15 95       	asr	r17
- 876:	07 95       	ror	r16
-	
-	// Set cursor to bottom left
-	LCD_goto(0,5);
- 878:	65 e0       	ldi	r22, 0x05	; 5
- 87a:	70 e0       	ldi	r23, 0x00	; 0
- 87c:	80 e0       	ldi	r24, 0x00	; 0
- 87e:	90 e0       	ldi	r25, 0x00	; 0
- 880:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	
-	// print first button command heading
-	LCD_print_string(button1);
- 884:	ce 01       	movw	r24, r28
- 886:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
-	
-	for(i = 0; i < max_space; i++)
- 88a:	10 16       	cp	r1, r16
- 88c:	11 06       	cpc	r1, r17
- 88e:	dc f4       	brge	.+54     	; 0x8c6 <LCD_print_bottom_menu+0xac>
- 890:	c0 e0       	ldi	r28, 0x00	; 0
- 892:	d0 e0       	ldi	r29, 0x00	; 0
-	{
-		// print a space after the first command
-		LCD_print_char(' ');
- 894:	80 e2       	ldi	r24, 0x20	; 32
- 896:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_goto(0,5);
-	
-	// print first button command heading
-	LCD_print_string(button1);
-	
-	for(i = 0; i < max_space; i++)
- 89a:	21 96       	adiw	r28, 0x01	; 1
- 89c:	c0 17       	cp	r28, r16
- 89e:	d1 07       	cpc	r29, r17
- 8a0:	c9 f7       	brne	.-14     	; 0x894 <LCD_print_bottom_menu+0x7a>
- 8a2:	0b c0       	rjmp	.+22     	; 0x8ba <LCD_print_bottom_menu+0xa0>
-	LCD_print_string(button2);
-	
-	for(i = 0; i < max_space; i++)
-	{
-		// print a space after the first command
-		LCD_print_char(' ');
- 8a4:	80 e2       	ldi	r24, 0x20	; 32
- 8a6:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	}
-	
-	// print second button command heading
-	LCD_print_string(button2);
-	
-	for(i = 0; i < max_space; i++)
- 8aa:	21 96       	adiw	r28, 0x01	; 1
- 8ac:	c0 17       	cp	r28, r16
- 8ae:	d1 07       	cpc	r29, r17
- 8b0:	c9 f7       	brne	.-14     	; 0x8a4 <LCD_print_bottom_menu+0x8a>
-	{
-		// print a space after the first command
-		LCD_print_char(' ');
-	}
-	// print third button command heading
-	LCD_print_string(button3);
- 8b2:	c7 01       	movw	r24, r14
- 8b4:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
- 8b8:	0a c0       	rjmp	.+20     	; 0x8ce <LCD_print_bottom_menu+0xb4>
-		// print a space after the first command
-		LCD_print_char(' ');
-	}
-	
-	// print second button command heading
-	LCD_print_string(button2);
- 8ba:	c6 01       	movw	r24, r12
- 8bc:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
-	
-	for(i = 0; i < max_space; i++)
- 8c0:	c0 e0       	ldi	r28, 0x00	; 0
- 8c2:	d0 e0       	ldi	r29, 0x00	; 0
- 8c4:	ef cf       	rjmp	.-34     	; 0x8a4 <LCD_print_bottom_menu+0x8a>
-		// print a space after the first command
-		LCD_print_char(' ');
-	}
-	
-	// print second button command heading
-	LCD_print_string(button2);
- 8c6:	c6 01       	movw	r24, r12
- 8c8:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
- 8cc:	f2 cf       	rjmp	.-28     	; 0x8b2 <LCD_print_bottom_menu+0x98>
-		// print a space after the first command
-		LCD_print_char(' ');
-	}
-	// print third button command heading
-	LCD_print_string(button3);
-}
- 8ce:	df 91       	pop	r29
- 8d0:	cf 91       	pop	r28
- 8d2:	1f 91       	pop	r17
- 8d4:	0f 91       	pop	r16
- 8d6:	ff 90       	pop	r15
- 8d8:	ef 90       	pop	r14
- 8da:	df 90       	pop	r13
- 8dc:	cf 90       	pop	r12
- 8de:	08 95       	ret
-
-000008e0 <LCD_print_time_display>:
-	}
-	array_to_shift[string_length - 1] = temp_var;
-}
-
-void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *button3 )
-{
- 8e0:	af 92       	push	r10
- 8e2:	bf 92       	push	r11
- 8e4:	cf 92       	push	r12
- 8e6:	df 92       	push	r13
- 8e8:	ef 92       	push	r14
- 8ea:	ff 92       	push	r15
- 8ec:	0f 93       	push	r16
- 8ee:	1f 93       	push	r17
- 8f0:	cf 93       	push	r28
- 8f2:	df 93       	push	r29
- 8f4:	cd b7       	in	r28, 0x3d	; 61
- 8f6:	de b7       	in	r29, 0x3e	; 62
- 8f8:	28 97       	sbiw	r28, 0x08	; 8
- 8fa:	0f b6       	in	r0, 0x3f	; 63
- 8fc:	f8 94       	cli
- 8fe:	de bf       	out	0x3e, r29	; 62
- 900:	0f be       	out	0x3f, r0	; 63
- 902:	cd bf       	out	0x3d, r28	; 61
- 904:	29 83       	std	Y+1, r18	; 0x01
- 906:	3a 83       	std	Y+2, r19	; 0x02
- 908:	4b 83       	std	Y+3, r20	; 0x03
- 90a:	6d 83       	std	Y+5, r22	; 0x05
- 90c:	7e 83       	std	Y+6, r23	; 0x06
- 90e:	8f 83       	std	Y+7, r24	; 0x07
- 910:	98 87       	std	Y+8, r25	; 0x08
-	// Example of Time display
-	// Printing time portion
-	LCD_goto(0,0);
+000008f8 <LCD_initialize>:
+ 8f8:	2a 98       	cbi	0x05, 2	; 5
+ 8fa:	28 98       	cbi	0x05, 0	; 5
+ 8fc:	81 e0       	ldi	r24, 0x01	; 1
+ 8fe:	90 e0       	ldi	r25, 0x00	; 0
+ 900:	0e 94 cb 06 	call	0xd96	; 0xd96 <hw_delay>
+ 904:	28 9a       	sbi	0x05, 0	; 5
+ 906:	0e 94 69 04 	call	0x8d2	; 0x8d2 <LCD_clear_screen>
+ 90a:	2a 9a       	sbi	0x05, 2	; 5
+ 90c:	8c e0       	ldi	r24, 0x0C	; 12
+ 90e:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
  912:	60 e0       	ldi	r22, 0x00	; 0
  914:	70 e0       	ldi	r23, 0x00	; 0
  916:	80 e0       	ldi	r24, 0x00	; 0
  918:	90 e0       	ldi	r25, 0x00	; 0
- 91a:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	LCD_print_double_number(current_time.hour);
- 91e:	8d 81       	ldd	r24, Y+5	; 0x05
- 920:	90 e0       	ldi	r25, 0x00	; 0
- 922:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char(':');
- 926:	8a e3       	ldi	r24, 0x3A	; 58
- 928:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_print_double_number(current_time.minute);
- 92c:	8e 81       	ldd	r24, Y+6	; 0x06
- 92e:	90 e0       	ldi	r25, 0x00	; 0
- 930:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char(':');
- 934:	8a e3       	ldi	r24, 0x3A	; 58
- 936:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_print_double_number(current_time.second);
- 93a:	8f 81       	ldd	r24, Y+7	; 0x07
- 93c:	90 e0       	ldi	r25, 0x00	; 0
- 93e:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char(' ');
- 942:	80 e2       	ldi	r24, 0x20	; 32
- 944:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	if(current_time.AM_PM)
- 948:	88 85       	ldd	r24, Y+8	; 0x08
- 94a:	88 23       	and	r24, r24
- 94c:	29 f0       	breq	.+10     	; 0x958 <__stack+0x59>
-	{
-		LCD_print_string("PM");
- 94e:	85 e2       	ldi	r24, 0x25	; 37
- 950:	91 e0       	ldi	r25, 0x01	; 1
- 952:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
- 956:	04 c0       	rjmp	.+8      	; 0x960 <__stack+0x61>
-	}
-	else
-	{
-		LCD_print_string("AM");
- 958:	88 e2       	ldi	r24, 0x28	; 40
- 95a:	91 e0       	ldi	r25, 0x01	; 1
- 95c:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
-	}
-	
-	// Printing date portion
-	LCD_goto(0,2);
- 960:	62 e0       	ldi	r22, 0x02	; 2
- 962:	70 e0       	ldi	r23, 0x00	; 0
- 964:	80 e0       	ldi	r24, 0x00	; 0
- 966:	90 e0       	ldi	r25, 0x00	; 0
- 968:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	LCD_print_double_number(current_time.month);
- 96c:	8a 81       	ldd	r24, Y+2	; 0x02
- 96e:	90 e0       	ldi	r25, 0x00	; 0
- 970:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char('/');
- 974:	8f e2       	ldi	r24, 0x2F	; 47
- 976:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_print_double_number(current_time.day);
- 97a:	8b 81       	ldd	r24, Y+3	; 0x03
- 97c:	90 e0       	ldi	r25, 0x00	; 0
- 97e:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char('/');
- 982:	8f e2       	ldi	r24, 0x2F	; 47
- 984:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_print_double_number(current_time.year);
- 988:	89 81       	ldd	r24, Y+1	; 0x01
- 98a:	90 e0       	ldi	r25, 0x00	; 0
- 98c:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	
-	// Printing Temperature portion
-	LCD_goto(64,1);
- 990:	61 e0       	ldi	r22, 0x01	; 1
- 992:	70 e0       	ldi	r23, 0x00	; 0
- 994:	80 e4       	ldi	r24, 0x40	; 64
- 996:	90 e0       	ldi	r25, 0x00	; 0
- 998:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	LCD_print_double_number(current_temperature);
- 99c:	c8 01       	movw	r24, r16
- 99e:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_string(" C");
- 9a2:	8b e2       	ldi	r24, 0x2B	; 43
- 9a4:	91 e0       	ldi	r25, 0x01	; 1
- 9a6:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
-	
-	// Printing bottom menu
-	LCD_print_bottom_menu(button1, button2, button3);
- 9aa:	a5 01       	movw	r20, r10
- 9ac:	b6 01       	movw	r22, r12
- 9ae:	c7 01       	movw	r24, r14
- 9b0:	0e 94 0d 04 	call	0x81a	; 0x81a <LCD_print_bottom_menu>
-}
- 9b4:	28 96       	adiw	r28, 0x08	; 8
- 9b6:	0f b6       	in	r0, 0x3f	; 63
- 9b8:	f8 94       	cli
- 9ba:	de bf       	out	0x3e, r29	; 62
- 9bc:	0f be       	out	0x3f, r0	; 63
- 9be:	cd bf       	out	0x3d, r28	; 61
- 9c0:	df 91       	pop	r29
- 9c2:	cf 91       	pop	r28
- 9c4:	1f 91       	pop	r17
- 9c6:	0f 91       	pop	r16
- 9c8:	ff 90       	pop	r15
- 9ca:	ef 90       	pop	r14
- 9cc:	df 90       	pop	r13
- 9ce:	cf 90       	pop	r12
- 9d0:	bf 90       	pop	r11
- 9d2:	af 90       	pop	r10
- 9d4:	08 95       	ret
+ 91a:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ 91e:	81 e2       	ldi	r24, 0x21	; 33
+ 920:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 924:	86 e0       	ldi	r24, 0x06	; 6
+ 926:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 92a:	80 ea       	ldi	r24, 0xA0	; 160
+ 92c:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 930:	86 e1       	ldi	r24, 0x16	; 22
+ 932:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 936:	80 e2       	ldi	r24, 0x20	; 32
+ 938:	0e 94 4b 04 	call	0x896	; 0x896 <LCD_send_command>
+ 93c:	08 95       	ret
 
-000009d6 <LCD_print_alarm_display>:
-	LCD_print_bottom_menu(button1, button2, button3);
-	
-}
+0000093e <LCD_print_char>:
+ 93e:	0f 93       	push	r16
+ 940:	1f 93       	push	r17
+ 942:	cf 93       	push	r28
+ 944:	df 93       	push	r29
+ 946:	08 2f       	mov	r16, r24
+ 948:	10 e0       	ldi	r17, 0x00	; 0
+ 94a:	00 52       	subi	r16, 0x20	; 32
+ 94c:	11 09       	sbc	r17, r1
+ 94e:	c8 01       	movw	r24, r16
+ 950:	88 0f       	add	r24, r24
+ 952:	99 1f       	adc	r25, r25
+ 954:	88 0f       	add	r24, r24
+ 956:	99 1f       	adc	r25, r25
+ 958:	08 0f       	add	r16, r24
+ 95a:	19 1f       	adc	r17, r25
+ 95c:	c0 e0       	ldi	r28, 0x00	; 0
+ 95e:	d0 e0       	ldi	r29, 0x00	; 0
+ 960:	06 56       	subi	r16, 0x66	; 102
+ 962:	1f 4f       	sbci	r17, 0xFF	; 255
+ 964:	f8 01       	movw	r30, r16
+ 966:	ec 0f       	add	r30, r28
+ 968:	fd 1f       	adc	r31, r29
+ 96a:	84 91       	lpm	r24, Z
+ 96c:	0e 94 56 04 	call	0x8ac	; 0x8ac <LCD_send_data>
+ 970:	21 96       	adiw	r28, 0x01	; 1
+ 972:	c5 30       	cpi	r28, 0x05	; 5
+ 974:	d1 05       	cpc	r29, r1
+ 976:	b1 f7       	brne	.-20     	; 0x964 <LCD_print_char+0x26>
+ 978:	df 91       	pop	r29
+ 97a:	cf 91       	pop	r28
+ 97c:	1f 91       	pop	r17
+ 97e:	0f 91       	pop	r16
+ 980:	08 95       	ret
 
-void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *button2, const char *button3)
-{
- 9d6:	cf 92       	push	r12
- 9d8:	df 92       	push	r13
- 9da:	ef 92       	push	r14
- 9dc:	ff 92       	push	r15
- 9de:	0f 93       	push	r16
- 9e0:	1f 93       	push	r17
- 9e2:	cf 93       	push	r28
- 9e4:	df 93       	push	r29
- 9e6:	cd b7       	in	r28, 0x3d	; 61
- 9e8:	de b7       	in	r29, 0x3e	; 62
- 9ea:	28 97       	sbiw	r28, 0x08	; 8
- 9ec:	0f b6       	in	r0, 0x3f	; 63
- 9ee:	f8 94       	cli
- 9f0:	de bf       	out	0x3e, r29	; 62
- 9f2:	0f be       	out	0x3f, r0	; 63
- 9f4:	cd bf       	out	0x3d, r28	; 61
- 9f6:	6d 83       	std	Y+5, r22	; 0x05
- 9f8:	7e 83       	std	Y+6, r23	; 0x06
-	LCD_clear_screen();
- 9fa:	0e 94 4a 03 	call	0x694	; 0x694 <LCD_clear_screen>
-	LCD_goto(0,0);
- 9fe:	60 e0       	ldi	r22, 0x00	; 0
- a00:	70 e0       	ldi	r23, 0x00	; 0
- a02:	80 e0       	ldi	r24, 0x00	; 0
- a04:	90 e0       	ldi	r25, 0x00	; 0
- a06:	0e 94 3f 03 	call	0x67e	; 0x67e <LCD_goto>
-	LCD_print_string("A1:");
- a0a:	8e e2       	ldi	r24, 0x2E	; 46
- a0c:	91 e0       	ldi	r25, 0x01	; 1
- a0e:	0e 94 fe 03 	call	0x7fc	; 0x7fc <LCD_print_string>
-	LCD_print_double_number(alarmtime.hour);
- a12:	8d 81       	ldd	r24, Y+5	; 0x05
- a14:	90 e0       	ldi	r25, 0x00	; 0
- a16:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	LCD_print_char(':');
- a1a:	8a e3       	ldi	r24, 0x3A	; 58
- a1c:	0e 94 80 03 	call	0x700	; 0x700 <LCD_print_char>
-	LCD_print_double_number(alarmtime.minute);
- a20:	8e 81       	ldd	r24, Y+6	; 0x06
- a22:	90 e0       	ldi	r25, 0x00	; 0
- a24:	0e 94 a2 03 	call	0x744	; 0x744 <LCD_print_double_number>
-	{
-		LCD_print_string(" PM");
-	}
-	*/
-	
-	LCD_print_bottom_menu(button1, button2, button3);
- a28:	a6 01       	movw	r20, r12
- a2a:	b7 01       	movw	r22, r14
- a2c:	c8 01       	movw	r24, r16
- a2e:	0e 94 0d 04 	call	0x81a	; 0x81a <LCD_print_bottom_menu>
- a32:	28 96       	adiw	r28, 0x08	; 8
- a34:	0f b6       	in	r0, 0x3f	; 63
- a36:	f8 94       	cli
- a38:	de bf       	out	0x3e, r29	; 62
- a3a:	0f be       	out	0x3f, r0	; 63
- a3c:	cd bf       	out	0x3d, r28	; 61
- a3e:	df 91       	pop	r29
- a40:	cf 91       	pop	r28
- a42:	1f 91       	pop	r17
- a44:	0f 91       	pop	r16
- a46:	ff 90       	pop	r15
- a48:	ef 90       	pop	r14
- a4a:	df 90       	pop	r13
- a4c:	cf 90       	pop	r12
- a4e:	08 95       	ret
+00000982 <LCD_print_double_number>:
+ 982:	8f 92       	push	r8
+ 984:	9f 92       	push	r9
+ 986:	af 92       	push	r10
+ 988:	bf 92       	push	r11
+ 98a:	cf 92       	push	r12
+ 98c:	df 92       	push	r13
+ 98e:	ef 92       	push	r14
+ 990:	ff 92       	push	r15
+ 992:	0f 93       	push	r16
+ 994:	1f 93       	push	r17
+ 996:	cf 93       	push	r28
+ 998:	df 93       	push	r29
+ 99a:	4c 01       	movw	r8, r24
+ 99c:	6a e0       	ldi	r22, 0x0A	; 10
+ 99e:	70 e0       	ldi	r23, 0x00	; 0
+ 9a0:	0e 94 f2 06 	call	0xde4	; 0xde4 <__divmodhi4>
+ 9a4:	5b 01       	movw	r10, r22
+ 9a6:	6b 01       	movw	r12, r22
+ 9a8:	cc 0c       	add	r12, r12
+ 9aa:	dd 1c       	adc	r13, r13
+ 9ac:	cc 0c       	add	r12, r12
+ 9ae:	dd 1c       	adc	r13, r13
+ 9b0:	c6 01       	movw	r24, r12
+ 9b2:	86 0f       	add	r24, r22
+ 9b4:	97 1f       	adc	r25, r23
+ 9b6:	c0 e0       	ldi	r28, 0x00	; 0
+ 9b8:	d0 e0       	ldi	r29, 0x00	; 0
+ 9ba:	0f 2e       	mov	r0, r31
+ 9bc:	f8 e6       	ldi	r31, 0x68	; 104
+ 9be:	ef 2e       	mov	r14, r31
+ 9c0:	f0 e0       	ldi	r31, 0x00	; 0
+ 9c2:	ff 2e       	mov	r15, r31
+ 9c4:	f0 2d       	mov	r31, r0
+ 9c6:	9c 01       	movw	r18, r24
+ 9c8:	28 59       	subi	r18, 0x98	; 152
+ 9ca:	3f 4f       	sbci	r19, 0xFF	; 255
+ 9cc:	69 01       	movw	r12, r18
+ 9ce:	87 01       	movw	r16, r14
+ 9d0:	f6 01       	movw	r30, r12
+ 9d2:	ec 0f       	add	r30, r28
+ 9d4:	fd 1f       	adc	r31, r29
+ 9d6:	84 91       	lpm	r24, Z
+ 9d8:	0e 94 56 04 	call	0x8ac	; 0x8ac <LCD_send_data>
+ 9dc:	21 96       	adiw	r28, 0x01	; 1
+ 9de:	c5 30       	cpi	r28, 0x05	; 5
+ 9e0:	d1 05       	cpc	r29, r1
+ 9e2:	a9 f7       	brne	.-22     	; 0x9ce <LCD_print_double_number+0x4c>
+ 9e4:	26 ef       	ldi	r18, 0xF6	; 246
+ 9e6:	a5 01       	movw	r20, r10
+ 9e8:	24 03       	mulsu	r18, r20
+ 9ea:	c0 01       	movw	r24, r0
+ 9ec:	25 9f       	mul	r18, r21
+ 9ee:	90 0d       	add	r25, r0
+ 9f0:	11 24       	eor	r1, r1
+ 9f2:	88 0e       	add	r8, r24
+ 9f4:	99 1e       	adc	r9, r25
+ 9f6:	c4 01       	movw	r24, r8
+ 9f8:	88 0f       	add	r24, r24
+ 9fa:	99 1f       	adc	r25, r25
+ 9fc:	88 0f       	add	r24, r24
+ 9fe:	99 1f       	adc	r25, r25
+ a00:	88 0e       	add	r8, r24
+ a02:	99 1e       	adc	r9, r25
+ a04:	c0 e0       	ldi	r28, 0x00	; 0
+ a06:	d0 e0       	ldi	r29, 0x00	; 0
+ a08:	08 0d       	add	r16, r8
+ a0a:	19 1d       	adc	r17, r9
+ a0c:	f8 01       	movw	r30, r16
+ a0e:	ec 0f       	add	r30, r28
+ a10:	fd 1f       	adc	r31, r29
+ a12:	84 91       	lpm	r24, Z
+ a14:	0e 94 56 04 	call	0x8ac	; 0x8ac <LCD_send_data>
+ a18:	21 96       	adiw	r28, 0x01	; 1
+ a1a:	c5 30       	cpi	r28, 0x05	; 5
+ a1c:	d1 05       	cpc	r29, r1
+ a1e:	b1 f7       	brne	.-20     	; 0xa0c <LCD_print_double_number+0x8a>
+ a20:	df 91       	pop	r29
+ a22:	cf 91       	pop	r28
+ a24:	1f 91       	pop	r17
+ a26:	0f 91       	pop	r16
+ a28:	ff 90       	pop	r15
+ a2a:	ef 90       	pop	r14
+ a2c:	df 90       	pop	r13
+ a2e:	cf 90       	pop	r12
+ a30:	bf 90       	pop	r11
+ a32:	af 90       	pop	r10
+ a34:	9f 90       	pop	r9
+ a36:	8f 90       	pop	r8
+ a38:	08 95       	ret
 
-00000a50 <fromBCD>:
-/*************************************************
-Function that converts a binary coded decimal number to a decimal
-*************************************************/
+00000a3a <LCD_print_string>:
+ a3a:	cf 93       	push	r28
+ a3c:	df 93       	push	r29
+ a3e:	ec 01       	movw	r28, r24
+ a40:	88 81       	ld	r24, Y
+ a42:	88 23       	and	r24, r24
+ a44:	31 f0       	breq	.+12     	; 0xa52 <LCD_print_string+0x18>
+ a46:	21 96       	adiw	r28, 0x01	; 1
+ a48:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ a4c:	89 91       	ld	r24, Y+
+ a4e:	81 11       	cpse	r24, r1
+ a50:	fb cf       	rjmp	.-10     	; 0xa48 <LCD_print_string+0xe>
+ a52:	df 91       	pop	r29
+ a54:	cf 91       	pop	r28
+ a56:	08 95       	ret
 
-uint8_t fromBCD(uint8_t data_in){
-	return ((data_in & 0x0F) + 10*((data_in>>4) & 0x07));
- a50:	98 2f       	mov	r25, r24
- a52:	96 95       	lsr	r25
- a54:	96 95       	lsr	r25
- a56:	96 95       	lsr	r25
- a58:	9e 70       	andi	r25, 0x0E	; 14
- a5a:	29 2f       	mov	r18, r25
- a5c:	22 0f       	add	r18, r18
- a5e:	22 0f       	add	r18, r18
- a60:	92 0f       	add	r25, r18
- a62:	8f 70       	andi	r24, 0x0F	; 15
-}
- a64:	89 0f       	add	r24, r25
- a66:	08 95       	ret
+00000a58 <LCD_print_bottom_menu>:
+ a58:	cf 92       	push	r12
+ a5a:	df 92       	push	r13
+ a5c:	ef 92       	push	r14
+ a5e:	ff 92       	push	r15
+ a60:	0f 93       	push	r16
+ a62:	1f 93       	push	r17
+ a64:	cf 93       	push	r28
+ a66:	df 93       	push	r29
+ a68:	ec 01       	movw	r28, r24
+ a6a:	6b 01       	movw	r12, r22
+ a6c:	7a 01       	movw	r14, r20
+ a6e:	dc 01       	movw	r26, r24
+ a70:	0d 90       	ld	r0, X+
+ a72:	00 20       	and	r0, r0
+ a74:	e9 f7       	brne	.-6      	; 0xa70 <LCD_print_bottom_menu+0x18>
+ a76:	11 97       	sbiw	r26, 0x01	; 1
+ a78:	cd 01       	movw	r24, r26
+ a7a:	8c 1b       	sub	r24, r28
+ a7c:	9d 0b       	sbc	r25, r29
+ a7e:	db 01       	movw	r26, r22
+ a80:	0d 90       	ld	r0, X+
+ a82:	00 20       	and	r0, r0
+ a84:	e9 f7       	brne	.-6      	; 0xa80 <LCD_print_bottom_menu+0x28>
+ a86:	11 97       	sbiw	r26, 0x01	; 1
+ a88:	a6 1b       	sub	r26, r22
+ a8a:	b7 0b       	sbc	r27, r23
+ a8c:	fa 01       	movw	r30, r20
+ a8e:	01 90       	ld	r0, Z+
+ a90:	00 20       	and	r0, r0
+ a92:	e9 f7       	brne	.-6      	; 0xa8e <LCD_print_bottom_menu+0x36>
+ a94:	31 97       	sbiw	r30, 0x01	; 1
+ a96:	e4 1b       	sub	r30, r20
+ a98:	f5 0b       	sbc	r31, r21
+ a9a:	a8 0f       	add	r26, r24
+ a9c:	b9 1f       	adc	r27, r25
+ a9e:	ea 0f       	add	r30, r26
+ aa0:	fb 1f       	adc	r31, r27
+ aa2:	80 e1       	ldi	r24, 0x10	; 16
+ aa4:	90 e0       	ldi	r25, 0x00	; 0
+ aa6:	8e 1b       	sub	r24, r30
+ aa8:	9f 0b       	sbc	r25, r31
+ aaa:	8c 01       	movw	r16, r24
+ aac:	12 f4       	brpl	.+4      	; 0xab2 <LCD_print_bottom_menu+0x5a>
+ aae:	0f 5f       	subi	r16, 0xFF	; 255
+ ab0:	1f 4f       	sbci	r17, 0xFF	; 255
+ ab2:	15 95       	asr	r17
+ ab4:	07 95       	ror	r16
+ ab6:	65 e0       	ldi	r22, 0x05	; 5
+ ab8:	70 e0       	ldi	r23, 0x00	; 0
+ aba:	80 e0       	ldi	r24, 0x00	; 0
+ abc:	90 e0       	ldi	r25, 0x00	; 0
+ abe:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ ac2:	ce 01       	movw	r24, r28
+ ac4:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ ac8:	10 16       	cp	r1, r16
+ aca:	11 06       	cpc	r1, r17
+ acc:	dc f4       	brge	.+54     	; 0xb04 <LCD_print_bottom_menu+0xac>
+ ace:	c0 e0       	ldi	r28, 0x00	; 0
+ ad0:	d0 e0       	ldi	r29, 0x00	; 0
+ ad2:	80 e2       	ldi	r24, 0x20	; 32
+ ad4:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ ad8:	21 96       	adiw	r28, 0x01	; 1
+ ada:	c0 17       	cp	r28, r16
+ adc:	d1 07       	cpc	r29, r17
+ ade:	c9 f7       	brne	.-14     	; 0xad2 <LCD_print_bottom_menu+0x7a>
+ ae0:	0b c0       	rjmp	.+22     	; 0xaf8 <LCD_print_bottom_menu+0xa0>
+ ae2:	80 e2       	ldi	r24, 0x20	; 32
+ ae4:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ ae8:	21 96       	adiw	r28, 0x01	; 1
+ aea:	c0 17       	cp	r28, r16
+ aec:	d1 07       	cpc	r29, r17
+ aee:	c9 f7       	brne	.-14     	; 0xae2 <LCD_print_bottom_menu+0x8a>
+ af0:	c7 01       	movw	r24, r14
+ af2:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ af6:	0a c0       	rjmp	.+20     	; 0xb0c <LCD_print_bottom_menu+0xb4>
+ af8:	c6 01       	movw	r24, r12
+ afa:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ afe:	c0 e0       	ldi	r28, 0x00	; 0
+ b00:	d0 e0       	ldi	r29, 0x00	; 0
+ b02:	ef cf       	rjmp	.-34     	; 0xae2 <LCD_print_bottom_menu+0x8a>
+ b04:	c6 01       	movw	r24, r12
+ b06:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ b0a:	f2 cf       	rjmp	.-28     	; 0xaf0 <LCD_print_bottom_menu+0x98>
+ b0c:	df 91       	pop	r29
+ b0e:	cf 91       	pop	r28
+ b10:	1f 91       	pop	r17
+ b12:	0f 91       	pop	r16
+ b14:	ff 90       	pop	r15
+ b16:	ef 90       	pop	r14
+ b18:	df 90       	pop	r13
+ b1a:	cf 90       	pop	r12
+ b1c:	08 95       	ret
 
-00000a68 <toBCD>:
-/*************************************************
-Function that converts a decimal number to a binary coded decimal
-*************************************************/
+00000b1e <LCD_print_time_display>:
+ b1e:	af 92       	push	r10
+ b20:	bf 92       	push	r11
+ b22:	cf 92       	push	r12
+ b24:	df 92       	push	r13
+ b26:	ef 92       	push	r14
+ b28:	ff 92       	push	r15
+ b2a:	0f 93       	push	r16
+ b2c:	1f 93       	push	r17
+ b2e:	cf 93       	push	r28
+ b30:	df 93       	push	r29
+ b32:	cd b7       	in	r28, 0x3d	; 61
+ b34:	de b7       	in	r29, 0x3e	; 62
+ b36:	28 97       	sbiw	r28, 0x08	; 8
+ b38:	0f b6       	in	r0, 0x3f	; 63
+ b3a:	f8 94       	cli
+ b3c:	de bf       	out	0x3e, r29	; 62
+ b3e:	0f be       	out	0x3f, r0	; 63
+ b40:	cd bf       	out	0x3d, r28	; 61
+ b42:	29 83       	std	Y+1, r18	; 0x01
+ b44:	3a 83       	std	Y+2, r19	; 0x02
+ b46:	4b 83       	std	Y+3, r20	; 0x03
+ b48:	6d 83       	std	Y+5, r22	; 0x05
+ b4a:	7e 83       	std	Y+6, r23	; 0x06
+ b4c:	8f 83       	std	Y+7, r24	; 0x07
+ b4e:	98 87       	std	Y+8, r25	; 0x08
+ b50:	60 e0       	ldi	r22, 0x00	; 0
+ b52:	70 e0       	ldi	r23, 0x00	; 0
+ b54:	80 e0       	ldi	r24, 0x00	; 0
+ b56:	90 e0       	ldi	r25, 0x00	; 0
+ b58:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ b5c:	8d 81       	ldd	r24, Y+5	; 0x05
+ b5e:	90 e0       	ldi	r25, 0x00	; 0
+ b60:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ b64:	8a e3       	ldi	r24, 0x3A	; 58
+ b66:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ b6a:	8e 81       	ldd	r24, Y+6	; 0x06
+ b6c:	90 e0       	ldi	r25, 0x00	; 0
+ b6e:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ b72:	8a e3       	ldi	r24, 0x3A	; 58
+ b74:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ b78:	8f 81       	ldd	r24, Y+7	; 0x07
+ b7a:	90 e0       	ldi	r25, 0x00	; 0
+ b7c:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ b80:	80 e2       	ldi	r24, 0x20	; 32
+ b82:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ b86:	88 85       	ldd	r24, Y+8	; 0x08
+ b88:	88 23       	and	r24, r24
+ b8a:	29 f0       	breq	.+10     	; 0xb96 <LCD_print_time_display+0x78>
+ b8c:	80 e3       	ldi	r24, 0x30	; 48
+ b8e:	91 e0       	ldi	r25, 0x01	; 1
+ b90:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ b94:	04 c0       	rjmp	.+8      	; 0xb9e <LCD_print_time_display+0x80>
+ b96:	83 e3       	ldi	r24, 0x33	; 51
+ b98:	91 e0       	ldi	r25, 0x01	; 1
+ b9a:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ b9e:	62 e0       	ldi	r22, 0x02	; 2
+ ba0:	70 e0       	ldi	r23, 0x00	; 0
+ ba2:	80 e0       	ldi	r24, 0x00	; 0
+ ba4:	90 e0       	ldi	r25, 0x00	; 0
+ ba6:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ baa:	8a 81       	ldd	r24, Y+2	; 0x02
+ bac:	90 e0       	ldi	r25, 0x00	; 0
+ bae:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ bb2:	8f e2       	ldi	r24, 0x2F	; 47
+ bb4:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ bb8:	8b 81       	ldd	r24, Y+3	; 0x03
+ bba:	90 e0       	ldi	r25, 0x00	; 0
+ bbc:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ bc0:	8f e2       	ldi	r24, 0x2F	; 47
+ bc2:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ bc6:	89 81       	ldd	r24, Y+1	; 0x01
+ bc8:	90 e0       	ldi	r25, 0x00	; 0
+ bca:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ bce:	61 e0       	ldi	r22, 0x01	; 1
+ bd0:	70 e0       	ldi	r23, 0x00	; 0
+ bd2:	80 e4       	ldi	r24, 0x40	; 64
+ bd4:	90 e0       	ldi	r25, 0x00	; 0
+ bd6:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ bda:	c8 01       	movw	r24, r16
+ bdc:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ be0:	86 e3       	ldi	r24, 0x36	; 54
+ be2:	91 e0       	ldi	r25, 0x01	; 1
+ be4:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ be8:	a5 01       	movw	r20, r10
+ bea:	b6 01       	movw	r22, r12
+ bec:	c7 01       	movw	r24, r14
+ bee:	0e 94 2c 05 	call	0xa58	; 0xa58 <LCD_print_bottom_menu>
+ bf2:	28 96       	adiw	r28, 0x08	; 8
+ bf4:	0f b6       	in	r0, 0x3f	; 63
+ bf6:	f8 94       	cli
+ bf8:	de bf       	out	0x3e, r29	; 62
+ bfa:	0f be       	out	0x3f, r0	; 63
+ bfc:	cd bf       	out	0x3d, r28	; 61
+ bfe:	df 91       	pop	r29
+ c00:	cf 91       	pop	r28
+ c02:	1f 91       	pop	r17
+ c04:	0f 91       	pop	r16
+ c06:	ff 90       	pop	r15
+ c08:	ef 90       	pop	r14
+ c0a:	df 90       	pop	r13
+ c0c:	cf 90       	pop	r12
+ c0e:	bf 90       	pop	r11
+ c10:	af 90       	pop	r10
+ c12:	08 95       	ret
 
-uint8_t toBCD(uint8_t data_out){
-	return (((data_out/10)<<4) | (data_out % 10));
- a68:	9d ec       	ldi	r25, 0xCD	; 205
- a6a:	89 9f       	mul	r24, r25
- a6c:	91 2d       	mov	r25, r1
- a6e:	11 24       	eor	r1, r1
- a70:	96 95       	lsr	r25
- a72:	96 95       	lsr	r25
- a74:	96 95       	lsr	r25
- a76:	40 e1       	ldi	r20, 0x10	; 16
- a78:	94 9f       	mul	r25, r20
- a7a:	90 01       	movw	r18, r0
- a7c:	11 24       	eor	r1, r1
- a7e:	99 0f       	add	r25, r25
- a80:	39 2f       	mov	r19, r25
- a82:	33 0f       	add	r19, r19
- a84:	33 0f       	add	r19, r19
- a86:	93 0f       	add	r25, r19
- a88:	89 1b       	sub	r24, r25
-}
- a8a:	82 2b       	or	r24, r18
- a8c:	08 95       	ret
+00000c14 <LCD_print_alarm_display>:
+ c14:	cf 92       	push	r12
+ c16:	df 92       	push	r13
+ c18:	ef 92       	push	r14
+ c1a:	ff 92       	push	r15
+ c1c:	0f 93       	push	r16
+ c1e:	1f 93       	push	r17
+ c20:	cf 93       	push	r28
+ c22:	df 93       	push	r29
+ c24:	cd b7       	in	r28, 0x3d	; 61
+ c26:	de b7       	in	r29, 0x3e	; 62
+ c28:	28 97       	sbiw	r28, 0x08	; 8
+ c2a:	0f b6       	in	r0, 0x3f	; 63
+ c2c:	f8 94       	cli
+ c2e:	de bf       	out	0x3e, r29	; 62
+ c30:	0f be       	out	0x3f, r0	; 63
+ c32:	cd bf       	out	0x3d, r28	; 61
+ c34:	6d 83       	std	Y+5, r22	; 0x05
+ c36:	7e 83       	std	Y+6, r23	; 0x06
+ c38:	98 87       	std	Y+8, r25	; 0x08
+ c3a:	0e 94 69 04 	call	0x8d2	; 0x8d2 <LCD_clear_screen>
+ c3e:	60 e0       	ldi	r22, 0x00	; 0
+ c40:	70 e0       	ldi	r23, 0x00	; 0
+ c42:	80 e0       	ldi	r24, 0x00	; 0
+ c44:	90 e0       	ldi	r25, 0x00	; 0
+ c46:	0e 94 5e 04 	call	0x8bc	; 0x8bc <LCD_goto>
+ c4a:	89 e3       	ldi	r24, 0x39	; 57
+ c4c:	91 e0       	ldi	r25, 0x01	; 1
+ c4e:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ c52:	8d 81       	ldd	r24, Y+5	; 0x05
+ c54:	90 e0       	ldi	r25, 0x00	; 0
+ c56:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ c5a:	8a e3       	ldi	r24, 0x3A	; 58
+ c5c:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ c60:	8e 81       	ldd	r24, Y+6	; 0x06
+ c62:	90 e0       	ldi	r25, 0x00	; 0
+ c64:	0e 94 c1 04 	call	0x982	; 0x982 <LCD_print_double_number>
+ c68:	80 e2       	ldi	r24, 0x20	; 32
+ c6a:	0e 94 9f 04 	call	0x93e	; 0x93e <LCD_print_char>
+ c6e:	88 85       	ldd	r24, Y+8	; 0x08
+ c70:	88 23       	and	r24, r24
+ c72:	29 f0       	breq	.+10     	; 0xc7e <LCD_print_alarm_display+0x6a>
+ c74:	80 e3       	ldi	r24, 0x30	; 48
+ c76:	91 e0       	ldi	r25, 0x01	; 1
+ c78:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ c7c:	04 c0       	rjmp	.+8      	; 0xc86 <LCD_print_alarm_display+0x72>
+ c7e:	83 e3       	ldi	r24, 0x33	; 51
+ c80:	91 e0       	ldi	r25, 0x01	; 1
+ c82:	0e 94 1d 05 	call	0xa3a	; 0xa3a <LCD_print_string>
+ c86:	a6 01       	movw	r20, r12
+ c88:	b7 01       	movw	r22, r14
+ c8a:	c8 01       	movw	r24, r16
+ c8c:	0e 94 2c 05 	call	0xa58	; 0xa58 <LCD_print_bottom_menu>
+ c90:	28 96       	adiw	r28, 0x08	; 8
+ c92:	0f b6       	in	r0, 0x3f	; 63
+ c94:	f8 94       	cli
+ c96:	de bf       	out	0x3e, r29	; 62
+ c98:	0f be       	out	0x3f, r0	; 63
+ c9a:	cd bf       	out	0x3d, r28	; 61
+ c9c:	df 91       	pop	r29
+ c9e:	cf 91       	pop	r28
+ ca0:	1f 91       	pop	r17
+ ca2:	0f 91       	pop	r16
+ ca4:	ff 90       	pop	r15
+ ca6:	ef 90       	pop	r14
+ ca8:	df 90       	pop	r13
+ caa:	cf 90       	pop	r12
+ cac:	08 95       	ret
 
-00000a8e <RTC_Set>:
-/*************************************************
-Function that sets the RTC
-*************************************************/
+00000cae <fromBCD>:
+ cae:	98 2f       	mov	r25, r24
+ cb0:	96 95       	lsr	r25
+ cb2:	96 95       	lsr	r25
+ cb4:	96 95       	lsr	r25
+ cb6:	9e 70       	andi	r25, 0x0E	; 14
+ cb8:	29 2f       	mov	r18, r25
+ cba:	22 0f       	add	r18, r18
+ cbc:	22 0f       	add	r18, r18
+ cbe:	92 0f       	add	r25, r18
+ cc0:	8f 70       	andi	r24, 0x0F	; 15
+ cc2:	89 0f       	add	r24, r25
+ cc4:	08 95       	ret
 
-void RTC_Set(time_t times)
-{
- a8e:	cf 93       	push	r28
- a90:	df 93       	push	r29
- a92:	cd b7       	in	r28, 0x3d	; 61
- a94:	de b7       	in	r29, 0x3e	; 62
- a96:	28 97       	sbiw	r28, 0x08	; 8
- a98:	0f b6       	in	r0, 0x3f	; 63
- a9a:	f8 94       	cli
- a9c:	de bf       	out	0x3e, r29	; 62
- a9e:	0f be       	out	0x3f, r0	; 63
- aa0:	cd bf       	out	0x3d, r28	; 61
- aa2:	3a 83       	std	Y+2, r19	; 0x02
- aa4:	4b 83       	std	Y+3, r20	; 0x03
- aa6:	5c 83       	std	Y+4, r21	; 0x04
- aa8:	6d 83       	std	Y+5, r22	; 0x05
- aaa:	7e 83       	std	Y+6, r23	; 0x06
- aac:	8f 83       	std	Y+7, r24	; 0x07
-	I2C_SendMessage(RTC_ADDRESS, YEAR_R, toBCD(times.year));
- aae:	82 2f       	mov	r24, r18
- ab0:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- ab4:	48 2f       	mov	r20, r24
- ab6:	66 e0       	ldi	r22, 0x06	; 6
- ab8:	88 e6       	ldi	r24, 0x68	; 104
- aba:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, MONTH_R, toBCD(times.month));
- abe:	8a 81       	ldd	r24, Y+2	; 0x02
- ac0:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- ac4:	48 2f       	mov	r20, r24
- ac6:	65 e0       	ldi	r22, 0x05	; 5
- ac8:	88 e6       	ldi	r24, 0x68	; 104
- aca:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, DATE_R, toBCD(times.day));
- ace:	8b 81       	ldd	r24, Y+3	; 0x03
- ad0:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- ad4:	48 2f       	mov	r20, r24
- ad6:	64 e0       	ldi	r22, 0x04	; 4
- ad8:	88 e6       	ldi	r24, 0x68	; 104
- ada:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, DAY_R, toBCD(times.day_of_week));
- ade:	8c 81       	ldd	r24, Y+4	; 0x04
- ae0:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- ae4:	48 2f       	mov	r20, r24
- ae6:	63 e0       	ldi	r22, 0x03	; 3
- ae8:	88 e6       	ldi	r24, 0x68	; 104
- aea:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, HOURS_R, toBCD(times.hour) & ~_BV(6));
- aee:	8d 81       	ldd	r24, Y+5	; 0x05
- af0:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- af4:	48 2f       	mov	r20, r24
- af6:	4f 7b       	andi	r20, 0xBF	; 191
- af8:	62 e0       	ldi	r22, 0x02	; 2
- afa:	88 e6       	ldi	r24, 0x68	; 104
- afc:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, MINUTES_R, toBCD(times.minute));
- b00:	8e 81       	ldd	r24, Y+6	; 0x06
- b02:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- b06:	48 2f       	mov	r20, r24
- b08:	61 e0       	ldi	r22, 0x01	; 1
- b0a:	88 e6       	ldi	r24, 0x68	; 104
- b0c:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	I2C_SendMessage(RTC_ADDRESS, SECONDS_R, toBCD(times.second));
- b10:	8f 81       	ldd	r24, Y+7	; 0x07
- b12:	0e 94 34 05 	call	0xa68	; 0xa68 <toBCD>
- b16:	48 2f       	mov	r20, r24
- b18:	60 e0       	ldi	r22, 0x00	; 0
- b1a:	88 e6       	ldi	r24, 0x68	; 104
- b1c:	0e 94 f6 02 	call	0x5ec	; 0x5ec <I2C_SendMessage>
-	
-}
- b20:	28 96       	adiw	r28, 0x08	; 8
- b22:	0f b6       	in	r0, 0x3f	; 63
- b24:	f8 94       	cli
- b26:	de bf       	out	0x3e, r29	; 62
- b28:	0f be       	out	0x3f, r0	; 63
- b2a:	cd bf       	out	0x3d, r28	; 61
- b2c:	df 91       	pop	r29
- b2e:	cf 91       	pop	r28
- b30:	08 95       	ret
+00000cc6 <RTC_Read>:
+ cc6:	cf 93       	push	r28
+ cc8:	df 93       	push	r29
+ cca:	ec 01       	movw	r28, r24
+ ccc:	66 e0       	ldi	r22, 0x06	; 6
+ cce:	88 e6       	ldi	r24, 0x68	; 104
+ cd0:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ cd4:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ cd8:	88 83       	st	Y, r24
+ cda:	65 e0       	ldi	r22, 0x05	; 5
+ cdc:	88 e6       	ldi	r24, 0x68	; 104
+ cde:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ ce2:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ ce6:	89 83       	std	Y+1, r24	; 0x01
+ ce8:	64 e0       	ldi	r22, 0x04	; 4
+ cea:	88 e6       	ldi	r24, 0x68	; 104
+ cec:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ cf0:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ cf4:	8a 83       	std	Y+2, r24	; 0x02
+ cf6:	63 e0       	ldi	r22, 0x03	; 3
+ cf8:	88 e6       	ldi	r24, 0x68	; 104
+ cfa:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ cfe:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ d02:	8b 83       	std	Y+3, r24	; 0x03
+ d04:	62 e0       	ldi	r22, 0x02	; 2
+ d06:	88 e6       	ldi	r24, 0x68	; 104
+ d08:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ d0c:	8f 71       	andi	r24, 0x1F	; 31
+ d0e:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ d12:	8c 83       	std	Y+4, r24	; 0x04
+ d14:	61 e0       	ldi	r22, 0x01	; 1
+ d16:	88 e6       	ldi	r24, 0x68	; 104
+ d18:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ d1c:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ d20:	8d 83       	std	Y+5, r24	; 0x05
+ d22:	60 e0       	ldi	r22, 0x00	; 0
+ d24:	88 e6       	ldi	r24, 0x68	; 104
+ d26:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ d2a:	0e 94 57 06 	call	0xcae	; 0xcae <fromBCD>
+ d2e:	8e 83       	std	Y+6, r24	; 0x06
+ d30:	62 e0       	ldi	r22, 0x02	; 2
+ d32:	88 e6       	ldi	r24, 0x68	; 104
+ d34:	0e 94 2b 04 	call	0x856	; 0x856 <I2C_RecieveMessage>
+ d38:	85 fb       	bst	r24, 5
+ d3a:	88 27       	eor	r24, r24
+ d3c:	80 f9       	bld	r24, 0
+ d3e:	8f 83       	std	Y+7, r24	; 0x07
+ d40:	df 91       	pop	r29
+ d42:	cf 91       	pop	r28
+ d44:	08 95       	ret
 
-00000b32 <RTC_Read>:
-/*************************************************
-Function that reads the  from the RTC
-*************************************************/
+00000d46 <Timer0_Init>:
+ d46:	82 e0       	ldi	r24, 0x02	; 2
+ d48:	84 bd       	out	0x24, r24	; 36
+ d4a:	93 e0       	ldi	r25, 0x03	; 3
+ d4c:	95 bd       	out	0x25, r25	; 37
+ d4e:	80 93 6e 00 	sts	0x006E, r24
+ d52:	8a ef       	ldi	r24, 0xFA	; 250
+ d54:	87 bd       	out	0x27, r24	; 39
+ d56:	a9 9a       	sbi	0x15, 1	; 21
+ d58:	16 bc       	out	0x26, r1	; 38
+ d5a:	08 95       	ret
 
-void RTC_Read(time_t *times)
-{
- b32:	cf 93       	push	r28
- b34:	df 93       	push	r29
- b36:	ec 01       	movw	r28, r24
-	times->year = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, YEAR_R));
- b38:	66 e0       	ldi	r22, 0x06	; 6
- b3a:	88 e6       	ldi	r24, 0x68	; 104
- b3c:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b40:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b44:	88 83       	st	Y, r24
-	times->month = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, MONTH_R));
- b46:	65 e0       	ldi	r22, 0x05	; 5
- b48:	88 e6       	ldi	r24, 0x68	; 104
- b4a:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b4e:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b52:	89 83       	std	Y+1, r24	; 0x01
-	times->day = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, DATE_R));
- b54:	64 e0       	ldi	r22, 0x04	; 4
- b56:	88 e6       	ldi	r24, 0x68	; 104
- b58:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b5c:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b60:	8a 83       	std	Y+2, r24	; 0x02
-	times->day_of_week = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, DAY_R));
- b62:	63 e0       	ldi	r22, 0x03	; 3
- b64:	88 e6       	ldi	r24, 0x68	; 104
- b66:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b6a:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b6e:	8b 83       	std	Y+3, r24	; 0x03
-	times->hour  = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, HOURS_R)) & 0x3F;
- b70:	62 e0       	ldi	r22, 0x02	; 2
- b72:	88 e6       	ldi	r24, 0x68	; 104
- b74:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b78:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b7c:	8f 73       	andi	r24, 0x3F	; 63
- b7e:	8c 83       	std	Y+4, r24	; 0x04
-	times->minute = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, MINUTES_R));
- b80:	61 e0       	ldi	r22, 0x01	; 1
- b82:	88 e6       	ldi	r24, 0x68	; 104
- b84:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b88:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b8c:	8d 83       	std	Y+5, r24	; 0x05
-	times->second = fromBCD(I2C_RecieveMessage(RTC_ADDRESS, SECONDS_R));
- b8e:	60 e0       	ldi	r22, 0x00	; 0
- b90:	88 e6       	ldi	r24, 0x68	; 104
- b92:	0e 94 0c 03 	call	0x618	; 0x618 <I2C_RecieveMessage>
- b96:	0e 94 28 05 	call	0xa50	; 0xa50 <fromBCD>
- b9a:	8e 83       	std	Y+6, r24	; 0x06
-	
- b9c:	df 91       	pop	r29
- b9e:	cf 91       	pop	r28
- ba0:	08 95       	ret
+00000d5c <Timer2_Init>:
+ d5c:	82 e0       	ldi	r24, 0x02	; 2
+ d5e:	80 93 b0 00 	sts	0x00B0, r24
+ d62:	e1 eb       	ldi	r30, 0xB1	; 177
+ d64:	f0 e0       	ldi	r31, 0x00	; 0
+ d66:	80 81       	ld	r24, Z
+ d68:	87 60       	ori	r24, 0x07	; 7
+ d6a:	80 83       	st	Z, r24
+ d6c:	08 95       	ret
 
-00000ba2 <Timer2_Init>:
- ba2:	82 e0       	ldi	r24, 0x02	; 2
- ba4:	80 93 b0 00 	sts	0x00B0, r24
- ba8:	e1 eb       	ldi	r30, 0xB1	; 177
- baa:	f0 e0       	ldi	r31, 0x00	; 0
- bac:	80 81       	ld	r24, Z
- bae:	87 60       	ori	r24, 0x07	; 7
- bb0:	80 83       	st	Z, r24
- bb2:	08 95       	ret
+00000d6e <Timer1_Init>:
+ d6e:	21 9a       	sbi	0x04, 1	; 4
+ d70:	80 e8       	ldi	r24, 0x80	; 128
+ d72:	80 93 80 00 	sts	0x0080, r24
+ d76:	80 e1       	ldi	r24, 0x10	; 16
+ d78:	80 93 81 00 	sts	0x0081, r24
+ d7c:	86 e8       	ldi	r24, 0x86	; 134
+ d7e:	91 e0       	ldi	r25, 0x01	; 1
+ d80:	90 93 87 00 	sts	0x0087, r25
+ d84:	80 93 86 00 	sts	0x0086, r24
+ d88:	8a e5       	ldi	r24, 0x5A	; 90
+ d8a:	90 e0       	ldi	r25, 0x00	; 0
+ d8c:	90 93 89 00 	sts	0x0089, r25
+ d90:	80 93 88 00 	sts	0x0088, r24
+ d94:	08 95       	ret
 
-00000bb4 <Timer1_Init>:
- bb4:	21 9a       	sbi	0x04, 1	; 4
- bb6:	80 e8       	ldi	r24, 0x80	; 128
- bb8:	80 93 80 00 	sts	0x0080, r24
- bbc:	80 e1       	ldi	r24, 0x10	; 16
- bbe:	80 93 81 00 	sts	0x0081, r24
- bc2:	86 e8       	ldi	r24, 0x86	; 134
- bc4:	91 e0       	ldi	r25, 0x01	; 1
- bc6:	90 93 87 00 	sts	0x0087, r25
- bca:	80 93 86 00 	sts	0x0086, r24
- bce:	8a e5       	ldi	r24, 0x5A	; 90
- bd0:	90 e0       	ldi	r25, 0x00	; 0
- bd2:	90 93 89 00 	sts	0x0089, r25
- bd6:	80 93 88 00 	sts	0x0088, r24
- bda:	08 95       	ret
+00000d96 <hw_delay>:
+ d96:	2f e0       	ldi	r18, 0x0F	; 15
+ d98:	20 93 b3 00 	sts	0x00B3, r18
+ d9c:	b9 9a       	sbi	0x17, 1	; 23
+ d9e:	10 92 b2 00 	sts	0x00B2, r1
+ da2:	00 97       	sbiw	r24, 0x00	; 0
+ da4:	51 f0       	breq	.+20     	; 0xdba <hw_delay+0x24>
+ da6:	20 e0       	ldi	r18, 0x00	; 0
+ da8:	30 e0       	ldi	r19, 0x00	; 0
+ daa:	b9 9b       	sbis	0x17, 1	; 23
+ dac:	fe cf       	rjmp	.-4      	; 0xdaa <hw_delay+0x14>
+ dae:	b9 9a       	sbi	0x17, 1	; 23
+ db0:	2f 5f       	subi	r18, 0xFF	; 255
+ db2:	3f 4f       	sbci	r19, 0xFF	; 255
+ db4:	28 17       	cp	r18, r24
+ db6:	39 07       	cpc	r19, r25
+ db8:	c1 f7       	brne	.-16     	; 0xdaa <hw_delay+0x14>
+ dba:	08 95       	ret
 
-00000bdc <hw_delay>:
- bdc:	20 e1       	ldi	r18, 0x10	; 16
- bde:	20 93 b3 00 	sts	0x00B3, r18
- be2:	00 97       	sbiw	r24, 0x00	; 0
- be4:	69 f0       	breq	.+26     	; 0xc00 <hw_delay+0x24>
- be6:	20 e0       	ldi	r18, 0x00	; 0
- be8:	30 e0       	ldi	r19, 0x00	; 0
- bea:	e2 eb       	ldi	r30, 0xB2	; 178
- bec:	f0 e0       	ldi	r31, 0x00	; 0
- bee:	b9 9a       	sbi	0x17, 1	; 23
- bf0:	10 82       	st	Z, r1
- bf2:	b9 9b       	sbis	0x17, 1	; 23
- bf4:	fe cf       	rjmp	.-4      	; 0xbf2 <hw_delay+0x16>
- bf6:	2f 5f       	subi	r18, 0xFF	; 255
- bf8:	3f 4f       	sbci	r19, 0xFF	; 255
- bfa:	28 17       	cp	r18, r24
- bfc:	39 07       	cpc	r19, r25
- bfe:	b9 f7       	brne	.-18     	; 0xbee <hw_delay+0x12>
- c00:	08 95       	ret
+00000dbc <Timer1PWM_OnOff>:
+ dbc:	88 23       	and	r24, r24
+ dbe:	49 f0       	breq	.+18     	; 0xdd2 <Timer1PWM_OnOff+0x16>
+ dc0:	e1 e8       	ldi	r30, 0x81	; 129
+ dc2:	f0 e0       	ldi	r31, 0x00	; 0
+ dc4:	80 81       	ld	r24, Z
+ dc6:	85 60       	ori	r24, 0x05	; 5
+ dc8:	80 83       	st	Z, r24
+ dca:	80 e8       	ldi	r24, 0x80	; 128
+ dcc:	80 93 80 00 	sts	0x0080, r24
+ dd0:	08 95       	ret
+ dd2:	e1 e8       	ldi	r30, 0x81	; 129
+ dd4:	f0 e0       	ldi	r31, 0x00	; 0
+ dd6:	80 81       	ld	r24, Z
+ dd8:	8a 7f       	andi	r24, 0xFA	; 250
+ dda:	80 83       	st	Z, r24
+ ddc:	29 98       	cbi	0x05, 1	; 5
+ dde:	10 92 80 00 	sts	0x0080, r1
+ de2:	08 95       	ret
 
-00000c02 <__divmodhi4>:
- c02:	97 fb       	bst	r25, 7
- c04:	07 2e       	mov	r0, r23
- c06:	16 f4       	brtc	.+4      	; 0xc0c <__divmodhi4+0xa>
- c08:	00 94       	com	r0
- c0a:	07 d0       	rcall	.+14     	; 0xc1a <__divmodhi4_neg1>
- c0c:	77 fd       	sbrc	r23, 7
- c0e:	09 d0       	rcall	.+18     	; 0xc22 <__divmodhi4_neg2>
- c10:	0e 94 15 06 	call	0xc2a	; 0xc2a <__udivmodhi4>
- c14:	07 fc       	sbrc	r0, 7
- c16:	05 d0       	rcall	.+10     	; 0xc22 <__divmodhi4_neg2>
- c18:	3e f4       	brtc	.+14     	; 0xc28 <__divmodhi4_exit>
+00000de4 <__divmodhi4>:
+ de4:	97 fb       	bst	r25, 7
+ de6:	07 2e       	mov	r0, r23
+ de8:	16 f4       	brtc	.+4      	; 0xdee <__divmodhi4+0xa>
+ dea:	00 94       	com	r0
+ dec:	07 d0       	rcall	.+14     	; 0xdfc <__divmodhi4_neg1>
+ dee:	77 fd       	sbrc	r23, 7
+ df0:	09 d0       	rcall	.+18     	; 0xe04 <__divmodhi4_neg2>
+ df2:	0e 94 06 07 	call	0xe0c	; 0xe0c <__udivmodhi4>
+ df6:	07 fc       	sbrc	r0, 7
+ df8:	05 d0       	rcall	.+10     	; 0xe04 <__divmodhi4_neg2>
+ dfa:	3e f4       	brtc	.+14     	; 0xe0a <__divmodhi4_exit>
 
-00000c1a <__divmodhi4_neg1>:
- c1a:	90 95       	com	r25
- c1c:	81 95       	neg	r24
- c1e:	9f 4f       	sbci	r25, 0xFF	; 255
- c20:	08 95       	ret
+00000dfc <__divmodhi4_neg1>:
+ dfc:	90 95       	com	r25
+ dfe:	81 95       	neg	r24
+ e00:	9f 4f       	sbci	r25, 0xFF	; 255
+ e02:	08 95       	ret
 
-00000c22 <__divmodhi4_neg2>:
- c22:	70 95       	com	r23
- c24:	61 95       	neg	r22
- c26:	7f 4f       	sbci	r23, 0xFF	; 255
+00000e04 <__divmodhi4_neg2>:
+ e04:	70 95       	com	r23
+ e06:	61 95       	neg	r22
+ e08:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00000c28 <__divmodhi4_exit>:
- c28:	08 95       	ret
+00000e0a <__divmodhi4_exit>:
+ e0a:	08 95       	ret
 
-00000c2a <__udivmodhi4>:
- c2a:	aa 1b       	sub	r26, r26
- c2c:	bb 1b       	sub	r27, r27
- c2e:	51 e1       	ldi	r21, 0x11	; 17
- c30:	07 c0       	rjmp	.+14     	; 0xc40 <__udivmodhi4_ep>
+00000e0c <__udivmodhi4>:
+ e0c:	aa 1b       	sub	r26, r26
+ e0e:	bb 1b       	sub	r27, r27
+ e10:	51 e1       	ldi	r21, 0x11	; 17
+ e12:	07 c0       	rjmp	.+14     	; 0xe22 <__udivmodhi4_ep>
 
-00000c32 <__udivmodhi4_loop>:
- c32:	aa 1f       	adc	r26, r26
- c34:	bb 1f       	adc	r27, r27
- c36:	a6 17       	cp	r26, r22
- c38:	b7 07       	cpc	r27, r23
- c3a:	10 f0       	brcs	.+4      	; 0xc40 <__udivmodhi4_ep>
- c3c:	a6 1b       	sub	r26, r22
- c3e:	b7 0b       	sbc	r27, r23
+00000e14 <__udivmodhi4_loop>:
+ e14:	aa 1f       	adc	r26, r26
+ e16:	bb 1f       	adc	r27, r27
+ e18:	a6 17       	cp	r26, r22
+ e1a:	b7 07       	cpc	r27, r23
+ e1c:	10 f0       	brcs	.+4      	; 0xe22 <__udivmodhi4_ep>
+ e1e:	a6 1b       	sub	r26, r22
+ e20:	b7 0b       	sbc	r27, r23
 
-00000c40 <__udivmodhi4_ep>:
- c40:	88 1f       	adc	r24, r24
- c42:	99 1f       	adc	r25, r25
- c44:	5a 95       	dec	r21
- c46:	a9 f7       	brne	.-22     	; 0xc32 <__udivmodhi4_loop>
- c48:	80 95       	com	r24
- c4a:	90 95       	com	r25
- c4c:	bc 01       	movw	r22, r24
- c4e:	cd 01       	movw	r24, r26
- c50:	08 95       	ret
+00000e22 <__udivmodhi4_ep>:
+ e22:	88 1f       	adc	r24, r24
+ e24:	99 1f       	adc	r25, r25
+ e26:	5a 95       	dec	r21
+ e28:	a9 f7       	brne	.-22     	; 0xe14 <__udivmodhi4_loop>
+ e2a:	80 95       	com	r24
+ e2c:	90 95       	com	r25
+ e2e:	bc 01       	movw	r22, r24
+ e30:	cd 01       	movw	r24, r26
+ e32:	08 95       	ret
 
-00000c52 <strcpy>:
- c52:	fb 01       	movw	r30, r22
- c54:	dc 01       	movw	r26, r24
- c56:	01 90       	ld	r0, Z+
- c58:	0d 92       	st	X+, r0
- c5a:	00 20       	and	r0, r0
- c5c:	e1 f7       	brne	.-8      	; 0xc56 <strcpy+0x4>
- c5e:	08 95       	ret
+00000e34 <strcpy>:
+ e34:	fb 01       	movw	r30, r22
+ e36:	dc 01       	movw	r26, r24
+ e38:	01 90       	ld	r0, Z+
+ e3a:	0d 92       	st	X+, r0
+ e3c:	00 20       	and	r0, r0
+ e3e:	e1 f7       	brne	.-8      	; 0xe38 <strcpy+0x4>
+ e40:	08 95       	ret
 
-00000c60 <_exit>:
- c60:	f8 94       	cli
+00000e42 <__eerd_byte_m328p>:
+ e42:	f9 99       	sbic	0x1f, 1	; 31
+ e44:	fe cf       	rjmp	.-4      	; 0xe42 <__eerd_byte_m328p>
+ e46:	92 bd       	out	0x22, r25	; 34
+ e48:	81 bd       	out	0x21, r24	; 33
+ e4a:	f8 9a       	sbi	0x1f, 0	; 31
+ e4c:	99 27       	eor	r25, r25
+ e4e:	80 b5       	in	r24, 0x20	; 32
+ e50:	08 95       	ret
 
-00000c62 <__stop_program>:
- c62:	ff cf       	rjmp	.-2      	; 0xc62 <__stop_program>
+00000e52 <__eeupd_byte_m328p>:
+ e52:	26 2f       	mov	r18, r22
+
+00000e54 <__eeupd_r18_m328p>:
+ e54:	f9 99       	sbic	0x1f, 1	; 31
+ e56:	fe cf       	rjmp	.-4      	; 0xe54 <__eeupd_r18_m328p>
+ e58:	92 bd       	out	0x22, r25	; 34
+ e5a:	81 bd       	out	0x21, r24	; 33
+ e5c:	f8 9a       	sbi	0x1f, 0	; 31
+ e5e:	01 97       	sbiw	r24, 0x01	; 1
+ e60:	00 b4       	in	r0, 0x20	; 32
+ e62:	02 16       	cp	r0, r18
+ e64:	39 f0       	breq	.+14     	; 0xe74 <__eeupd_r18_m328p+0x20>
+ e66:	1f ba       	out	0x1f, r1	; 31
+ e68:	20 bd       	out	0x20, r18	; 32
+ e6a:	0f b6       	in	r0, 0x3f	; 63
+ e6c:	f8 94       	cli
+ e6e:	fa 9a       	sbi	0x1f, 2	; 31
+ e70:	f9 9a       	sbi	0x1f, 1	; 31
+ e72:	0f be       	out	0x3f, r0	; 63
+ e74:	08 95       	ret
+
+00000e76 <_exit>:
+ e76:	f8 94       	cli
+
+00000e78 <__stop_program>:
+ e78:	ff cf       	rjmp	.-2      	; 0xe78 <__stop_program>

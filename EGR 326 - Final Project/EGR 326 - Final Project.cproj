@@ -114,7 +114,7 @@
     <Compile Include="Buttons.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="EGR 326 - Final Project.c">
+    <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FSM.c">

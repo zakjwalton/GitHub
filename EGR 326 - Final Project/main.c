@@ -47,27 +47,6 @@ int Update_timeout(void)
 	return(timeout);
 }
 
-
-ISR(INT0_vect){
-	Timer1PWM_OnOff(PWM_ON);
-	LCD_clear_screen();
-	LCD_print_string("ALARM!");
-	LCD_print_bottom_menu("OFF", " ", " ");
-	CLEAR_BUTTONS;
-	int timeout;
-	timeout = Update_timeout();
-	sei();
-	while(!g_button_pressed && (times.second != timeout)){
-		RTC_Read(&times);
-		hw_delay(5);
-	}
-	Timer1PWM_OnOff(PWM_OFF);
-	PORTD &= ~_BV(PD2);
-	LCD_clear_screen();
-	CLEAR_BUTTONS;
-	
-}
-
 ISR(TIMER0_COMPA_vect)
 {
 	static int count;
@@ -117,17 +96,6 @@ ISR(TIMER0_COMPA_vect)
 		bpressed = 0;
 		count = 0;
 	}
-	if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM) && (g_alarmOnOff) && (times.second < 1))
-		{
-			PORTD |= _BV(PD2);
-			/*// Turn the alarm on (PWM on solenoid)
-			//Turn on alarm until button is pressed or timeout
-			Timer1PWM_OnOff(PWM_ON);
-			LCD_clear_screen();
-			LCD_print_string("ALARM!");
-			LCD_print_bottom_menu("OFF", " ", " ");
-			hw_delay(2000);*/
-		} 
 	
 }
 
@@ -145,16 +113,6 @@ void eeprom_SetAlarm(void){
 	eeprom_update_byte(&alarm_AM_PM, alarmtime.AM_PM);
 }
 
-void alarm_config(void){
-	EICRA =_BV(ISC01) | _BV(ISC00);
-	EIMSK = _BV(INT0);
-	EIFR |= _BV(INTF0);
-	
-	DDRD |= _BV(PD2);
-	PORTD &= ~_BV(PD2);
-
-}
-
 
 int main(void)
 {
@@ -167,27 +125,30 @@ int main(void)
 	BUTTON_init();
 	LCD_SPI_initialize();
 	LCD_initialize();
-	alarm_config();
 	sei();
 	
 	
 	char alarm_onoff[10];
 	char on[] = "ON ";
 	char off[] = "OFF";
+	int timeout;
+	uint8_t fresh = 0;
 	
 	
 	strcpy(alarm_onoff,off);
 	
-	currenttime.hour = 6;
-	currenttime.minute = 8;
+	/*
+	currenttime.hour = 9;
+	currenttime.minute = 36;
 	currenttime.second = 0;
 	currenttime.AM_PM = 1;
-	currenttime.day = 24;
+	currenttime.day = 29;
 	currenttime.day_of_week = 6;
 	currenttime.month = 10;
 	currenttime.year = 14;
 
 	RTC_Set(currenttime);
+	*/
 	
 	
 	// Read alarm time from EEPROM
@@ -197,18 +158,25 @@ int main(void)
 		
 		RTC_Read(&times);
 		LCD_print_time_display(times, 21,"SET", "ALARM", alarm_onoff);
-		/*
-		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM) && (g_alarmOnOff) && (times.second < 1))
+		
+		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM)
+											 && (g_alarmOnOff) && (fresh != times.minute))
 		{
-			PORTD ^= _BV(PD2);
-			 Turn the alarm on (PWM on solenoid)
-			//Turn on alarm until button is pressed or timeout
+			fresh = times.minute;
 			Timer1PWM_OnOff(PWM_ON);
 			LCD_clear_screen();
+			LCD_goto(0,0);
 			LCD_print_string("ALARM!");
 			LCD_print_bottom_menu("OFF", " ", " ");
-			hw_delay(2000);
-		} */
+			CLEAR_BUTTONS;
+			timeout = Update_timeout();
+			while(!g_button_pressed && (times.second != timeout)){
+				RTC_Read(&times);
+				hw_delay(5);
+			}
+			Timer1PWM_OnOff(PWM_OFF);
+			CLEAR_BUTTONS;
+		}
 
 		switch (g_button_pressed){
 			case (B1):

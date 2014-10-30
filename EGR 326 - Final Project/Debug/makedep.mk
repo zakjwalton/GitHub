@@ -4,7 +4,7 @@
 
 Buttons.c
 
-EGR 326 - Final Project.c
+main.c
 
 FSM.c
 
