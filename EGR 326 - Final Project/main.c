@@ -36,16 +36,11 @@ uint8_t EEMEM alarm_hour;
 uint8_t EEMEM alarm_minute;
 uint8_t EEMEM alarm_AM_PM;
 
-int Update_timeout(void)
-{
-	int timeout;
-	timeout = times.second + 15;
-	if(timeout > 60)
-	{
-		timeout = timeout - 60;
-	}
-	return(timeout);
-}
+//function prototypes
+void set_alarm(void);
+void eeprom_GetAlarm(void);
+void eeprom_SetAlarm(void);
+int Update_timeout(void);
 
 ISR(TIMER0_COMPA_vect)
 {
@@ -99,6 +94,89 @@ ISR(TIMER0_COMPA_vect)
 	
 }
 
+int Update_timeout(void)
+{
+	int timeout;
+	timeout = times.second + 15;
+	if(timeout > 60)
+	{
+		timeout = timeout - 60;
+	}
+	return(timeout);
+}
+
+void set_alarm(void){
+	LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+	CLEAR_BUTTONS;
+	while(g_button_pressed != B2)
+	{
+		switch(g_button_pressed){
+			case(B1):
+				if(alarmtime.hour <= 0){
+					alarmtime.hour = 12;
+					break;
+				}
+				alarmtime.hour = alarmtime.hour - 1;
+				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+				CLEAR_BUTTONS;
+				break;
+			case(B3):
+				alarmtime.hour++;
+				if(alarmtime.hour >= 13){
+					alarmtime.hour = 0;
+				}
+				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+				CLEAR_BUTTONS;
+				break;
+		}
+		hw_delay(5);
+	}
+	CLEAR_BUTTONS;
+	while(g_button_pressed != B2)
+	{
+		switch(g_button_pressed){
+			case(B1):
+				if(alarmtime.minute <= 0){
+					alarmtime.minute = 59;
+					break;
+				}
+				alarmtime.minute = alarmtime.minute - 1;
+				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+				CLEAR_BUTTONS;
+				break;
+			case(B3):
+				alarmtime.minute++;
+				if(alarmtime.minute >= 60){
+					alarmtime.minute = 0;
+				}
+				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+				CLEAR_BUTTONS;
+				break;
+		}
+		hw_delay(5);
+		// Update alarm set time in EEPROM
+	}
+	CLEAR_BUTTONS;
+	while(g_button_pressed != B2)
+	{
+		hw_delay(5);
+		if((g_button_pressed == B1) || (g_button_pressed == B3) )
+		{
+			alarmtime.AM_PM++;
+			if(alarmtime.AM_PM >= 2){
+				alarmtime.AM_PM = 0;
+			}
+			LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+			CLEAR_BUTTONS;
+		}
+		// Update alarm set time in EEPROM
+	}
+	//store new alarm time in EEPROM
+	eeprom_SetAlarm();
+	CLEAR_BUTTONS;
+	LCD_clear_screen();
+}
+
 void eeprom_GetAlarm(void){
 	// Read alarm time from EEPROM
 	alarmtime.hour = (uint8_t)eeprom_read_byte(&alarm_hour);
@@ -132,7 +210,10 @@ int main(void)
 	char on[] = "ON ";
 	char off[] = "OFF";
 	int timeout;
-	uint8_t fresh = 0;
+	uint8_t alarmfresh = 0;
+	uint8_t menufresh =0;
+	int menu_current = 0;
+	//uint8_t count = 0;
 	
 	
 	strcpy(alarm_onoff,off);
@@ -157,16 +238,16 @@ int main(void)
 	{
 		
 		RTC_Read(&times);
-		LCD_print_time_display(times, 21,"SET", "ALARM", alarm_onoff);
+		LCD_print_time_display(times, 21,"RADIO", "MENU", alarm_onoff);
 		
 		if((alarmtime.hour == times.hour) && (alarmtime.minute == times.minute) && (alarmtime.AM_PM == times.AM_PM)
-											 && (g_alarmOnOff) && (fresh != times.minute))
+											 && (g_alarmOnOff) && (alarmfresh != times.minute))
 		{
-			fresh = times.minute;
+			alarmfresh = times.minute;
 			Timer1PWM_OnOff(PWM_ON);
 			LCD_clear_screen();
 			LCD_goto(0,0);
-			LCD_print_string("ALARM!");
+			LCD_print_string("ALARM!",0);
 			LCD_print_bottom_menu("OFF", " ", " ");
 			CLEAR_BUTTONS;
 			timeout = Update_timeout();
@@ -180,60 +261,63 @@ int main(void)
 
 		switch (g_button_pressed){
 			case (B1):
-				Timer1PWM_OnOff(PWM_OFF);
-				CLEAR_BUTTONS;
+				//toggle presets
 				break;
 			case (B2):
-				LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
+				//menu
 				CLEAR_BUTTONS;
-				while(g_button_pressed != B2)
+				menufresh = 1;
+				menu_current =0;
+				LCD_clear_screen();
+				while(menufresh)
 				{
-					hw_delay(5);
-					if(g_button_pressed == B1)
-					{
-						alarmtime.hour++;
-						if(alarmtime.hour == 13){
-							alarmtime.hour = 0;
-						}
-						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
-						CLEAR_BUTTONS;
+					LCD_print_menu(menu_current);
+					switch(g_button_pressed){
+						case (B1):
+							CLEAR_BUTTONS;
+							menu_current = menu_current-1;
+							break;
+						case (B2):
+							CLEAR_BUTTONS;
+							switch(menu_current)
+							{
+								case(0):
+									//tune radio
+									break;
+								case(1):
+									//set presets
+									break;
+								case(2):
+									//set  Time
+									break;
+								case(3):
+									//set Alarm 1
+									set_alarm();
+									break;
+								case(4):
+									//set Alarm2
+									break;
+								case(5):
+									//back
+									menufresh = 0;
+									LCD_clear_screen();
+									break;
+							}
+						case (B3):
+							CLEAR_BUTTONS;
+							menu_current++;
+							break;
+					}
+					if(menu_current == 6){
+						menu_current = 0;
+					}
+					else if(menu_current == -1){
+						menu_current = 5;
 					}
 				}
-				CLEAR_BUTTONS;
-				while(g_button_pressed != B2)
-				{
-					hw_delay(5);
-					if(g_button_pressed == B1)
-					{
-						alarmtime.minute++;
-						if(alarmtime.minute == 60){
-							alarmtime.minute = 0;
-						}
-						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
-						CLEAR_BUTTONS;
-					}
-					// Update alarm set time in EEPROM
-				}
-				CLEAR_BUTTONS;
-				while(g_button_pressed != B2)
-				{
-					hw_delay(5);
-					if(g_button_pressed == B1)
-					{
-						alarmtime.AM_PM++;
-						if(alarmtime.AM_PM >= 2){
-							alarmtime.AM_PM = 0;
-						}
-						LCD_print_alarm_display(alarmtime,"UP","ENTER"," ");
-						CLEAR_BUTTONS;
-					}
-					// Update alarm set time in EEPROM
-				}
-				//store new alarm time in EEPROM
-				eeprom_SetAlarm();
-				CLEAR_BUTTONS;
 				break;
 			case (B3):
+				//toggle alarm 1
 				g_alarmOnOff ^= 0x01;
 				if(g_alarmOnOff){
 					strcpy(alarm_onoff,on);
@@ -244,10 +328,12 @@ int main(void)
 				CLEAR_BUTTONS;
 				break;
 			case(B1H):
+				//radio on/off
 				break;
 			case(B2H):
 				break;
 			case(B3H):
+				//toggle alarm 2
 				
 				break;
 		}

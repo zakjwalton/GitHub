@@ -159,6 +159,11 @@ const unsigned char single_numbers[] PROGMEM =
 	0x06, 0x49, 0x49, 0x29, 0x1E, // 9
 };
 
+const char menu_text[6][12] =
+{
+	"Tune","Presets","Set Time","Set Alarm 1","Set Alarm 2", "Back"
+};
+
 
 /*--------------------------------------------------------------------------------------------------
 Name : LCD_SPI_initialize
@@ -331,6 +336,17 @@ void LCD_print_char(unsigned char char_to_print)
 		LCD_send_data((pgm_read_byte(&(smallFont [(char_to_print-32)*5 + j])) ));
 	}
 }
+
+void LCD_print_inverted_char(unsigned char char_to_print)
+{
+	unsigned char j;
+	
+	for(j=0; j<5; j++)
+	{
+		LCD_send_data(~(pgm_read_byte(&(smallFont [(char_to_print-32)*5 + j])) ));
+	}
+}
+
 void LCD_print_single_number(int single_digit_to_print)
 {
 	unsigned char j;
@@ -380,14 +396,24 @@ void LCD_print_largedouble_number(int number_to_print, int x, int y)
 	
 }
 
-void LCD_print_string(const char *string)
+void LCD_print_string(const char *string, BYTE inverted)
 {
 	// Prints character of current index of string until string ends
-	while ( *string )
-	{
-		// Prints character of current index of string
-		LCD_print_char( *string++ );
+	if(inverted){
+		while ( *string )
+		{
+			// Prints character of current index of string
+			LCD_print_inverted_char( *string++ );
+		}
 	}
+	else{
+		while ( *string )
+		{
+			// Prints character of current index of string
+			LCD_print_char( *string++ );
+		}
+	}
+	
 }
 
 void LCD_print_test()
@@ -441,7 +467,7 @@ void LCD_print_bottom_menu(const char *button1, const char *button2, const char 
 	LCD_goto(0,5);
 	
 	// print first button command heading
-	LCD_print_string(button1);
+	LCD_print_string(button1,0);
 	
 	for(i = 0; i < max_space; i++)
 	{
@@ -450,7 +476,7 @@ void LCD_print_bottom_menu(const char *button1, const char *button2, const char 
 	}
 	
 	// print second button command heading
-	LCD_print_string(button2);
+	LCD_print_string(button2,0);
 	
 	for(i = 0; i < max_space; i++)
 	{
@@ -458,7 +484,7 @@ void LCD_print_bottom_menu(const char *button1, const char *button2, const char 
 		LCD_print_char(' ');
 	}
 	// print third button command heading
-	LCD_print_string(button3);
+	LCD_print_string(button3,0);
 }
 
 void LCD_print_signal_strength(int signal_strength)
@@ -570,11 +596,11 @@ void LCD_print_time_display(time_t current_time, int current_temperature, char *
 	LCD_print_char(' ');
 	if(current_time.AM_PM)
 	{
-		LCD_print_string("PM");
+		LCD_print_string("PM",0);
 	}
 	else
 	{
-		LCD_print_string("AM");
+		LCD_print_string("AM",0);
 	}
 	
 	// Printing date portion
@@ -588,7 +614,7 @@ void LCD_print_time_display(time_t current_time, int current_temperature, char *
 	// Printing Temperature portion
 	LCD_goto(64,1);
 	LCD_print_double_number(current_temperature);
-	LCD_print_string(" C");
+	LCD_print_string(" C",0);
 	
 	// Printing bottom menu
 	LCD_print_bottom_menu(button1, button2, button3);
@@ -617,16 +643,16 @@ void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *
 {
 	LCD_clear_screen();
 	LCD_goto(0,0);
-	LCD_print_string("A1:");
+	LCD_print_string("A1:",0);
 	LCD_print_double_number(alarmtime.hour);
 	LCD_print_char(':');
 	LCD_print_double_number(alarmtime.minute);
 	LCD_print_char(' ');
 	if(alarmtime.AM_PM){
-		LCD_print_string("PM");
+		LCD_print_string("PM",0);
 	}
 	else{
-		LCD_print_string("AM");
+		LCD_print_string("AM",0);
 	}
 	
 	/*
@@ -641,4 +667,21 @@ void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *
 	*/
 	
 	LCD_print_bottom_menu(button1, button2, button3);
+}
+
+void LCD_print_menu(uint8_t selection)
+{
+	LCD_goto(31,0);
+	LCD_print_string(menu_text[0],selection == 0);
+	LCD_goto(23,1);
+	LCD_print_string(menu_text[1],selection == 1);
+	LCD_goto(21,2);
+	LCD_print_string(menu_text[2],selection == 2);
+	LCD_goto(13,3);
+	LCD_print_string(menu_text[3],selection == 3);
+	LCD_goto(13,4);
+	LCD_print_string(menu_text[4],selection == 4);
+	LCD_goto(31,5);
+	LCD_print_string(menu_text[5],selection == 5);
+	
 }

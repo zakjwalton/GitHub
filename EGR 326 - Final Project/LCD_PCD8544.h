@@ -76,7 +76,8 @@ void one_ms_delay();
 void LCD_goto(int column, int row);
 void timer0_initialize();
 void LCD_print_char(unsigned char char_to_print);
-void LCD_print_string(const char *string);
+void LCD_print_inverted_char(unsigned char char_to_print);
+void LCD_print_string(const char *string, BYTE inverted);
 void LCD_print_test();
 void LCD_print_large_number(unsigned int number_to_print, int x_offset);
 void LCD_set_y(int y_to_set);
@@ -92,4 +93,5 @@ void LCD_shift_array(char array_to_shift[]);
 void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *button3 );
 void LCD_print_radio_display(double station, int signal_strength, int stereo, char *button1, char *button2, char *button3, char *RBDS);
 void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *button2, const char *button3);
+void LCD_print_menu(uint8_t selection);
 #endif /* LCD_PCD8544_H_ */
