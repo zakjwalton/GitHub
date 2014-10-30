@@ -27,6 +27,17 @@ struct time{
 };
 #endif //time_t
 
+#ifndef ALARM_T
+#define ALARM_T
+typedef struct alarm alarm_t;
+struct alarm{
+	uint8_t hour,
+	minute,
+	AM_PM, // AM = 0 PM = 1
+	on_off;  
+};
+#endif //alarm_t
+
 #define RTC_UPDATE_TIMEOUT 1000 // in ms
 //Slave address
 #define		RTC_ADDRESS	0b1101000

@@ -25,6 +25,17 @@ struct time{
 };
 #endif
 
+#ifndef ALARM_T
+#define ALARM_T
+typedef struct alarm alarm_t;
+struct alarm{
+	uint8_t hour,
+	minute,
+	AM_PM, // AM = 0 PM = 1
+	on_off;
+};
+#endif //alarm_t
+
 typedef struct{
 	int previous_state,
 	current_state,
@@ -90,8 +101,8 @@ void LCD_print_largedouble_number(int number_to_print, int x, int y);
 void LCD_print_stereo_indicator(int is_stereo);
 void LCD_horizontal_scroll_string(int scroll_speed, char *string_to_scroll);
 void LCD_shift_array(char array_to_shift[]);
-void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *button3 );
+void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *a1, char *a2 );
 void LCD_print_radio_display(double station, int signal_strength, int stereo, char *button1, char *button2, char *button3, char *RBDS);
-void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *button2, const char *button3);
+void LCD_print_alarm_display(alarm_t alarmtime, const char *button1, const char *button2, const char *button3);
 void LCD_print_menu(uint8_t selection);
 #endif /* LCD_PCD8544_H_ */

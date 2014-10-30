@@ -230,12 +230,13 @@ void LCD_initialize()
 	LCD_send_command(0x21);
 	
 	// Set the temperature coefficient to 2 (17 mV/K)
-	LCD_send_command(0x06);
+	LCD_send_command(0x04);
 	
 	// Set operation voltage to approximately 7V
 	LCD_send_command(0xA0);
 	
 	// Set mux rate 1:48
+	//was 0x16
 	LCD_send_command(0x16);
 	
 	// Set back into normal instruction mode
@@ -583,7 +584,7 @@ void LCD_shift_array(char array_to_shift[])
 	array_to_shift[string_length - 1] = temp_var;
 }
 
-void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *button3 )
+void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *a1, char *a2 )
 {
 	// Example of Time display
 	// Printing time portion
@@ -617,7 +618,9 @@ void LCD_print_time_display(time_t current_time, int current_temperature, char *
 	LCD_print_string(" C",0);
 	
 	// Printing bottom menu
-	LCD_print_bottom_menu(button1, button2, button3);
+	LCD_goto(65,4);
+	LCD_print_string(a1,0);
+	LCD_print_bottom_menu(button1, button2, a2);
 }
 
 void LCD_print_radio_display(double station, int signal_strength, int is_stereo, char *button1, char *button2, char *button3, char *RBDS )
@@ -639,7 +642,7 @@ void LCD_print_radio_display(double station, int signal_strength, int is_stereo,
 	
 }
 
-void LCD_print_alarm_display(time_t alarmtime, const char *button1, const char *button2, const char *button3)
+void LCD_print_alarm_display(alarm_t alarmtime, const char *button1, const char *button2, const char *button3)
 {
 	LCD_clear_screen();
 	LCD_goto(0,0);
