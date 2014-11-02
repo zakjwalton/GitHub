@@ -6,42 +6,10 @@
  */ 
 #include <stdio.h>
 #include <avr/io.h>
+#include "RTC.h"
 
 #ifndef LCD_PCD8544_H_
 #define LCD_PCD8544_H_
-
-#ifndef TIME_T
-#define TIME_T
-typedef struct time time_t;
-struct time{
-	uint8_t year,
-	month,
-	day,
-	day_of_week,
-	hour,
-	minute,
-	second,
-	AM_PM;  // AM = 0 PM = 1
-};
-#endif
-
-#ifndef ALARM_T
-#define ALARM_T
-typedef struct alarm alarm_t;
-struct alarm{
-	uint8_t hour,
-	minute,
-	AM_PM, // AM = 0 PM = 1
-	on_off;
-};
-#endif //alarm_t
-
-typedef struct{
-	int previous_state,
-	current_state,
-	next_state;
-}state_t;
-
 
 // LCD signals and pins
 #define LCD_RESET_PIN PB0 // Reset pin
@@ -73,6 +41,14 @@ typedef struct{
 #define LCD_DISABLE       LCD_SS_PORT     |=  _BV(LCD_SS)
 #define LCD_ENABLE        LCD_SS_PORT     &= ~_BV(LCD_SS)
 
+//defines for large number display
+#define INVERTED 1
+#define NOTINVERTED 0
+#define MINUTES 0
+#define HOURS 1
+#define AMPM 2
+#define MUSIC_BELL 3
+
 // Defining the BYTE
 typedef uint8_t BYTE;
 
@@ -82,27 +58,24 @@ void LCD_send_command(BYTE command_to_send);
 void LCD_send_data(BYTE data_to_send);
 void LCD_display_splash();
 void LCD_clear_screen();
-void delay(int ms);
-void one_ms_delay();
 void LCD_goto(int column, int row);
 void timer0_initialize();
 void LCD_print_char(unsigned char char_to_print);
 void LCD_print_inverted_char(unsigned char char_to_print);
 void LCD_print_string(const char *string, BYTE inverted);
-void LCD_print_test();
-void LCD_print_large_number(unsigned int number_to_print, int x_offset);
+void LCD_print_large_number(unsigned int number_to_print, uint8_t x, uint8_t y, uint8_t inverted);
 void LCD_set_y(int y_to_set);
 void LCD_print_bottom_menu(const char *button1, const char *button2, const char *button3);
 void LCD_print_signal_strength(int signal_strength);
 void LCD_print_station(double station);
 void LCD_print_single_number(int single_digit_to_print);
 void LCD_print_double_number(int number_to_print);
-void LCD_print_largedouble_number(int number_to_print, int x, int y);
+void LCD_print_largedouble_number(int number_to_print, int x, int y, uint8_t hours, uint8_t inverted);
 void LCD_print_stereo_indicator(int is_stereo);
 void LCD_horizontal_scroll_string(int scroll_speed, char *string_to_scroll);
 void LCD_shift_array(char array_to_shift[]);
 void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *a1, char *a2 );
 void LCD_print_radio_display(double station, int signal_strength, int stereo, char *button1, char *button2, char *button3, char *RBDS);
-void LCD_print_alarm_display(alarm_t alarmtime, const char *button1, const char *button2, const char *button3);
+void LCD_print_alarm_display(alarm_t alarmtime,uint8_t selection);
 void LCD_print_menu(uint8_t selection);
 #endif /* LCD_PCD8544_H_ */

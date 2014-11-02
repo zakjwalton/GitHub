@@ -39,10 +39,10 @@ SUBDIRS :=
 C_SRCS +=  \
 ../Buttons.c \
 ../main.c \
-../FSM.c \
 ../I2C.c \
 ../LCD_PCD8544.c \
 ../RTC.c \
+../Si4705.c \
 ../Timers.c
 
 
@@ -55,37 +55,37 @@ ASM_SRCS +=
 OBJS +=  \
 Buttons.o \
 main.o \
-FSM.o \
 I2C.o \
 LCD_PCD8544.o \
 RTC.o \
+Si4705.o \
 Timers.o
 
 OBJS_AS_ARGS +=  \
 Buttons.o \
 main.o \
-FSM.o \
 I2C.o \
 LCD_PCD8544.o \
 RTC.o \
+Si4705.o \
 Timers.o
 
 C_DEPS +=  \
 Buttons.d \
 main.d \
-FSM.d \
 I2C.d \
 LCD_PCD8544.d \
 RTC.d \
+Si4705.d \
 Timers.d
 
 C_DEPS_AS_ARGS +=  \
 Buttons.d \
 main.d \
-FSM.d \
 I2C.d \
 LCD_PCD8544.d \
 RTC.d \
+Si4705.d \
 Timers.d
 
 OUTPUT_FILE_PATH +=EGR\ 326\ -\ Final\ Project.elf
@@ -116,13 +116,6 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-./FSM.o: .././FSM.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 ./I2C.o: .././I2C.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
@@ -138,6 +131,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./RTC.o: .././RTC.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Si4705.o: .././Si4705.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

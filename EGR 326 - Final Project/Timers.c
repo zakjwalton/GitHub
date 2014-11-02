@@ -7,9 +7,12 @@
 
 #include <avr/io.h>
 
-/*************************************************
-Function that setup up Timer 0 to trigger an interrupt every 
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : Timer0_Init
+Description : Sets up Timer 0 to interrupt every ms for button polling
+Argument(s) : None.
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void Timer0_Init(void){
 	//Setup timer 0 w/ interrupt every ms and pre-scale of 64
@@ -21,9 +24,12 @@ void Timer0_Init(void){
 	TCNT0 = 0;
 }
 
-/*************************************************
-Function that setup up Timer 2 in CTC mode with 1024 prescalar
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : Timer2_Init
+Description : Sets up Timer 2 to be used for a simple HW delay with 1024 prescalar
+Argument(s) : None.
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void Timer2_Init(void){
 	//Setup timer 1 to run in CTC mode 4 with 1024 prescalar
@@ -32,12 +38,13 @@ void Timer2_Init(void){
 	
 }
 
-/*************************************************
-Function that initializes timer1 in PWM mode @20Hz with
-a 25% duty cycle
-*************************************************/
-
-void Timer1_Init()
+/*--------------------------------------------------------------------------------------------------
+Name : Timer1_Init
+Description : Function that initializes Timer 1 in PWM mode @20Hz with a 25% duty cycle for solenoid alarm
+Argument(s) : None.
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+void Timer1_Init(void)
 {
 	DDRB |= _BV(PB1);
 	TCCR1A = _BV(COM1A1);
@@ -46,11 +53,12 @@ void Timer1_Init()
 	OCR1A = 90;
 }
 
-/*************************************************
-Function that takes in a delay in ms and uses Timer 2 to
-implement the delay in ms
-*************************************************/
-
+/*--------------------------------------------------------------------------------------------------
+Name : hw_delay
+Description : Function that uses Timer 2 to implement specified HW delay
+Argument(s) : delay_ms - Time to delay in ms
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 void hw_delay(uint16_t delay_ms)
 {
 	int i;
@@ -74,7 +82,12 @@ void hw_delay(uint16_t delay_ms)
 Function that enables and disables the PWM that is connected
 to the servo circuit
 *************************************************/
-
+/*--------------------------------------------------------------------------------------------------
+Name : Timer1PWM_OnOff
+Description : Function that enables and disables the Timer 1 PWM to turn on and off the bell alarm
+Argument(s) : state - 1 turns PWM on and 0 turns PWM off
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 void Timer1PWM_OnOff(uint8_t state){
 	if (state){
 		TCCR1B |= _BV(CS12) | _BV(CS10);

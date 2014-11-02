@@ -159,6 +159,219 @@ const unsigned char single_numbers[] PROGMEM =
 	0x06, 0x49, 0x49, 0x29, 0x1E, // 9
 };
 
+//Array of 10x16 numbers
+// Character bitmaps for Perpetua Titling MT 13pt
+static const uint8_t large_font[] PROGMEM =
+{
+	// @0 '0' (10 pixels wide)
+	//
+	//   #####
+	//  ### ###
+	//  ##   ##
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	//  ##   ##
+	//  ### ###
+	//   #####
+	0xF0, 0xFC, 0xFE, 0x06, 0x02, 0x06, 0xFE, 0xFC, 0xF0, 0x00,
+	0x07, 0x1F, 0x3F, 0x30, 0x20, 0x30, 0x3F, 0x1F, 0x07, 0x00,
+
+	// @20 '1' (10 pixels wide)
+	//
+	//     ##
+	//   ####
+	//  #####
+	// #  ###
+	//    ###
+	//    ###
+	//    ###
+	//    ###
+	//    ###
+	//    ###
+	//    ###
+	//    ###
+	// #########
+	0x10, 0x08, 0x0C, 0xFC, 0xFE, 0xFE, 0x00, 0x00, 0x00, 0x00,
+	0x20, 0x20, 0x20, 0x3F, 0x3F, 0x3F, 0x20, 0x20, 0x20, 0x00,
+
+	// @40 '2' (10 pixels wide)
+	//
+	//  ######
+	// ###  ###
+	// ##    ###
+	//       ###
+	//       ###
+	//       ##
+	//      ##
+	//     ##
+	//    ##
+	//   ##
+	//  ##     #
+	// #########
+	// #########
+	0x0C, 0x0E, 0x06, 0x02, 0x02, 0x86, 0xFE, 0x7C, 0x38, 0x00,
+	0x30, 0x38, 0x3C, 0x36, 0x33, 0x31, 0x30, 0x30, 0x38, 0x00,
+
+	// @60 '3' (10 pixels wide)
+	//
+	//  ######
+	// ###  ###
+	// ##    ###
+	//       ###
+	//       ###
+	//      ###
+	//   #####
+	//      ###
+	//       ###
+	//       ###
+	// ##    ###
+	// ###  ###
+	//  ######
+	0x0C, 0x0E, 0x86, 0x82, 0x82, 0xC6, 0xFE, 0x7C, 0x38, 0x00,
+	0x18, 0x38, 0x30, 0x20, 0x20, 0x31, 0x3F, 0x1F, 0x0E, 0x00,
+
+	// @80 '4' (10 pixels wide)
+	//
+	//      ###
+	//     ####
+	//    # ###
+	//    # ###
+	//   #  ###
+	//  #   ###
+	//  #   ###
+	// #    ### #
+	// ##########
+	//      ###
+	//      ###
+	//      ###
+	//     #####
+	0x00, 0xC0, 0x20, 0x18, 0x04, 0xFE, 0xFE, 0xFE, 0x00, 0x00,
+	0x03, 0x02, 0x02, 0x02, 0x22, 0x3F, 0x3F, 0x3F, 0x22, 0x03,
+
+	// @100 '5' (10 pixels wide)
+	//        #
+	//  #######
+	//  #######
+	//  ##
+	//  ##
+	//  ##
+	//  ######
+	//  #   ###
+	//       ###
+	//       ###
+	//       ###
+	// ##    ###
+	// ###  ###
+	//  ######
+	0x00, 0xFE, 0x7E, 0x46, 0x46, 0xC6, 0xC6, 0x87, 0x00, 0x00,
+	0x18, 0x38, 0x30, 0x20, 0x20, 0x30, 0x3F, 0x1F, 0x0F, 0x00,
+
+	// @120 '6' (10 pixels wide)
+	//
+	//      ###
+	//    ###
+	//   ###
+	//  ###
+	//  ###
+	// ### ###
+	// #### ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	//  ### ###
+	//   #####
+	0xC0, 0xF0, 0xF8, 0xBC, 0x4C, 0xC6, 0xC2, 0x82, 0x00, 0x00,
+	0x0F, 0x1F, 0x3F, 0x30, 0x20, 0x30, 0x3F, 0x1F, 0x0F, 0x00,
+
+	// @140 '7' (10 pixels wide)
+	//
+	// #########
+	// #########
+	// #      ##
+	//       ##
+	//       ##
+	//      ##
+	//      ##
+	//     ##
+	//     ##
+	//    ##
+	//    ##
+	//   ##
+	//   ##
+	0x0E, 0x06, 0x06, 0x06, 0x06, 0xC6, 0xF6, 0x3E, 0x0E, 0x00,
+	0x00, 0x00, 0x30, 0x3C, 0x0F, 0x03, 0x00, 0x00, 0x00, 0x00,
+
+	// @160 '8' (10 pixels wide)
+	//
+	//   #####
+	//  ### ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	//  ### ###
+	//   #####
+	//  ### ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	//  ### ###
+	//   #####
+	0x38, 0x7C, 0xFE, 0xC6, 0x82, 0xC6, 0xFE, 0x7C, 0x38, 0x00,
+	0x0E, 0x1F, 0x3F, 0x31, 0x20, 0x31, 0x3F, 0x1F, 0x0E, 0x00,
+
+	// @180 '9' (10 pixels wide)
+	//
+	//   #####
+	//  ### ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	// ###   ###
+	//  ### ####
+	//   ### ###
+	//       ###
+	//      ###
+	//      ###
+	//     ###
+	//   ###
+	0x78, 0xFC, 0xFE, 0x86, 0x02, 0x86, 0xFE, 0xFC, 0xF8, 0x00,
+	0x00, 0x00, 0x21, 0x21, 0x31, 0x1C, 0x1F, 0x0F, 0x03, 0x00,
+
+	//space
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+	
+};
+
+static const uint8_t large_colon[] PROGMEM =
+{
+	// @200 ':' (10 pixels wide)
+	//
+	//
+	//
+	//
+	//
+	//
+	//    ###
+	//    ###
+	//    ###
+	//
+	//
+	//    ###
+	//    ###
+	//    ###
+	0x00, 0xC0, 0xC0, 0xC0, 0x00,
+	0x00, 0x39, 0x39, 0x39, 0x00
+
+};
+
+
 const char menu_text[6][12] =
 {
 	"Tune","Presets","Set Time","Set Alarm 1","Set Alarm 2", "Back"
@@ -274,6 +487,14 @@ void LCD_send_command(BYTE command_to_send)
 	LCD_DISABLE;
 	
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_send_data(BYTE data_to_send)
 {
 	// Enable LCD
@@ -295,6 +516,13 @@ void LCD_send_data(BYTE data_to_send)
 	LCD_DISABLE;
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_display_splash()
 {
 	int i;
@@ -304,6 +532,13 @@ void LCD_display_splash()
 		LCD_send_data(pgm_read_byte(&(alarm_clock_ringing[i])));
 	}
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_clear_screen()
 {
@@ -318,6 +553,12 @@ void LCD_clear_screen()
 	LCD_goto(0,0);
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_goto(int column, int row)
 {
@@ -327,6 +568,26 @@ void LCD_goto(int column, int row)
 	// Set the y address
 	LCD_send_command(0x40 | row);
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_set_y(int y_to_set)
+{
+	// Set the y address
+	LCD_send_command(0x40 | y_to_set);
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_char(unsigned char char_to_print)
 {
@@ -338,6 +599,13 @@ void LCD_print_char(unsigned char char_to_print)
 	}
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_print_inverted_char(unsigned char char_to_print)
 {
 	unsigned char j;
@@ -348,6 +616,13 @@ void LCD_print_inverted_char(unsigned char char_to_print)
 	}
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_print_single_number(int single_digit_to_print)
 {
 	unsigned char j;
@@ -357,6 +632,44 @@ void LCD_print_single_number(int single_digit_to_print)
 		LCD_send_data((pgm_read_byte(&(single_numbers [5*single_digit_to_print + j]))));
 	}
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_print_large_number(unsigned int number_to_print, uint8_t x, uint8_t y, uint8_t inverted)
+{
+	int i,j;
+	
+	// Write 41 bytes then a space and increment y and repeat until repeated 6 times
+	for(i = 0; i < 2; i++)
+	{
+		LCD_goto(x,y+i);
+		for(j = 0; j < 10; j++)
+		{
+			if(inverted)
+			{
+				LCD_send_data(~pgm_read_byte(&(large_font[20*number_to_print + j + (i*10)])));
+			}
+			else
+			{
+				LCD_send_data(pgm_read_byte(&(large_font[20*number_to_print + j + (i*10)])));
+			}
+			
+		}
+	}
+	LCD_set_y(y);
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_double_number(int number_to_print)
 {
@@ -379,23 +692,87 @@ void LCD_print_double_number(int number_to_print)
 	
 }
 
-void LCD_print_largedouble_number(int number_to_print, int x, int y)
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_print_largedouble_number(int number_to_print, int x, int y, uint8_t hours, uint8_t inverted)
 {
 	int temp1;
 	int temp2;
 	
 	temp1 = number_to_print / 10;
 	temp2 = number_to_print % 10;
-	LCD_goto(x,y);
-	LCD_print_large_number(temp1, 0);
-	LCD_goto(x,y);
-	LCD_print_large_number(temp2, 45);
-	
-	
-	
-	
+	if((temp1 == 0) && hours)
+	{
+		LCD_goto(x,y);
+		LCD_print_large_number(10, x, y, NOTINVERTED);
+		if(inverted)
+		{
+			LCD_goto(x,y);
+			LCD_print_large_number(temp2, x+10,y, INVERTED);
+		} 
+		else
+		{
+			LCD_goto(x,y);
+			LCD_print_large_number(temp2, x+10,y, NOTINVERTED);
+		}
+		//print space first if number is less than 10
+		
+		
+	}
+	else
+	{
+		if(inverted)
+		{
+			LCD_goto(x,y);
+			LCD_print_large_number(temp1, x, y, INVERTED);
+			LCD_goto(x,y);
+			LCD_print_large_number(temp2, x+10,y, INVERTED);
+		}
+		else
+		{
+			LCD_goto(x,y);
+			LCD_print_large_number(temp1, x, y, NOTINVERTED);
+			LCD_goto(x,y);
+			LCD_print_large_number(temp2, x+10,y, NOTINVERTED);
+		}
+		
+	}
 	
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_print_large_colon(uint8_t x, uint8_t y){
+	int i,j;
+	
+	// Write 41 bytes then a space and increment y and repeat until repeated 6 times
+	for(i = 0; i < 2; i++)
+	{
+		LCD_goto(x,y+i);
+		for(j = 0; j < 10; j++)
+		{
+			LCD_send_data(pgm_read_byte(&(large_colon[j + (i*5)])));
+		}
+	}
+	LCD_set_y(y);
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_string(const char *string, BYTE inverted)
 {
@@ -417,41 +794,12 @@ void LCD_print_string(const char *string, BYTE inverted)
 	
 }
 
-void LCD_print_test()
-{
-	int i;
-	
-	for(i = 33; i < 117; i++)
-	{
-		LCD_print_char(i);
-		LCD_send_data(0x00);
-	}
-}
-/*
-void LCD_print_large_number(unsigned int number_to_print, int x_offset)
-{
-	int i,j;
-	int k = 0;
-	
-	// Write 41 bytes then a space and increment y and repeat until repeated 6 times
-	for(i = 0; i < 6; i++)
-	{
-		LCD_goto(x_offset,i);
-		for(j = 0; j < 41; j++)
-		{
-			LCD_send_data(pgm_read_byte(&(large_digits[number_to_print][j + k])));
-		}
-		// Setting k
-		k = j + k;
-	}
-}*/
-
-void LCD_set_y(int y_to_set)
-{
-	// Set the y address
-	LCD_send_command(0x40 | y_to_set);
-}
-
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_bottom_menu(const char *button1, const char *button2, const char *button3)
 {
@@ -488,6 +836,13 @@ void LCD_print_bottom_menu(const char *button1, const char *button2, const char 
 	LCD_print_string(button3,0);
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_print_signal_strength(int signal_strength)
 {
 	int i;
@@ -506,6 +861,13 @@ void LCD_print_signal_strength(int signal_strength)
 	}
 	LCD_send_data(0xFF);
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_station(double station)
 {
@@ -528,7 +890,14 @@ void LCD_print_station(double station)
 	LCD_print_char('.');
 	
 	LCD_print_single_number(left_over*10);
-	}
+}
+	
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/	
 	
 void LCD_print_stereo_indicator(int is_stereo)
 {
@@ -544,6 +913,13 @@ void LCD_print_stereo_indicator(int is_stereo)
 		LCD_print_char('S');
 	}
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_horizontal_scroll_string(int scroll_speed, char string[])
 {
@@ -562,6 +938,13 @@ void LCD_horizontal_scroll_string(int scroll_speed, char string[])
 	LCD_shift_array(string); 
 	
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_shift_array(char array_to_shift[])
 {
@@ -583,6 +966,13 @@ void LCD_shift_array(char array_to_shift[])
 	}
 	array_to_shift[string_length - 1] = temp_var;
 }
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void LCD_print_time_display(time_t current_time, int current_temperature, char *button1, char *button2, char *a1, char *a2 )
 {
@@ -623,6 +1013,113 @@ void LCD_print_time_display(time_t current_time, int current_temperature, char *
 	LCD_print_bottom_menu(button1, button2, a2);
 }
 
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_print_alarm_display(alarm_t alarmtime, uint8_t selection)
+{
+	int i;
+	
+	LCD_clear_screen();
+	LCD_goto(0,0);
+	if(alarmtime.alarm_number == 1)
+	{
+		LCD_print_string("A1:",0);
+	}
+	else
+	{
+		LCD_print_string("A2:",0);
+	}
+	
+	switch (selection)
+	{
+		case (MINUTES):
+			LCD_print_largedouble_number(alarmtime.hour, 18,1,HOURS, NOTINVERTED);
+			LCD_print_large_colon(38,1);
+			LCD_print_largedouble_number(alarmtime.minute, 43, 1, MINUTES, INVERTED);
+			LCD_print_string(" ",0);
+			LCD_set_y(2);
+			if(alarmtime.AM_PM){
+				LCD_print_string("PM",0);
+			}
+			else{
+				LCD_print_string("AM",0);
+			}
+			break;
+		case (HOURS):
+			LCD_print_largedouble_number(alarmtime.hour, 18,1,HOURS, INVERTED);
+			LCD_print_large_colon(38,1);
+			LCD_print_largedouble_number(alarmtime.minute, 43, 1, MINUTES, NOTINVERTED);
+			LCD_print_string(" ",0);
+			LCD_set_y(2);
+			if(alarmtime.AM_PM){
+				LCD_print_string("PM",NOTINVERTED);
+			}
+			else{
+				LCD_print_string("AM",NOTINVERTED);
+			}
+			break;
+		case (AMPM):
+			LCD_print_largedouble_number(alarmtime.hour, 18,1,HOURS, NOTINVERTED);
+			LCD_print_large_colon(38,1);
+			LCD_print_largedouble_number(alarmtime.minute, 43, 1, MINUTES, NOTINVERTED);
+			LCD_print_string(" ",0);
+			LCD_set_y(1);
+			for(i=0;i<12;i++){
+				LCD_send_data(0x80);
+			}
+			LCD_goto(68,2);
+			if(alarmtime.AM_PM){
+				LCD_send_data(0xFF);
+				LCD_print_string("PM",INVERTED);
+				LCD_send_data(0xFF);
+			}
+			else{
+				LCD_send_data(0xFF);
+				LCD_print_string("AM",INVERTED);
+				LCD_send_data(0xFF);
+			}
+			break;
+	}
+	
+	LCD_print_bottom_menu("Down", "Set", "Up");
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void LCD_print_menu(uint8_t selection)
+{
+	LCD_goto(31,0);
+	LCD_print_string(menu_text[0],selection == 0);
+	LCD_goto(23,1);
+	LCD_print_string(menu_text[1],selection == 1);
+	LCD_goto(21,2);
+	LCD_print_string(menu_text[2],selection == 2);
+	LCD_goto(13,3);
+	LCD_print_string(menu_text[3],selection == 3);
+	LCD_goto(13,4);
+	LCD_print_string(menu_text[4],selection == 4);
+	LCD_goto(31,5);
+	LCD_print_string(menu_text[5],selection == 5);
+	
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : LCD_send_command
+Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
+Argument(s) : BYTE command_to_send
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
 void LCD_print_radio_display(double station, int signal_strength, int is_stereo, char *button1, char *button2, char *button3, char *RBDS )
 {
 	// Printing the station
@@ -639,52 +1136,5 @@ void LCD_print_radio_display(double station, int signal_strength, int is_stereo,
 	
 	// Printing bottom menu
 	LCD_print_bottom_menu(button1, button2, button3);
-	
-}
-
-void LCD_print_alarm_display(alarm_t alarmtime, const char *button1, const char *button2, const char *button3)
-{
-	LCD_clear_screen();
-	LCD_goto(0,0);
-	LCD_print_string("A1:",0);
-	LCD_print_double_number(alarmtime.hour);
-	LCD_print_char(':');
-	LCD_print_double_number(alarmtime.minute);
-	LCD_print_char(' ');
-	if(alarmtime.AM_PM){
-		LCD_print_string("PM",0);
-	}
-	else{
-		LCD_print_string("AM",0);
-	}
-	
-	/*
-	if(alarmtime.AM_PM == 1)
-	{
-		LCD_print_string(" AM");
-	}
-	else
-	{
-		LCD_print_string(" PM");
-	}
-	*/
-	
-	LCD_print_bottom_menu(button1, button2, button3);
-}
-
-void LCD_print_menu(uint8_t selection)
-{
-	LCD_goto(31,0);
-	LCD_print_string(menu_text[0],selection == 0);
-	LCD_goto(23,1);
-	LCD_print_string(menu_text[1],selection == 1);
-	LCD_goto(21,2);
-	LCD_print_string(menu_text[2],selection == 2);
-	LCD_goto(13,3);
-	LCD_print_string(menu_text[3],selection == 3);
-	LCD_goto(13,4);
-	LCD_print_string(menu_text[4],selection == 4);
-	LCD_goto(31,5);
-	LCD_print_string(menu_text[5],selection == 5);
 	
 }

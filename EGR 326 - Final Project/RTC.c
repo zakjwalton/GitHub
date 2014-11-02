@@ -7,25 +7,34 @@
 
 #include "RTC.h"
 
-/*************************************************
-Function that converts a binary coded decimal number to a decimal
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : fromBCD
+Description : Converts incoming RTC data from binary coded decimal to integer
+Argument(s) : data_in - Raw Data from RTC
+Return value : Decoded integer
+--------------------------------------------------------------------------------------------------*/
 
 uint8_t fromBCD(uint8_t data_in){
 	return ((data_in & 0x0F) + 10*((data_in>>4) & 0x07));
 }
 
-/*************************************************
-Function that converts a decimal number to a binary coded decimal
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : toBCD
+Description : Function that converts data to be sent to the RTC from an integer to a BCD
+Argument(s) : data_out - Integer data to be sent out
+Return value : BCD to send to RTC
+--------------------------------------------------------------------------------------------------*/
 
 uint8_t toBCD(uint8_t data_out){
 	return (((data_out/10)<<4) | (data_out % 10));
 }
 
-/*************************************************
-Function that sets the RTC
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : RTC_Set
+Description : Function that takes in time structure and writes it to the RTC to set the time
+Argument(s) : time_t - Data structure that represents the time to be set
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void RTC_Set(time_t times)
 {
@@ -33,10 +42,10 @@ void RTC_Set(time_t times)
 	I2C_SendMessage(RTC_ADDRESS, MONTH_R, toBCD(times.month));
 	I2C_SendMessage(RTC_ADDRESS, DATE_R, toBCD(times.day));
 	I2C_SendMessage(RTC_ADDRESS, DAY_R, toBCD(times.day_of_week));
-	if(times.AM_PM){
+	if(times.AM_PM){ // Set to PM
 		I2C_SendMessage(RTC_ADDRESS, HOURS_R, toBCD(times.hour) | _BV(5) | _BV(6));
 	}
-	else{
+	else{ // Set to AM
 		I2C_SendMessage(RTC_ADDRESS, HOURS_R, ((toBCD(times.hour) | _BV(6))) & ~_BV(5));
 	}
 	
@@ -45,9 +54,12 @@ void RTC_Set(time_t times)
 	
 }
 
-/*************************************************
-Function that reads the  from the RTC
-*************************************************/
+/*--------------------------------------------------------------------------------------------------
+Name : RTC_Read
+Description : Function that updates the current time from the RTC and stores it in the time_t data structure
+Argument(s) : Pointer to the time_t data structure used for the current time
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
 
 void RTC_Read(time_t *times)
 {

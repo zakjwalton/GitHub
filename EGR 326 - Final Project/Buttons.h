@@ -11,10 +11,7 @@
 #ifndef BUTTONS_H_
 #define BUTTONS_H_
 
-
-
-// Button Definitions
-// **************************IF CHANGE BUTTONS PINS HAVE TO CHECK PIN CHANGE INPUT ISR ROUTINES********************
+//Note: Still need to add switches and LEDs
 
 //Defining button numbers
 #define B1  1
@@ -50,10 +47,8 @@
 #define BUTTON_DD_2           DDRC  // Settings of Current Display B2
 #define BUTTON_DD_3           DDRC  // Next State Button B3
 
+//Initialize 3 Buttons, 2 Switches, and 2 LEDs
 void BUTTON_init();
-int debounce(int Button, int Button_Port);
-int get_new_button();
-
 
 
 

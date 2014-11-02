@@ -117,19 +117,10 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="FSM.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="FSM.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="I2C.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="I2C.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="IncFile1.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="LCD_PCD8544.c">
@@ -142,6 +133,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RTC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Si4705.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Si4705.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Timers.c">
