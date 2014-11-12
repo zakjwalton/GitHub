@@ -7,7 +7,6 @@
 
 #include "RTC.h"
 
-
 /*--------------------------------------------------------------------------------------------------
 Name : fromBCD
 Description : Converts incoming RTC data from binary coded decimal to integer

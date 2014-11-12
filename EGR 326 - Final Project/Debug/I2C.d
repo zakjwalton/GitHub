@@ -13,7 +13,7 @@ I2C.d I2C.o: .././I2C.c .././I2C.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././RTC.h .././twi/i2cmaster.h
+ .././RTC.h .././i2cmaster.h
 
 .././I2C.h:
 
@@ -47,4 +47,4 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 .././RTC.h:
 
-.././twi/i2cmaster.h:
+.././i2cmaster.h:

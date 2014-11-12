@@ -33,7 +33,7 @@ but could still add volume crescendo for alarm if I have time.
 
 //Custom libraries
 //#include "I2C.h"
-#include "twi/i2cmaster.h"
+#include "i2cmaster.h"
 #include "Buttons.h"
 #include "RTC.h"
 #include "LCD_PCD8544.h"

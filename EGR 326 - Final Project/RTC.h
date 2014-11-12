@@ -8,7 +8,7 @@
 #include	<stdio.h>
 #include	<avr/io.h>
 //#include	"I2C.h"
-#include "twi/i2cmaster.h"
+#include "i2cmaster.h"
 
 #ifndef		RTC_H_
 #define		RTC_H_

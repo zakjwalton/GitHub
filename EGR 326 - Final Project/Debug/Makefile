@@ -32,8 +32,7 @@ LIB_DEP:=
 LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
-SUBDIRS :=  \
-../twi/
+SUBDIRS := 
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
@@ -45,7 +44,7 @@ C_SRCS +=  \
 ../RTC.c \
 ../Si4705.c \
 ../Timers.c \
-../twi/twimaster.c
+../twimaster.c
 
 
 PREPROCESSING_SRCS += 
@@ -62,7 +61,7 @@ LCD_PCD8544.o \
 RTC.o \
 Si4705.o \
 Timers.o \
-twi/twimaster.o
+twimaster.o
 
 OBJS_AS_ARGS +=  \
 Buttons.o \
@@ -72,7 +71,7 @@ LCD_PCD8544.o \
 RTC.o \
 Si4705.o \
 Timers.o \
-twi/twimaster.o
+twimaster.o
 
 C_DEPS +=  \
 Buttons.d \
@@ -82,7 +81,7 @@ LCD_PCD8544.d \
 RTC.d \
 Si4705.d \
 Timers.d \
-twi/twimaster.d
+twimaster.d
 
 C_DEPS_AS_ARGS +=  \
 Buttons.d \
@@ -92,7 +91,7 @@ LCD_PCD8544.d \
 RTC.d \
 Si4705.d \
 Timers.d \
-twi/twimaster.d
+twimaster.d
 
 OUTPUT_FILE_PATH +=EGR\ 326\ -\ Final\ Project.elf
 
@@ -157,7 +156,7 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-twi/twimaster.o: ../twi/twimaster.c
+./twimaster.o: .././twimaster.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -166,13 +165,6 @@ twi/twimaster.o: ../twi/twimaster.c
 
 
 ./%.o: .././%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-twi/%.o: ../twi/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

@@ -17,7 +17,7 @@
 #define B1  1
 #define B2  2
 #define B3  3
-#define B1H 48
+#define B1H 4
 #define B2H 5
 #define B3H 6
 #define BUTTON_1 PD0
