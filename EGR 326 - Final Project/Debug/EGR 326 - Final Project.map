@@ -78,6 +78,8 @@ Discarded input sections
  .text          0x00000000        0x0 I2C.o
  .data          0x00000000        0x0 I2C.o
  .bss           0x00000000        0x0 I2C.o
+ .text.I2C_Init
+                0x00000000       0x12 I2C.o
  .text.I2C_Start
                 0x00000000       0x12 I2C.o
  .text.I2C_Addr
@@ -92,6 +94,16 @@ Discarded input sections
                 0x00000000       0x2c I2C.o
  .text.I2C_RecieveMessage
                 0x00000000       0x30 I2C.o
+ .debug_info    0x00000000      0x28c I2C.o
+ .debug_abbrev  0x00000000      0x136 I2C.o
+ .debug_loc     0x00000000      0x186 I2C.o
+ .debug_aranges
+                0x00000000       0x58 I2C.o
+ .debug_ranges  0x00000000       0x48 I2C.o
+ .debug_line    0x00000000      0x15b I2C.o
+ .debug_str     0x00000000      0x1ff I2C.o
+ .comment       0x00000000       0x31 I2C.o
+ .debug_frame   0x00000000       0xa8 I2C.o
  .text          0x00000000        0x0 LCD_PCD8544.o
  .data          0x00000000        0x0 LCD_PCD8544.o
  .bss           0x00000000        0x0 LCD_PCD8544.o
@@ -116,8 +128,6 @@ Discarded input sections
  .text          0x00000000        0x0 RTC.o
  .data          0x00000000        0x0 RTC.o
  .bss           0x00000000        0x0 RTC.o
- .text.toBCD    0x00000000       0x26 RTC.o
- .text.RTC_Set  0x00000000       0xa8 RTC.o
  .text          0x00000000        0x0 Si4705.o
  .data          0x00000000        0x0 Si4705.o
  .bss           0x00000000        0x0 Si4705.o
@@ -145,8 +155,6 @@ Discarded input sections
  .text          0x00000000        0x0 twimaster.o
  .data          0x00000000        0x0 twimaster.o
  .bss           0x00000000        0x0 twimaster.o
- .text.i2c_init
-                0x00000000        0xc twimaster.o
  .text.i2c_start_wait
                 0x00000000       0x50 twimaster.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libm.a(addsf3.o)
@@ -440,7 +448,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1a80
+.text           0x00000000     0x1b86
  *(.vectors)
  .vectors       0x00000000       0x68 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vector_default
@@ -543,131 +551,135 @@ END GROUP
  .text.WDT_Init
                 0x00000454       0x1c main.o
                 0x00000454                WDT_Init
- .text.main     0x00000470      0x8d2 main.o
+ .text.main     0x00000470      0x910 main.o
                 0x00000470                main
  .text.__vector_14
-                0x00000d42      0x17c main.o
-                0x00000d42                __vector_14
+                0x00000d80      0x17c main.o
+                0x00000d80                __vector_14
  .text.__vector_6
-                0x00000ebe       0x22 main.o
-                0x00000ebe                __vector_6
+                0x00000efc       0x22 main.o
+                0x00000efc                __vector_6
  .text.__vector_21
-                0x00000ee0       0x14 main.o
-                0x00000ee0                __vector_21
- .text.I2C_Init
-                0x00000ef4       0x12 I2C.o
-                0x00000ef4                I2C_Init
+                0x00000f1e       0x14 main.o
+                0x00000f1e                __vector_21
  .text.LCD_SPI_initialize
-                0x00000f06       0x10 LCD_PCD8544.o
-                0x00000f06                LCD_SPI_initialize
+                0x00000f32       0x10 LCD_PCD8544.o
+                0x00000f32                LCD_SPI_initialize
  .text.LCD_send_command
-                0x00000f16       0x16 LCD_PCD8544.o
-                0x00000f16                LCD_send_command
+                0x00000f42       0x16 LCD_PCD8544.o
+                0x00000f42                LCD_send_command
  .text.LCD_send_data
-                0x00000f2c       0x10 LCD_PCD8544.o
-                0x00000f2c                LCD_send_data
+                0x00000f58       0x10 LCD_PCD8544.o
+                0x00000f58                LCD_send_data
  .text.LCD_goto
-                0x00000f3c       0x16 LCD_PCD8544.o
-                0x00000f3c                LCD_goto
+                0x00000f68       0x16 LCD_PCD8544.o
+                0x00000f68                LCD_goto
  .text.LCD_clear_screen
-                0x00000f52       0x26 LCD_PCD8544.o
-                0x00000f52                LCD_clear_screen
+                0x00000f7e       0x26 LCD_PCD8544.o
+                0x00000f7e                LCD_clear_screen
  .text.LCD_initialize
-                0x00000f78       0x46 LCD_PCD8544.o
-                0x00000f78                LCD_initialize
+                0x00000fa4       0x46 LCD_PCD8544.o
+                0x00000fa4                LCD_initialize
  .text.LCD_set_y
-                0x00000fbe        0x8 LCD_PCD8544.o
-                0x00000fbe                LCD_set_y
+                0x00000fea        0x8 LCD_PCD8544.o
+                0x00000fea                LCD_set_y
  .text.LCD_print_char
-                0x00000fc6       0x44 LCD_PCD8544.o
-                0x00000fc6                LCD_print_char
+                0x00000ff2       0x44 LCD_PCD8544.o
+                0x00000ff2                LCD_print_char
  .text.LCD_print_inverted_char
-                0x0000100a       0x46 LCD_PCD8544.o
-                0x0000100a                LCD_print_inverted_char
+                0x00001036       0x46 LCD_PCD8544.o
+                0x00001036                LCD_print_inverted_char
  .text.LCD_print_large_number
-                0x00001050       0xea LCD_PCD8544.o
-                0x00001050                LCD_print_large_number
+                0x0000107c       0xea LCD_PCD8544.o
+                0x0000107c                LCD_print_large_number
  .text.LCD_print_double_number
-                0x0000113a       0xb8 LCD_PCD8544.o
-                0x0000113a                LCD_print_double_number
+                0x00001166       0xb8 LCD_PCD8544.o
+                0x00001166                LCD_print_double_number
  .text.LCD_print_largedouble_number
-                0x000011f2      0x102 LCD_PCD8544.o
-                0x000011f2                LCD_print_largedouble_number
+                0x0000121e      0x102 LCD_PCD8544.o
+                0x0000121e                LCD_print_largedouble_number
  .text.LCD_print_large_colon
-                0x000012f4       0x7c LCD_PCD8544.o
-                0x000012f4                LCD_print_large_colon
+                0x00001320       0x7c LCD_PCD8544.o
+                0x00001320                LCD_print_large_colon
  .text.LCD_print_string
-                0x00001370       0x38 LCD_PCD8544.o
-                0x00001370                LCD_print_string
+                0x0000139c       0x38 LCD_PCD8544.o
+                0x0000139c                LCD_print_string
  .text.LCD_print_bottom_menu
-                0x000013a8       0xce LCD_PCD8544.o
-                0x000013a8                LCD_print_bottom_menu
+                0x000013d4       0xce LCD_PCD8544.o
+                0x000013d4                LCD_print_bottom_menu
  .text.LCD_print_time_display
-                0x00001476      0x118 LCD_PCD8544.o
-                0x00001476                LCD_print_time_display
+                0x000014a2      0x118 LCD_PCD8544.o
+                0x000014a2                LCD_print_time_display
  .text.LCD_print_alarm_display
-                0x0000158e      0x1d6 LCD_PCD8544.o
-                0x0000158e                LCD_print_alarm_display
+                0x000015ba      0x1d6 LCD_PCD8544.o
+                0x000015ba                LCD_print_alarm_display
  .text.LCD_print_menu
-                0x00001764       0xae LCD_PCD8544.o
-                0x00001764                LCD_print_menu
- .text.fromBCD  0x00001812       0x18 RTC.o
-                0x00001812                fromBCD
+                0x00001790       0xae LCD_PCD8544.o
+                0x00001790                LCD_print_menu
+ .text.fromBCD  0x0000183e       0x18 RTC.o
+                0x0000183e                fromBCD
+ .text.toBCD    0x00001856       0x26 RTC.o
+                0x00001856                toBCD
+ .text.RTC_Set  0x0000187c       0xa8 RTC.o
+                0x0000187c                RTC_Set
  .text.RTC_Read
-                0x0000182a       0x7a RTC.o
-                0x0000182a                RTC_Read
+                0x00001924       0x7a RTC.o
+                0x00001924                RTC_Read
  .text.Timer0_Init
-                0x000018a4       0x16 Timers.o
-                0x000018a4                Timer0_Init
+                0x0000199e       0x16 Timers.o
+                0x0000199e                Timer0_Init
  .text.Timer2_Init
-                0x000018ba       0x12 Timers.o
-                0x000018ba                Timer2_Init
+                0x000019b4       0x12 Timers.o
+                0x000019b4                Timer2_Init
  .text.Timer1_Init
-                0x000018cc       0x28 Timers.o
-                0x000018cc                Timer1_Init
+                0x000019c6       0x28 Timers.o
+                0x000019c6                Timer1_Init
  .text.hw_delay
-                0x000018f4       0x26 Timers.o
-                0x000018f4                hw_delay
+                0x000019ee       0x26 Timers.o
+                0x000019ee                hw_delay
  .text.Timer1PWM_OnOff
-                0x0000191a       0x28 Timers.o
-                0x0000191a                Timer1PWM_OnOff
+                0x00001a14       0x28 Timers.o
+                0x00001a14                Timer1PWM_OnOff
+ .text.i2c_init
+                0x00001a3c        0xc twimaster.o
+                0x00001a3c                i2c_init
  .text.i2c_start
-                0x00001942       0x4e twimaster.o
-                0x00001942                i2c_start
+                0x00001a48       0x4e twimaster.o
+                0x00001a48                i2c_start
  .text.i2c_rep_start
-                0x00001990        0x6 twimaster.o
-                0x00001990                i2c_rep_start
+                0x00001a96        0x6 twimaster.o
+                0x00001a96                i2c_rep_start
  .text.i2c_stop
-                0x00001996       0x12 twimaster.o
-                0x00001996                i2c_stop
+                0x00001a9c       0x12 twimaster.o
+                0x00001a9c                i2c_stop
  .text.i2c_write
-                0x000019a8       0x24 twimaster.o
-                0x000019a8                i2c_write
+                0x00001aae       0x24 twimaster.o
+                0x00001aae                i2c_write
  .text.i2c_readAck
-                0x000019cc       0x16 twimaster.o
-                0x000019cc                i2c_readAck
+                0x00001ad2       0x16 twimaster.o
+                0x00001ad2                i2c_readAck
  .text.i2c_readNak
-                0x000019e2       0x16 twimaster.o
-                0x000019e2                i2c_readNak
+                0x00001ae8       0x16 twimaster.o
+                0x00001ae8                i2c_readNak
  .text.libgcc.div
-                0x000019f8       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodhi4.o)
-                0x000019f8                _div
-                0x000019f8                __divmodhi4
+                0x00001afe       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodhi4.o)
+                0x00001afe                _div
+                0x00001afe                __divmodhi4
  .text.libgcc.div
-                0x00001a20       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
-                0x00001a20                __udivmodhi4
+                0x00001b26       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
+                0x00001b26                __udivmodhi4
  .text.avr-libc
-                0x00001a48       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libc.a(eerd_byte_atmega328p.o)
-                0x00001a48                __eerd_byte_m328p
+                0x00001b4e       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libc.a(eerd_byte_atmega328p.o)
+                0x00001b4e                __eerd_byte_m328p
  .text.avr-libc
-                0x00001a58       0x24 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libc.a(eeupd_byte_atmega328p.o)
-                0x00001a58                __eeupd_byte_m328p
-                0x00001a5a                __eeupd_r18_m328p
-                0x00001a7c                . = ALIGN (0x2)
+                0x00001b5e       0x24 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libc.a(eeupd_byte_atmega328p.o)
+                0x00001b5e                __eeupd_byte_m328p
+                0x00001b60                __eeupd_r18_m328p
+                0x00001b82                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001a7c        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x00001a7c                _exit
-                0x00001a7c                exit
+ .fini9         0x00001b82        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x00001b82                _exit
+                0x00001b82                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -686,11 +698,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001a7c        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001b82        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001a80                _etext = .
+                0x00001b86                _etext = .
 
-.data           0x00800100       0x98 load address 0x00001a80
+.data           0x00800100       0x98 load address 0x00001b86
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -714,9 +726,9 @@ END GROUP
                 0x00800198                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.bpressed.2174
+ .bss.bpressed.2172
                 0x00800198        0x2 main.o
- .bss.count.2173
+ .bss.count.2171
                 0x0080019a        0x2 main.o
  .bss.WDT_counter
                 0x0080019c        0x1 main.o
@@ -745,8 +757,8 @@ END GROUP
                 0x008001c5                string_alarm_onoff1
                 0x008001cf                alarmtime2
                 0x008001d7                PROVIDE (__bss_end, .)
-                0x00001a80                __data_load_start = LOADADDR (.data)
-                0x00001b18                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001b86                __data_load_start = LOADADDR (.data)
+                0x00001c1e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008001d7        0x0
                 0x008001d7                PROVIDE (__noinit_start, .)
@@ -806,7 +818,6 @@ END GROUP
  .comment       0x00000000       0x30 Buttons.o
                                  0x31 (size before relaxing)
  .comment       0x00000000       0x31 main.o
- .comment       0x00000000       0x31 I2C.o
  .comment       0x00000000       0x31 LCD_PCD8544.o
  .comment       0x00000000       0x31 RTC.o
  .comment       0x00000000       0x31 Timers.o
@@ -827,91 +838,82 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x288
+.debug_aranges  0x00000000      0x230
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 Buttons.o
  .debug_aranges
                 0x00000020       0x58 main.o
  .debug_aranges
-                0x00000078       0x58 I2C.o
+                0x00000078       0xe8 LCD_PCD8544.o
  .debug_aranges
-                0x000000d0       0xe8 LCD_PCD8544.o
+                0x00000160       0x38 RTC.o
  .debug_aranges
-                0x000001b8       0x38 RTC.o
+                0x00000198       0x40 Timers.o
  .debug_aranges
-                0x000001f0       0x40 Timers.o
- .debug_aranges
-                0x00000230       0x58 twimaster.o
+                0x000001d8       0x58 twimaster.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3025
+.debug_info     0x00000000     0x2d9a
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000       0x89 Buttons.o
- .debug_info    0x00000089      0xcd2 main.o
- .debug_info    0x00000d5b      0x28c I2C.o
- .debug_info    0x00000fe7     0x1945 LCD_PCD8544.o
- .debug_info    0x0000292c      0x422 RTC.o
- .debug_info    0x00002d4e      0x11a Timers.o
- .debug_info    0x00002e68      0x1bd twimaster.o
+ .debug_info    0x00000089      0xcd3 main.o
+ .debug_info    0x00000d5c     0x1945 LCD_PCD8544.o
+ .debug_info    0x000026a1      0x422 RTC.o
+ .debug_info    0x00002ac3      0x11a Timers.o
+ .debug_info    0x00002bdd      0x1bd twimaster.o
 
-.debug_abbrev   0x00000000      0x8c5
+.debug_abbrev   0x00000000      0x77c
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0x4f Buttons.o
- .debug_abbrev  0x0000004f      0x26f main.o
- .debug_abbrev  0x000002be      0x136 I2C.o
- .debug_abbrev  0x000003f4      0x215 LCD_PCD8544.o
- .debug_abbrev  0x00000609      0x127 RTC.o
- .debug_abbrev  0x00000730       0xb0 Timers.o
- .debug_abbrev  0x000007e0       0xe5 twimaster.o
+ .debug_abbrev  0x0000004f      0x25c main.o
+ .debug_abbrev  0x000002ab      0x215 LCD_PCD8544.o
+ .debug_abbrev  0x000004c0      0x127 RTC.o
+ .debug_abbrev  0x000005e7       0xb0 Timers.o
+ .debug_abbrev  0x00000697       0xe5 twimaster.o
 
-.debug_line     0x00000000      0xda3
+.debug_line     0x00000000      0xc5e
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0xba Buttons.o
- .debug_line    0x000000ba      0x323 main.o
- .debug_line    0x000003dd      0x15b I2C.o
- .debug_line    0x00000538      0x4aa LCD_PCD8544.o
- .debug_line    0x000009e2      0x112 RTC.o
- .debug_line    0x00000af4      0x106 Timers.o
- .debug_line    0x00000bfa      0x1a9 twimaster.o
+ .debug_line    0x000000ba      0x339 main.o
+ .debug_line    0x000003f3      0x4aa LCD_PCD8544.o
+ .debug_line    0x0000089d      0x112 RTC.o
+ .debug_line    0x000009af      0x106 Timers.o
+ .debug_line    0x00000ab5      0x1a9 twimaster.o
 
-.debug_frame    0x00000000      0x788
+.debug_frame    0x00000000      0x6e0
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 Buttons.o
  .debug_frame   0x00000024       0xe8 main.o
- .debug_frame   0x0000010c       0xa8 I2C.o
- .debug_frame   0x000001b4      0x454 LCD_PCD8544.o
- .debug_frame   0x00000608       0x7c RTC.o
- .debug_frame   0x00000684       0x64 Timers.o
- .debug_frame   0x000006e8       0xa0 twimaster.o
+ .debug_frame   0x0000010c      0x454 LCD_PCD8544.o
+ .debug_frame   0x00000560       0x7c RTC.o
+ .debug_frame   0x000005dc       0x64 Timers.o
+ .debug_frame   0x00000640       0xa0 twimaster.o
 
-.debug_str      0x00000000      0x8da
+.debug_str      0x00000000      0x849
  *(.debug_str)
  .debug_str     0x00000000      0x143 Buttons.o
                                 0x17c (size before relaxing)
- .debug_str     0x00000143      0x32e main.o
-                                0x4c0 (size before relaxing)
- .debug_str     0x00000471       0x90 I2C.o
-                                0x1ff (size before relaxing)
- .debug_str     0x00000501      0x30f LCD_PCD8544.o
+ .debug_str     0x00000143      0x336 main.o
+                                0x4c8 (size before relaxing)
+ .debug_str     0x00000479      0x30f LCD_PCD8544.o
                                 0x5e9 (size before relaxing)
- .debug_str     0x00000810       0x7f RTC.o
+ .debug_str     0x00000788       0x77 RTC.o
                                 0x22b (size before relaxing)
- .debug_str     0x0000088f       0x1d Timers.o
+ .debug_str     0x000007ff       0x1d Timers.o
                                 0x1bf (size before relaxing)
- .debug_str     0x000008ac       0x2e twimaster.o
+ .debug_str     0x0000081c       0x2d twimaster.o
                                 0x1da (size before relaxing)
 
-.debug_loc      0x00000000     0x1f17
+.debug_loc      0x00000000     0x1d91
  *(.debug_loc)
  .debug_loc     0x00000000      0x179 main.o
- .debug_loc     0x00000179      0x186 I2C.o
- .debug_loc     0x000002ff     0x1959 LCD_PCD8544.o
- .debug_loc     0x00001c58      0x134 RTC.o
- .debug_loc     0x00001d8c       0x5e Timers.o
- .debug_loc     0x00001dea      0x12d twimaster.o
+ .debug_loc     0x00000179     0x1959 LCD_PCD8544.o
+ .debug_loc     0x00001ad2      0x134 RTC.o
+ .debug_loc     0x00001c06       0x5e Timers.o
+ .debug_loc     0x00001c64      0x12d twimaster.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -931,15 +933,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x278
+.debug_ranges   0x00000000      0x230
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x10 Buttons.o
  .debug_ranges  0x00000010       0x78 main.o
- .debug_ranges  0x00000088       0x48 I2C.o
- .debug_ranges  0x000000d0      0x108 LCD_PCD8544.o
- .debug_ranges  0x000001d8       0x28 RTC.o
- .debug_ranges  0x00000200       0x30 Timers.o
- .debug_ranges  0x00000230       0x48 twimaster.o
+ .debug_ranges  0x00000088      0x108 LCD_PCD8544.o
+ .debug_ranges  0x00000190       0x28 RTC.o
+ .debug_ranges  0x000001b8       0x30 Timers.o
+ .debug_ranges  0x000001e8       0x48 twimaster.o
 
 .debug_macro
  *(.debug_macro)

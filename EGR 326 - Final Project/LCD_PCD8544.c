@@ -446,7 +446,7 @@ void LCD_initialize()
 	LCD_send_command(0x21);
 	
 	// Set the temperature coefficient to 2 (17 mV/K)
-	LCD_send_command(0x04);
+	LCD_send_command(0x07);
 	
 	// Set operation voltage to approximately 7V
 	LCD_send_command(0xA0);

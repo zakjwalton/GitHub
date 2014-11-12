@@ -120,18 +120,19 @@ int main(void)
 	//ADC_Init(); Yet to be implemented
 	sei();
 	
-	/* Set time if needed
-	timeset.hour = 9;
-	timeset.minute = 36;
+	/*//Set time if needed
+	timeset.hour = 8;
+	timeset.minute = 57;
 	timeset.second = 0;
 	timeset.AM_PM = 1;
-	timeset.day = 29;
-	timeset.day_of_week = 6;
-	timeset.month = 10;
+	timeset.day = 11;
+	timeset.day_of_week = 3;
+	timeset.month = 11;
 	timeset.year = 14;
 
-	RTC_Set(currenttime);
+	RTC_Set(timeset);
 	*/
+	
 	
 	
 	// Read alarm time from EEPROM

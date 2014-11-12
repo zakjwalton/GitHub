@@ -38,6 +38,7 @@ Return value : None.
 
 void RTC_Set(time_t times)
 {
+	
 	i2c_start(RTC_WRITE);
 	i2c_write(SECONDS_R);
 	i2c_write(toBCD(times.second));
@@ -81,6 +82,7 @@ Return value : None.
 
 void RTC_Read(time_t *times)
 {
+	
 	//point to first address
 	uint8_t hour_temp;
 	//uint8_t err; // dummy return variable
