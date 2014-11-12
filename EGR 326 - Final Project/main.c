@@ -6,6 +6,20 @@
  *  EGR 326 Final Project - Alarm Clock Radio
  */ 
 
+/*
+	Still need to add functionality for radio as well
+as switches for alarms, switches should be easy just haven't
+bought any switches yet.  Also need to add ADC stuff for 
+Thermistor and Photo sensor.  Need to add PWM functionality
+for LCD back light, should be able to pull from previous lab as
+well as Photo sensor stuff.  Probably should use ADC in some sort
+of interrupt mode??  Need to be able to read the temp and then the
+photocell and switch back and forth.  Maybe toggle sort of variable
+in the interrupt?  Planning to control volume using an analog pot
+but could still add volume crescendo for alarm if I have time.
+
+*/
+
 //Standard includes
 #include <avr/io.h>
 #include <stdio.h>
@@ -18,7 +32,8 @@
 #include <avr/wdt.h>
 
 //Custom libraries
-#include "I2C.h"
+//#include "I2C.h"
+#include "twi/i2cmaster.h"
 #include "Buttons.h"
 #include "RTC.h"
 #include "LCD_PCD8544.h"
@@ -96,10 +111,13 @@ int main(void)
 	Timer1_Init();
 	Timer2_Init();
 	WDT_Init();
-	I2C_Init();
+	//I2C_Init();
+	i2c_init();
 	BUTTON_init();
 	LCD_SPI_initialize();
 	LCD_initialize();
+	//FM_Init(); Yet to be implemented
+	//ADC_Init(); Yet to be implemented
 	sei();
 	
 	/* Set time if needed
@@ -237,7 +255,7 @@ int main(void)
 			case(B2H):
 				CLEAR_BUTTONS;
 				break;
-			//toggle alarm 2 on or off
+			//toggle alarm 2 on or off (to be replaced with switches)
 			case(B3H):
 				CLEAR_BUTTONS;
 				//toggle alarm 2
@@ -251,7 +269,8 @@ int main(void)
 					strcpy(string_alarm_onoff2,off);
 				}
 				break;
-			//default alarm display
+			//default alarm and radio display
+			//need to add if statement that tailors display for the radio being on/off
 			default:
 				//If the counter is greater than timeout, reset it
 				if(WDT_counter >= WDT_TIMEOUT)
@@ -483,19 +502,31 @@ void WDT_Init(void)
 }
 
 /*--------------------------------------------------------------------------------------------------
+Name : ADC_Init
+Description : Initialization function for ADC for thermistor and Photo cell
+Argument(s) : Possibly pass in a variable to tell what conversion to do??
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+void ADC_Init(void)
+{
+	//Initialize ADC for two different conversions
+}
+
+/*--------------------------------------------------------------------------------------------------
 Name : TIMER0_COMPA_vect
 Description : ISR @ 1kHz for button reading/debouncing
 Argument(s) : None.
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
-
+//Have yet to add switch handling and LEDs based on radio
 ISR(TIMER0_COMPA_vect)
 {
 	static int count;
 	static int bpressed = 0;
-	bool button1Raw = (PINC & _BV(BUTTON_1)) == 0;
-	bool button2Raw = (PINC & _BV(BUTTON_2)) == 0;
-	bool button3Raw = (PINC & _BV(BUTTON_3)) == 0;
+	int button1Raw = (BUTTON_READ_REG & _BV(BUTTON_1)) == 0;
+	int button2Raw = (BUTTON_READ_REG & _BV(BUTTON_2)) == 0;
+	int button3Raw = (BUTTON_READ_REG & _BV(BUTTON_3)) == 0;
 	
 	if(button1Raw){
 		count++;
@@ -553,4 +584,18 @@ Return value : None.
 ISR(WDT_vect)
 {
 	WDT_counter++;
+	
+	//Still need to add functionality for System reset
+}
+
+/*--------------------------------------------------------------------------------------------------
+Name : ADC_vect
+Description : Interrupt used for ADC for thermistor as well as Photo sensor
+Argument(s) : None.
+Return value : None.
+--------------------------------------------------------------------------------------------------*/
+
+ISR(ADC_vect)
+{
+	//add logic for handling 2 ADCs
 }

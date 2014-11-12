@@ -5,6 +5,7 @@
  *  Author: Jonathan
  */ 
 
+//Includes
 #include "LCD_PCD8544.h"
 #include <avr/pgmspace.h>
 #include <string.h>
@@ -145,6 +146,7 @@ static const unsigned char smallFont[] PROGMEM =
 	0x00, 0x06, 0x09, 0x09, 0x06  // º
 };
 
+//Array for numbers
 const unsigned char single_numbers[] PROGMEM =
 {
 	0x3E, 0x41, 0x41, 0x41, 0x3E, // 0
@@ -349,6 +351,7 @@ static const uint8_t large_font[] PROGMEM =
 	
 };
 
+//Print large 5x16 colon
 static const uint8_t large_colon[] PROGMEM =
 {
 	// @200 ':' (10 pixels wide)
@@ -371,7 +374,7 @@ static const uint8_t large_colon[] PROGMEM =
 
 };
 
-
+//Array with menu text
 const char menu_text[6][12] =
 {
 	"Tune","Presets","Set Time","Set Alarm 1","Set Alarm 2", "Back"
@@ -380,7 +383,7 @@ const char menu_text[6][12] =
 
 /*--------------------------------------------------------------------------------------------------
 Name : LCD_SPI_initialize
-Description : Initializing ATmega328P SPI for using with Nokia 5110 LCD w/ PCD8544 Controller
+Description : Initializing ATmega328P SPI for use with the Nokia 5110 LCD w/ PCD8544 Controller
 Argument(s) : None.
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
@@ -399,7 +402,7 @@ void LCD_SPI_initialize()
 
 /*--------------------------------------------------------------------------------------------------
 Name : LCD_initialize
-Description : Initializing ATmega328P LCD for using with Nokia 5110 LCD w/ PCD8544 Controller
+Description : Initialize the LCD Controller Setup parameters
 Argument(s) : None.
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
@@ -489,9 +492,9 @@ void LCD_send_command(BYTE command_to_send)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_send_data
+Description : Sends data through SPI to Nokia 5110 LCD w/ PCD8544 Controller to write pixels on the screen
+Argument(s) : BYTE data_to_send
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -517,13 +520,13 @@ void LCD_send_data(BYTE data_to_send)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_display_splash
+Description : Displays the splash screen on the LCD
+Argument(s) : None.
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
-void LCD_display_splash()
+void LCD_display_splash(void)
 {
 	int i;
 	
@@ -534,13 +537,13 @@ void LCD_display_splash()
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_clear_screen
+Description : Write a 0 to every pixel on the screen in order to clear the screen
+Argument(s) : None.
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
-void LCD_clear_screen()
+void LCD_clear_screen(void)
 {
 	int i;
 	
@@ -554,9 +557,11 @@ void LCD_clear_screen()
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_goto
+Description : Moves the address pointer to the specified column and row on the LCD
+Argument(s) : 
+	column - coumn to go to
+	row - row to go to
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -570,9 +575,9 @@ void LCD_goto(int column, int row)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_set_y
+Description : Tells the LCD to point to a specific y location on the screen
+Argument(s) : y_to_set - y-position to move to
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -583,9 +588,9 @@ void LCD_set_y(int y_to_set)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_char
+Description : Prints the specified character to the LCD
+Argument(s) : char_to_print
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -600,9 +605,9 @@ void LCD_print_char(unsigned char char_to_print)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_inverted_char
+Description : Prints the specified character inverted on the LCD
+Argument(s) : char_to_print - character to print inverted
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -617,9 +622,9 @@ void LCD_print_inverted_char(unsigned char char_to_print)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_single_number
+Description : Prints single number to the LCD
+Argument(s) : single_digit_to_print - number to print to the LCD
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -634,9 +639,13 @@ void LCD_print_single_number(int single_digit_to_print)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_large_number
+Description : Prints 10x16 number to the LCD
+Argument(s) : 
+	number_to_print - large number to print to the LCD
+	x - x-position to print the number at
+	y - y-position to print the number at
+	inverted - (1) print the number inverted (0) print the number normal
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -665,9 +674,9 @@ void LCD_print_large_number(unsigned int number_to_print, uint8_t x, uint8_t y, 
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_double_number
+Description : Prints a double number to the screen (2 digits 0-9, not type double)
+Argument(s) : number_to_print - number from 0-99 to print
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -693,9 +702,14 @@ void LCD_print_double_number(int number_to_print)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_largedouble_number
+Description : Prints large double number on LCD (number 0-99)
+Argument(s) : 
+	number_to_print - Large double number to print 0-99
+	x - x-position of number
+	y - y-position of number
+	hours - (1) printing hours (0) printing minutes
+	inverted - (1) print number inverted (0) print number normal
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -706,9 +720,11 @@ void LCD_print_largedouble_number(int number_to_print, int x, int y, uint8_t hou
 	
 	temp1 = number_to_print / 10;
 	temp2 = number_to_print % 10;
+	//print hours if less than 10
 	if((temp1 == 0) && hours)
 	{
 		LCD_goto(x,y);
+		//print space first if number is less than 10
 		LCD_print_large_number(10, x, y, NOTINVERTED);
 		if(inverted)
 		{
@@ -720,10 +736,8 @@ void LCD_print_largedouble_number(int number_to_print, int x, int y, uint8_t hou
 			LCD_goto(x,y);
 			LCD_print_large_number(temp2, x+10,y, NOTINVERTED);
 		}
-		//print space first if number is less than 10
-		
-		
 	}
+	//print two numbers (number > 9)
 	else
 	{
 		if(inverted)
@@ -746,9 +760,11 @@ void LCD_print_largedouble_number(int number_to_print, int x, int y, uint8_t hou
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_large_colon
+Description : Print a 5x16 colon to the screen for large time display
+Argument(s) : 
+	x - x-position of colon
+	y - y-position of colon
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -768,9 +784,11 @@ void LCD_print_large_colon(uint8_t x, uint8_t y){
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_string
+Description : Prints a string to the LCD
+Argument(s) : 
+	*string - pointer to string to print
+	inverted - (1) print inverted string (0) print normal string
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -795,9 +813,12 @@ void LCD_print_string(const char *string, BYTE inverted)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_bottom_menu
+Description : Print 3 labels on the bottom row of the screen for button labels
+Argument(s) : 
+	*button1 - pointer to button1 label
+	*button2 - pointer to button2 label
+	*button3 - pointer to button3 label
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -837,9 +858,9 @@ void LCD_print_bottom_menu(const char *button1, const char *button2, const char 
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_signal_strength
+Description : Prints the signal strength using a bar indicator
+Argument(s) : signal_strength - integer representation of signal strength
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -863,9 +884,9 @@ void LCD_print_signal_strength(int signal_strength)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_station
+Description : Prints the specified station to the screen
+Argument(s) : station - station to print
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -893,9 +914,9 @@ void LCD_print_station(double station)
 }
 	
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_stereo_indicator
+Description : Prints S for stereo and NS for no stereo
+Argument(s) : is_stereo - (1) stereo (0) no stereo
 Return value : None.
 --------------------------------------------------------------------------------------------------*/	
 	
@@ -915,9 +936,11 @@ void LCD_print_stereo_indicator(int is_stereo)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_horizontal_scroll_string
+Description : Function that scrolls a string across the screen
+Argument(s) : 
+	scroll_speed - speed to scroll at
+	string[] - string to scroll across screen
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -940,9 +963,9 @@ void LCD_horizontal_scroll_string(int scroll_speed, char string[])
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_shift_array
+Description : Shifts an array to the left and puts the cutoff part on the end
+Argument(s) : array_to_shift[] - array to be shifted
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -968,9 +991,15 @@ void LCD_shift_array(char array_to_shift[])
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_time_display
+Description : Print main time display to the LCD
+Argument(s) : 
+	current_time - structure containing current time
+	current_temperature - current temp from thermistor
+	*button1 - pointer to string for button 1 label
+	*button2 - pointer to string for button 2 label
+	*a1 - pointer to string for alarm1 on/off
+	*a2 - pointer to string for alarm2 on/off
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -1014,9 +1043,11 @@ void LCD_print_time_display(time_t current_time, int current_temperature, char *
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_alarm_display
+Description : Prints alarm setting display with the selected parameter inverted
+Argument(s) : 
+	alarmtime - structure holding alarm information
+	selection - parameter selected
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -1090,9 +1121,9 @@ void LCD_print_alarm_display(alarm_t alarmtime, uint8_t selection)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_menu
+Description : Prints main menu with the current selection inverted
+Argument(s) : selection - selected state 0-5
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 
@@ -1114,9 +1145,16 @@ void LCD_print_menu(uint8_t selection)
 }
 
 /*--------------------------------------------------------------------------------------------------
-Name : LCD_send_command
-Description : Sends a command through SPI to Nokia 5110 LCD w/ PCD8544 Controller
-Argument(s) : BYTE command_to_send
+Name : LCD_print_radio_display
+Description : Prints the radio display on the screen
+Argument(s) : 
+	station - station current playing
+	signal_strength - value of stereo signal strength
+	is_stereo - whether or not we have stereo reception
+	*button1 - button 1 label
+	*button2 - button 2 label
+	*button2 - button3 label
+	*RBDS - RBDS string
 Return value : None.
 --------------------------------------------------------------------------------------------------*/
 

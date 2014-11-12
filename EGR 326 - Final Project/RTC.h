@@ -7,7 +7,8 @@
 
 #include	<stdio.h>
 #include	<avr/io.h>
-#include	"I2C.h"
+//#include	"I2C.h"
+#include "twi/i2cmaster.h"
 
 #ifndef		RTC_H_
 #define		RTC_H_
@@ -47,6 +48,8 @@ struct alarm{
 
 //Slave address
 #define		RTC_ADDRESS	0b1101000
+#define		RTC_WRITE ((RTC_ADDRESS<<1) & ~0x01)
+#define		RTC_READ ((RTC_ADDRESS<<1) | 0x01)
 
 //DS1307 Memory Addresses
 #define		SECONDS_R	0x00
@@ -60,13 +63,10 @@ struct alarm{
 
 //Function that converts a binary coded decimal number to a decimal
 uint8_t fromBCD(uint8_t data_in);
-
 //Function that converts a decimal number to a binary coded decimal
 uint8_t toBCD(uint8_t data_out);
-
 //Function that sets the RTC
 void RTC_Set(time_t times);
-
 //Function that sets the RTC
 void RTC_Read(time_t *times);
 

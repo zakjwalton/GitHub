@@ -20,14 +20,26 @@ Return value : None.
 void BUTTON_init()
 {
 	//Note: Still need to add switches and LEDs
-// Setting data direction for buttons as inputs (already set to zero)
-BUTTON_DD_1 &= ~_BV(BUTTON_1_PIN);
-BUTTON_DD_2 &= ~_BV(BUTTON_2_PIN);
-BUTTON_DD_3 &= ~_BV(BUTTON_3_PIN);
+// Setting data direction for buttons and switches as inputs (already set to zero)
+BUTTON_DD_1 &= ~_BV(BUTTON_1);
+BUTTON_DD_2 &= ~_BV(BUTTON_2);
+BUTTON_DD_3 &= ~_BV(BUTTON_3);
+SWITCH_DD_1 &= ~_BV(SWITCH_1);
+SWITCH_DD_2 &= ~_BV(SWITCH_2);
 
-// Enabling internal pull-up resistor on pins attached to buttons
-BUTTON_1_PORT |= _BV(BUTTON_1_PIN);     
-BUTTON_2_PORT |= _BV(BUTTON_2_PIN);
-BUTTON_3_PORT |= _BV(BUTTON_3_PIN);
+// Enabling internal pull-up resistor on pins attached to buttons and switches
+BUTTONS_PORT |= _BV(BUTTON_1);     
+BUTTONS_PORT |= _BV(BUTTON_2);
+BUTTONS_PORT |= _BV(BUTTON_3);
+BUTTONS_PORT |= _BV(SWITCH_1);
+BUTTONS_PORT |= _BV(SWITCH_2);
+
+//Setting data directions for LEDs
+DDRC |= _BV(LED_RADIO);
+DDRC |= _BV(LED_STEREO);
+
+//Turn LEDs off initially
+LED_RADIO_OFF;
+LED_STEREO_OFF;
 
 }
